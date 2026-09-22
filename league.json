@@ -1,0 +1,595 @@
+{
+  "_README": "THIS IS THE ONLY FILE YOU NEED TO EDIT. Everything on the site is generated from here, except live standings/records, which come straight from Sleeper. Edit on GitHub in your browser, commit, and the site updates in about 30 seconds. See README.md for details.",
+
+  "league": {
+    "name": "The League",
+    "established": 2020,
+    "tagline": "A fantasy football league owned, managed, and operated by a group of 10 high school buddies.",
+    "address": "15 Huntington Drive, Annandale NJ, 08801",
+    "commissioner": "Brian Pedretti",
+    "commissionerNote": "Defeated Sean in the 2026 election",
+    "platform": "Sleeper Fantasy Football",
+    "sleeperLeagueId": "1312965631825428480",
+    "groupChat": { "platform": "Telegram", "url": "https://t.me/+TgKhIUf5uJqm3ypZ" },
+    "description": "A place to talk about sports, entertainment, pop culture, politics, and more. Members only. Check your privilege at the door. It has no place here. (Immense amounts of Money Involved)",
+    "structure": "6-man keeper league (discretionary keepers)",
+    "entryFee": "$200",
+    "payouts": [
+      { "place": "Champion", "amount": "$1,000" },
+      { "place": "Runner-up", "amount": "$400" },
+      { "place": "3rd place", "amount": "$200" },
+      { "place": "Regular season champion", "amount": "$400" }
+    ],
+    "draftPartners": [
+      "Buffalo Wild Wings",
+      "The Gilhooly Residence",
+      "Fielding Hampton Residence"
+    ],
+    "introduction": "The League (est. 2020) is a fantasy football league owned, managed, and operated by a group of 10 high school buddies. The league was conceptualized by its first Commissioner, Andrew Fielding (Team Fielding), and founded with the special assistance of ~ Suck My Ditka owner Daniel Pedretti. Together, the 2 friends brought on board owners Brian Pedretti (Big Dick MVP Aaron GODgers), Lucas Teuber (Yang Gang), Matt Lifshitz (The Silent Majority), Jerry Markatos (25 and Under), Jonathan Pan (PanFam), Connor Gross (NORTH KOREA GINGA NINJAS), Oliver McDonough (Team McDonough), and Sean Gilhooly (OJ's Dream Team). McDonough sold his team after The League's inaugural season to current owner Guha Sundaram (Brown and Bijan LLC, now Pain.). Matthew Egg joined The League in an advisory capacity in the summer of 2021. This is a living document which will be updated annually with any changes to The League's rules, regulations, history, or info."
+  },
+
+  "punishments": [
+    { "year": 2020, "punishment": "None", "loser": "—" },
+    { "year": 2021, "punishment": "24 Hour Clinton Station Diner Challenge", "loser": "Gilhooly" },
+    { "year": 2022, "punishment": "SAT 1200+ Challenge", "loser": "Sundaram" },
+    { "year": 2023, "punishment": "6-12-18-24 Challenge", "loser": "Gross" },
+    { "year": 2024, "punishment": "Marathon", "loser": "Guha" },
+    { "year": 2025, "punishment": "500-piece puzzle in the dark with one source of light", "loser": "Andrew" }
+  ],
+
+  "owners": [
+    {
+      "name": "Brian Pedretti",
+      "team": "Big Dick MVP Aaron GODgers",
+      "sleeperUserId": "735840432759668736",
+      "role": "Commissioner, Owner",
+      "school": "Rutgers University, New Brunswick, NJ — business; ran track",
+      "bio": "Brian Pedretti is the owner of Big Dick MVP Aaron GODgers and a 1-time Super Bowl Champion of The League (est. 2020). He is well known for his constantly injury-riddled squad, as well as for his notoriously quick transfer from Boston College to Rutgers University. During his breaks (and during school), Brian enjoys relaxing at home and hanging with his childhood friends.",
+      "hobbies": ["Swapping and collecting sports cards", "Being with his dog, Sophie (R.I.P.)", "Running", "Eating at Culver's and Kwik Trip"],
+      "knownFor": "A constantly injury-riddled squad and a notoriously quick transfer from Boston College to Rutgers"
+    },
+    {
+      "name": "Andrew Fielding",
+      "team": "Team Fielding",
+      "sleeperUserId": "591056123839160320",
+      "role": "Co-founder, First Commissioner, Owner",
+      "school": "Northeastern University, Boston, MA — political science and economics",
+      "bio": "Andrew Fielding is a co-founder of The League (est. 2020), its first Commissioner, and the owner of Team Fielding. He is known for being the “king” of weird, unofficial backyard games like lawn darts. Andrew spends his summers on Long Island and enjoys walking his dogs in his free time.",
+      "hobbies": ["Playing the piano and violin", "Spikeball", "Video games", "Reading"],
+      "knownFor": "Being the “king” of weird, unofficial backyard games like lawn darts"
+    },
+    {
+      "name": "Danny Pedretti",
+      "team": "~ Suck My Ditka",
+      "sleeperUserId": "735929732616605696",
+      "role": "Co-founder, Special Advisor to the Commissioner, Owner",
+      "school": "Rutgers University, New Brunswick, NJ — business; runs track",
+      "bio": "Daniel (Danny) Pedretti is a co-founder and Special Advisor to the Commissioner of The League (est. 2020), and the owner of ~ Suck My Ditka. He is known for being one of Fielding's harshest critics and for keeping league members accountable for their thoughts and opinions. Danny spends his breaks returning to his home state of Illinois to visit family and friends, and enjoys wearing jeans when it is 110 degrees.",
+      "hobbies": ["Burro racing", "Eating at Culver's and Kwik Trip", "Watching and critiquing film", "Tennis"],
+      "knownFor": "Being one of Fielding's harshest critics and keeping league members accountable"
+    },
+    {
+      "name": "Matt Lifshitz",
+      "team": "The Silent Majority",
+      "sleeperUserId": "735745286965698560",
+      "role": "Owner",
+      "school": "University of Miami, Miami, FL — business",
+      "bio": "Matthew (Matt) Lifshitz is a 1-time Super Bowl champion, a 1-time Super Bowl runner-up, a 2-time regular season champion, and the owner of The Silent Majority. He is known for being an astute drafter and a depth-building team manager, and for having extraordinary credibility on a variety of subjects. Matt enjoys seeing his childhood friends during his time off of school.",
+      "hobbies": ["Recreational basketball", "Watching the Yankees", "Lifting weights", "Commenting on public health issues"],
+      "knownFor": "Astute drafting, depth-building, and extraordinary credibility on a variety of subjects"
+    },
+    {
+      "name": "Jerry Markatos",
+      "team": "25 and Under",
+      "sleeperUserId": "654451977673043968",
+      "role": "Former Commissioner, Owner",
+      "school": "Rutgers University, New Brunswick, NJ — business",
+      "bio": "Jerry Markatos is a 1-time Super Bowl runner-up and the owner of 25 and Under. He is known as The League's resident “trade fiend,” and is notorious for the Great AJ Brown Maneuver, the Tyreek Hill Swap, the Ja'Marr Chase Chase, and the D'Andre Swift Swipe. Jerry likes to enjoy bonfires in the great outdoors at home in Hunterdon County during his free time, and can be found at Healthquest in Flemington most frequently.",
+      "hobbies": ["Lifting weights", "Making air-fried foods", "Chilling on weekends", "Eating chocolate bars"],
+      "knownFor": "The League's resident “trade fiend” — the Great AJ Brown Maneuver, the Tyreek Hill Swap, the Ja'Marr Chase Chase, the D'Andre Swift Swipe"
+    },
+    {
+      "name": "Lucas Teuber",
+      "team": "Yang Gang",
+      "sleeperUserId": "729773276074733568",
+      "role": "Owner",
+      "school": "The College of William and Mary, Williamsburg, VA — chemistry, pre-med",
+      "bio": "Lucas Teuber is a 2-time Super Bowl champion and the owner of Yang Gang. He is known for being a vocal supporter of Fielding's commissionership and for being quite tall. Lucas enjoys visiting his brother Sven during his breaks. RIP Pookie.",
+      "hobbies": ["Tennis", "Boating", "Partying", "Hanging with friends"],
+      "knownFor": "Being a vocal supporter of Fielding's commissionership, and for being quite tall"
+    },
+    {
+      "name": "Sean Gilhooly",
+      "team": "OJ's Dream Team",
+      "sleeperUserId": "735645198125809664",
+      "role": "Owner",
+      "school": "Rutgers University, New Brunswick, NJ — sports management and communications; manager of the basketball team",
+      "bio": "Sean Gilhooly is a 1-time Super Bowl champion and the owner of OJ's Dream Team. Sean is best known for going from “hero” to “zero” in the first two years of The League, going from the playoffs to the cellar — before winning it all in 2023. Sean can generally be found at Jersey Mike's Arena (formerly the RAC) 24/7/365. No days off.",
+      "hobbies": ["Playing and coaching all levels of basketball", "Watching and critiquing sports", "Video games", "Making right-leaning political comments"],
+      "knownFor": "Going from “hero” to “zero” and back again — and for “draft picks aren't real”"
+    },
+    {
+      "name": "Jonathan Pan",
+      "team": "PanFam",
+      "sleeperUserId": "735732776434794496",
+      "role": "Special Advisor to the Commissioner, Owner",
+      "school": "Rutgers University, New Brunswick, NJ — business",
+      "bio": "Jonathan (Jon) Pan is the owner of PanFam. Jon is well known for constant chirping, regardless of the quality of his team, and for his financial prowess. Jon is known to vacation in China, where he visits his family, and to spend his breaks watching football and petting Sophie Pedretti (R.I.P.).",
+      "hobbies": ["Reselling a variety of products for profit", "Recreational basketball and football", "Petting dogs", "Listening to Dua Lipa"],
+      "knownFor": "Constant chirping regardless of the quality of his team, and his financial prowess"
+    },
+    {
+      "name": "Guha Sundaram",
+      "team": "Pain.",
+      "sleeperUserId": "735732965774053376",
+      "role": "Owner",
+      "school": "University of California, San Diego — neurobiology",
+      "bio": "Guha Sundaram is a 1-time Super Bowl champion and the owner of Pain. (formerly Brown and Bijan LLC, formerly Netflix 'n Hill). He bought out Oliver McDonough after the inaugural season. Guha is best known for being the most wholesome and respected member of The League. During his breaks, Guha enjoys hanging with the boys.",
+      "hobbies": ["Eating feasts of his mother's homemade Indian food", "Tennis", "Playing the clarinet", "Making exceedingly credible takes"],
+      "knownFor": "Being the most wholesome and respected member of The League"
+    },
+    {
+      "name": "Connor Gross",
+      "team": "NORTH KOREA GINGA NINJAS",
+      "sleeperUserId": "735660262266363904",
+      "role": "Owner",
+      "school": "The College of New Jersey, Ewing Township, NJ — mechanical engineering",
+      "bio": "Connor Gross is a 1-time Regular Season Champion and the owner of NORTH KOREA GINGA NINJAS. Connor is best known for his quiet but firm presence in league forums and his team's consistently underrated production. As a commuter student, Connor enjoys all the comforts of his typical life at home 24/7/365, but he can often be found sitting in traffic on Route 78.",
+      "hobbies": ["Race car driving", "Commercial printing of stickers and other products", "Mechanical tinkering", "Listening to chick albums"],
+      "knownFor": "A quiet but firm presence in league forums and consistently underrated production"
+    }
+  ],
+
+  "formerOwners": [
+    { "name": "Oliver McDonough", "team": "Team McDonough", "note": "Inaugural-season owner; sold the franchise to Guha Sundaram after 2020." },
+    { "name": "Matthew Egg", "team": "—", "note": "Joined in an advisory capacity in summer 2021. Holds the tiebreaker vote in commissioner elections — invoked for the first time in the 2024-25 election." }
+  ],
+
+  "seasons": [
+    {
+      "year": 2020,
+      "platform": "ESPN",
+      "verified": false,
+      "notableEvents": "Inaugural season; final year of high school",
+      "champion": "The Silent Majority",
+      "runnerUp": "25 and Under",
+      "third": "The Yang Gang",
+      "fourth": "OJ's Dream Team",
+      "dfl": "Big Dick MVP Aaron GODgers",
+      "recap": "The 2020 championship was a high-scoring barn burner. Strong showings from RB Dalvin Cook and TE Darren Waller locked The Silent Majority into a tight battle with 25 and Under, led by QB Kyler Murray and RB Jonathan Taylor, through the matchup's first week. The Silent Majority's strong talent base ultimately proved too much for 25 and Under, as QB Deshaun Watson and WR CeeDee Lamb helped it capitalize on a down week for 25 and Under's star WRs and take home the championship, 263.58–235.82.",
+      "standings": [
+        { "team": "The Silent Majority", "w": 10, "l": 2, "pf": 1530.68 },
+        { "team": "25 and Under", "w": 8, "l": 4, "pf": 1393.92 },
+        { "team": "OJ's Dream Team", "w": 8, "l": 4, "pf": 1393.58 },
+        { "team": "The Yang Gang", "w": 6, "l": 6, "pf": 1452.34 },
+        { "team": "NORTH KOREA GINGA NINJAS", "w": 6, "l": 6, "pf": 1318.30 },
+        { "team": "~ Suck My Ditka", "w": 6, "l": 6, "pf": 1277.58 },
+        { "team": "Team Fielding", "w": 5, "l": 7, "pf": 1423.68 },
+        { "team": "My Ball Zach Ertz (PanFam)", "w": 4, "l": 8, "pf": 1175.28 },
+        { "team": "Team McDonough", "w": 4, "l": 8, "pf": 1254.10 },
+        { "team": "Big Dick MVP Aaron GODgers", "w": 3, "l": 9, "pf": 1181.64 }
+      ],
+      "awards": [],
+      "ruleChanges": []
+    },
+    {
+      "year": 2021,
+      "platform": "ESPN",
+      "verified": false,
+      "notableEvents": "Guha Sundaram buys out Oliver McDonough as owner of former Team McDonough, renames team Netflix 'n Hill; Matthew Egg joins The League in an advisory capacity",
+      "champion": "The Yang Gang",
+      "runnerUp": "The Silent Majority",
+      "third": "~ Suck My Ditka",
+      "fourth": "25 and Under",
+      "dfl": "OJ's Dream Team",
+      "recap": "The 2021 championship saw a lower-scoring battle between second-time playoff participant The Yang Gang and certified League blueblood The Silent Majority. Coming in the heavy favorite despite critical injuries, many expected The Silent Majority to pull away in the matchup's first week. Strong showings from critical waiver addition WR Amon-Ra St. Brown and the Dallas defense helped The Yang Gang fend off a 30-burger from The Silent Majority's Justin Jackson, handcuff to the injured star RB Austin Ekeler, plus big games from RB Nick Chubb and fellow handcuff RB Alexander Mattison. With a slight lead and starting RBs Ekeler and Dalvin Cook returning to the lineup for the matchup's second week, league pundits had all but crowned The Silent Majority a 2-time champion — but massive 30-point games from St. Brown and fellow waiver acquisition Rashaad Penny came as The Silent Majority experienced a true “shitter” of a final week, to the tune of just 90 points. This ultimately flipped the script, and The Yang Gang brought home the hardware in a hard-fought battle, 241.98–229.92.",
+      "standings": [
+        { "team": "The Silent Majority", "w": 11, "l": 2, "pf": 1607.36 },
+        { "team": "The Yang Gang", "w": 8, "l": 5, "pf": 1417.48 },
+        { "team": "~ Suck My Ditka", "w": 7, "l": 6, "pf": 1570.82 },
+        { "team": "25 and Under", "w": 7, "l": 6, "pf": 1471.34 },
+        { "team": "NORTH KOREA GINGA NINJAS", "w": 7, "l": 6, "pf": 1369.02 },
+        { "team": "Team Fielding", "w": 6, "l": 7, "pf": 1504.62 },
+        { "team": "Big Dick MVP Aaron GODgers", "w": 6, "l": 7, "pf": 1435.28 },
+        { "team": "Netflix and Hill (Pain.)", "w": 6, "l": 7, "pf": 1318.08 },
+        { "team": "Hide and Zeke (PanFam)", "w": 4, "l": 9, "pf": 1344.50 },
+        { "team": "OJ's Dream Team", "w": 3, "l": 10, "pf": 1373.02 }
+      ],
+      "awards": [
+        { "award": "Game of the Year", "winner": "Suck My Ditka (128.44) vs Team Fielding (136.06)", "detail": "Week 5: Hollywood Brown OT Miracle" },
+        { "award": "Most Privileged", "winner": "The Yang Gang" },
+        { "award": "Most Unlucky", "winner": "Suck My Ditka" },
+        { "award": "Most with the Least", "winner": "Netflix and Hill" },
+        { "award": "Comeback GM of the Year", "winner": "Guha" },
+        { "award": "GM of the Year", "winner": "Matt" },
+        { "award": "Biggest Bust", "winner": "Allen Robinson", "detail": "Big Dick MVP Aaron GODgers" },
+        { "award": "Steal of the Draft", "winner": "Deebo Samuel", "detail": "The Silent Majority" },
+        { "award": "Most Improved Player", "winner": "Cordarrelle Patterson", "detail": "25 and Under" },
+        { "award": "Comeback Player of the Year", "winner": "Joe Mixon", "detail": "Suck My Ditka" },
+        { "award": "Rookie of the Year", "winner": "Ja'Marr Chase", "detail": "Hide and Zeke" },
+        { "award": "MVP", "winner": "Cooper Kupp", "detail": "Suck My Ditka" }
+      ],
+      "ruleChanges": []
+    },
+    {
+      "year": 2022,
+      "platform": "Sleeper",
+      "verified": true,
+      "sleeperLeagueId": "824775989442744320",
+      "notableEvents": "In perhaps the most iconic and major legislative achievement as commissioner, Andrew leads the league in moving from ESPN to Sleeper permanently; divisions are abolished; and Guha tanks for Bijan.",
+      "champion": "Big Dick MVP Aaron GODgers",
+      "runnerUp": "NORTH KOREA GINGA NINJAS",
+      "third": "The Silent Majority",
+      "fourth": "Team Fielding",
+      "dfl": "Brown and Bijan LLC",
+      "recap": "Following an incredible regular season campaign and a big playoff win, Connor Gross's NORTH KOREA GINGA NINJAS seemed to be the team to beat heading into the Super Bowl. This was to everyone's amazement, as a team consistently ranked in the bottom half going into the year — led by a manager who studies the least about fantasy — was now in the Super Bowl. The competitor: Brian Pedretti's Big Dick MVP Aaron GODgers, another unexpected participant. Pedretti's squad got hot at the right time, with George Kittle and Tony Pollard scoring in heaps in the last couple weeks while Saquon, Tyreek Hill, Amon-Ra, and Hurts continued to have great seasons. With a big lead going into the second leg, it looked like Pedretti was going to get his first ring. In a shocking late push, Josh Jacobs, Josh Allen, and Davante Adams along with sleepers James Conner and Jerick McKinnon had Gross in position for a come-from-behind win heading into Monday Night Football with Josh Allen, Evan McPherson, and a 34-point deficit. Tragically, in the first quarter, Buffalo Bills defensive back Damar Hamlin sustained a cardiac arrest, collapsing on the field and stopping play. This unprecedented event led to the game being canceled, along with Connor Gross's Super Bowl hopes. Hotly contested, but nevertheless deserved, Brian Pedretti and Big Dick MVP Aaron GODgers won 231.86–201.70, with a 56% chance of victory at the time of the game's cancellation according to Sleeper.",
+      "awards": [
+        { "award": "Game of the Year", "winner": "The Yang Gang (111.60) vs OJ's Dream Team (117.24)", "detail": "Week 2: Stefon Diggs 38.80 points, come-from-behind win" },
+        { "award": "Fleece of the Year", "winner": "The Yang Gang sends Patrick Mahomes", "detail": "OJ's Dream Team sends 2023 1st, 2024 1st, and Trevor Lawrence" },
+        { "award": "Most Privileged", "winner": "Team Fielding" },
+        { "award": "Most Unlucky", "winner": "Suck My Ditka" },
+        { "award": "Most with the Least", "winner": "NORTH KOREA GINGA NINJAS" },
+        { "award": "Comeback GM of the Year", "winner": "Brian Pedretti" },
+        { "award": "GM of the Year", "winner": "Brian Pedretti" },
+        { "award": "Biggest Bust", "winner": "James Cook", "detail": "Team Fielding" },
+        { "award": "Steal of the Draft", "winner": "Tony Pollard", "detail": "Big Dick MVP Aaron GODgers" },
+        { "award": "Most Improved Player", "winner": "Rhamondre Stevenson", "detail": "The Yang Gang" },
+        { "award": "Comeback Player of the Year", "winner": "Saquon Barkley", "detail": "Big Dick MVP Aaron GODgers" },
+        { "award": "Rookie of the Year", "winner": "Garrett Wilson", "detail": "The Yang Gang" },
+        { "award": "MVP", "winner": "Josh Jacobs", "detail": "NORTH KOREA GINGA NINJAS" }
+      ],
+      "meeting": {
+        "election": "Following a 3-year run at the helm, Andrew was triumphantly defeated by Jerry 5-4-1 in the 2022-23 commissioner election to conclude the league year. The moment will forever be remembered by Gross's audible vote over the phone as Pan fell to his knees to praise and celebrate his new commissioner."
+      },
+      "ruleChanges": [
+        "Increase entry fee from $75 to $100",
+        "Switch from waivers to FAAB"
+      ]
+    },
+    {
+      "year": 2023,
+      "platform": "Sleeper",
+      "verified": true,
+      "sleeperLeagueId": "918650222107238400",
+      "notableEvents": "First ever 4-seed in the Super Bowl; Andrew in Australia; Jerry restores free speech; first year of FAAB",
+      "champion": "OJ's Dream Team",
+      "runnerUp": "~ Suck My Ditka",
+      "third": "Big Dick MVP Aaron GODgers",
+      "fourth": "Brown and Bijan Co.",
+      "dfl": "NORTH KOREA GINGA NINJAS",
+      "recap": "The 2023 playoffs featured one of the biggest upsets in league history, with No. 4 Suck My Ditka taking down No. 1 Big Dick MVP Aaron GODgers in Round 1 — the former squeaking into the playoffs in what many considered “fraudulent” and “privileged” fashion, and the latter coming off one of the most dominant seasons the league has ever seen. After losing Tyreek Hill the morning of the matchup and Tank Dell the week before, Big Dick MVP simply didn't have it in them to overcome a clutch 141.16 from Suck My Ditka when he needed it most. This was the first Super Bowl appearance from a #4 seed in league history. No. 2 OJ's Dream Team, also coming off a dominant regular season, had an easier opponent after taking down No. 3 Brown and Bijan Co. handily in their first career playoff berth. Super Bowl IV was billed early on as likely to be the least exciting in league history. Early on this did not appear to be the case, as heavy favorite Sean trailed by 5 after the first week. However, Sean ultimately pulled away in the second week following a shitter from Suck My Ditka, confirming the league's prediction. OJ's Dream Team triumphantly became the 4th Super Bowl Champion in the history of The League on NYE of 2023, 234.78–204.12. The new champ celebrated accordingly with fellow league members in a random apartment at the Verve at Rutgers University. He basked in the glory of years of doubts about his strategy of “draft picks aren't real,” not caring about age, and being ranked dead last in consensus power rankings at the start of the season — completing his underdog story with a legendary celebration on NYE, surrounded by fellow managers.",
+      "awards": [
+        { "award": "Game of the Year", "winner": "OJ's Dream Team (140.16) over Team Fielding (139.00)", "detail": "Week 7 MNF rivalry thriller" },
+        { "award": "Fleece of the Year", "winner": "PanFam receives Miles Sanders and $5 FAAB", "detail": "25 and Under receives De'Von Achane, 2025 4th, 2026 3rd" },
+        { "award": "Most Privileged", "winner": "Danny Pedretti", "detail": "Suck My Ditka" },
+        { "award": "Most Unlucky", "winner": "Lucas", "detail": "The Yang Gang" },
+        { "award": "Most with the Least", "winner": "Sean", "detail": "OJ's Dream Team" },
+        { "award": "Comeback GM of the Year", "winner": "Guha", "detail": "Brown and Bijan Co." },
+        { "award": "GM of the Year", "winner": "Sean", "detail": "OJ's Dream Team" },
+        { "award": "Biggest Bust", "winner": "Quentin Johnston", "detail": "The Yang Gang" },
+        { "award": "Steal of the Draft", "winner": "Puka Nacua", "detail": "Team Fielding" },
+        { "award": "Most Improved Player", "winner": "Kyren Williams", "detail": "25 and Under" },
+        { "award": "Comeback Player of the Year", "winner": "Dak Prescott", "detail": "3 different teams" },
+        { "award": "Rookie of the Year", "winner": "Puka Nacua", "detail": "Team Fielding" },
+        { "award": "MVP", "winner": "Christian McCaffrey", "detail": "OJ's Dream Team" }
+      ],
+      "meeting": {
+        "election": "In a historic election — the first in which neither the incumbent nor Andrew ran — Brian triumphantly defeated Guha 5-3-1 to become the 3rd commissioner in league history."
+      },
+      "ruleChanges": [
+        "IR spots decreased from 4 to 3",
+        "Entry increased from $100 to $125"
+      ]
+    },
+    {
+      "year": 2024,
+      "platform": "Sleeper",
+      "verified": true,
+      "sleeperLeagueId": "1051663252326916096",
+      "notableEvents": "First repeat Super Bowl winner; last year of college undergrad; first destination league draft; first repeat last place; first ever Super Bowl between former winners",
+      "champion": "The Yang Gang",
+      "runnerUp": "Big Dick MVP Aaron GODgers",
+      "third": "Team Fielding",
+      "fourth": "25 and Under",
+      "dfl": "Pain.",
+      "recap": "Following hot 4-0 starts from Pan and Andrew, the 2024 season became the closest and most competitive in league history, with 9 of 10 teams still in playoff contention with 2-3 weeks to go and just 1 game separating 7 of them. The playoff race came down to the wire as Jerry secured his spot with a MNF victory over Brian in Week 14, edging out Gross (who needed Jerry to lose) and even jumping Andrew for the 3 seed. Let it be known that 2024 featured a stellar campaign from regular season champ Brian, who averaged the most points of any team in league history. The playoffs started as expected, with the top 2 seeds pummeling their opponents, setting the stage for the first ever Super Bowl between former champs and clinching the first ever 2-time Super Bowl champion. Big Dick MVP got off to a hot start, jumping out to a 13-point lead and 60% chance of victory despite Jalen Hurts getting hurt in the 1st quarter. However, with the whole league writing him off, Lucas began a ferocious comeback, throwing down 133 points in the second week led by season-best performances from Joe Burrow (36), Malik Nabers (32), and Trey McBride (24). For the second straight season, Big Dick MVP Aaron GODgers CHOKED as the No. 1 seed and watched his dreams slip away after a hard-fought regular season. Lucas's critics were alive and well, but he simply drowned them out as he basked in the glory of his second ring.",
+      "awards": [
+        { "award": "Game of the Year", "winner": "Brian (145.7) vs Danny (142.9)", "detail": "Week 9 — a high-scoring MNF nail-biter where Danny fell just short" },
+        { "award": "Fleece of the Year", "winner": "OJ's Dream Team sends two 1st-round picks, a 4th, and Tee Higgins to Brian", "detail": "In exchange for Tyreek Hill" },
+        { "award": "Most Privileged", "winner": "Lucas", "detail": "The Yang Gang" },
+        { "award": "Most Unlucky", "winner": "Did not vote" },
+        { "award": "Most with the Least", "winner": "Gross", "detail": "North Korea Ginga Ninjas" },
+        { "award": "Comeback GM of the Year", "winner": "Gross", "detail": "North Korea Ginga Ninjas" },
+        { "award": "GM of the Year", "winner": "Gross", "detail": "North Korea Ginga Ninjas" },
+        { "award": "Biggest Bust", "winner": "Christian McCaffrey", "detail": "OJ's Dream Team" },
+        { "award": "Steal of the Draft", "winner": "Brock Bowers", "detail": "North Korea Ginga Ninjas" },
+        { "award": "Most Improved / Comeback Player of the Year", "winner": "Jaxon Smith-Njigba", "detail": "Pain." },
+        { "award": "Rookie of the Year", "winner": "Brock Bowers", "detail": "North Korea Ginga Ninjas" },
+        { "award": "Waiver Wire Pickup of the Year", "winner": "Bucky Irving", "detail": "25 and Under" },
+        { "award": "MVP", "winner": "Saquon Barkley", "detail": "Big Dick MVP Aaron GODgers" }
+      ],
+      "meeting": {
+        "title": "4th Annual League Meeting",
+        "detail": "January 3rd, 2025 at 3 Brighton Court, with a viewing of Clint Eastwood's Juror #2 after.",
+        "election": "The 2024-25 commissioner election saw incumbent Brian take on both former Commissioner Andrew and former candidate Danny, who announced his campaign 5 minutes prior. Following 3 heated speeches and rebuttals, the closest and most nail-biting vote ever took place, with Brian and Danny topping Andrew 4-4-2. Following Andrew's voters recasting their ballots for one of the twins, it was STILL tied at 5-5! The Egg tiebreaker amendment was invoked for the first time EVER, and the next commissioner selection lay in his hands. At 12:52am on January 4th, he officially elected Brian for his second straight term, securing a 6-5 victory over Danny.",
+        "tally": [
+          { "voter": "Brian", "vote": "Brian" },
+          { "voter": "Danny", "vote": "Danny" },
+          { "voter": "Matt", "vote": "Danny" },
+          { "voter": "Jerry", "vote": "Brian" },
+          { "voter": "Guha", "vote": "Danny" },
+          { "voter": "Sean", "vote": "Brian" },
+          { "voter": "Lucas", "vote": "Brian" },
+          { "voter": "Gross", "vote": "Danny" },
+          { "voter": "Andrew", "vote": "Andrew → Danny" },
+          { "voter": "Pan", "vote": "Andrew → Brian" },
+          { "voter": "Egg", "vote": "Brian (tiebreaker)" }
+        ]
+      },
+      "ruleChanges": [
+        "Entry fee raised from $125 to $150",
+        "Toilet Bowl tournament restructured and winner now awarded money",
+        "New kicking scoring: 3 pts for all FGs; no penalty on missed kicks over 50 yards",
+        "New fumble scoring: individual player loses 1 point for fumbling and another point if recovered by the defense",
+        "D/ST: +1 point for a forced fumble, +1 point for that fumble being recovered by the defense"
+      ]
+    },
+    {
+      "year": 2025,
+      "platform": "Sleeper",
+      "verified": true,
+      "sleeperLeagueId": "1180697169888038912",
+      "notableEvents": "Guha goes from DFL and a marathon run to champion in the quickest turnaround in league history; Guha posts the best ever start in league history (7-0) after being rated DFL at 3.9 average; Pan makes his first ever playoff appearance; Andrew posts the longest losing streak to open a season (0-7); CMC gets traded for Malik Nabers and Breece Hall; highest scoring Super Bowl of all time",
+      "champion": "Pain.",
+      "runnerUp": "Yang Gang",
+      "third": "PanFam",
+      "fourth": "Big Dick MVP Aaron GODgers",
+      "dfl": "Team Fielding",
+      "recap": "Despite being just the sixth season in league history, the 2025 campaign was one of countless firsts. It marked Pan's first playoff appearance, Guha's first Super Bowl, the best and worst starts in league history, and much more. After a ferocious start by Guha, Pan slowly emerged as the favorite by December while Guha began to unravel. The four playoff teams became clear earlier than usual, leading to a hectic and highly competitive trade deadline that produced one of the biggest blockbusters in league history: Lucas reacquiring CMC from Sean in exchange for Malik Nabers and Breece Hall — three years after originally swapping CMC for the rights to Hall. Following a last-second push by Sean to defeat Lucas on Monday Night Football in the final regular-season game, the playoff matchups flipped at the very last moment, ultimately altering the course of the Super Bowl. After a legendary 40-point Thursday Night Football performance from Kyle Pitts, it seemed Brian's playoff run was over before a player on his roster had even taken a snap. However, in what became one of the greatest games in league history, Brian mounted a furious comeback to reach 50-50 odds before Guha ultimately pulled away after a pair of injuries to Brian's team. Meanwhile, Lucas dispatched Pan in undramatic fashion. The stage was set for Lucas to make league history by earning a third ring before anyone else had two. Yet there was little drama in the championship, as Guha decisively took control early, capping off one of the greatest three-game playoff stretches in league history. Averaging 158 points per game, he secured his first — and highly coveted — ring. This came after widespread claims that he was the weakest playoff team and that his roster was collapsing. A season marked by multiple waves of adversity ended with the man everyone counted out more than once standing triumphantly on top.",
+      "awards": [
+        { "award": "Game of the Year", "winner": "Brian vs Guha — highest scoring playoff game ever", "detail": "160.65–146.54" },
+        { "award": "Fleece of the Year", "winner": "Brian trades Andrew Chase Brown and Tee Higgins", "detail": "For Deebo Samuel and Alvin Kamara" },
+        { "award": "Most Privileged", "winner": "Lucas", "detail": "The Yang Gang" },
+        { "award": "Most Unlucky", "winner": "Danny", "detail": "Suck My Ditka" },
+        { "award": "Most with the Least", "winner": "Sean", "detail": "OJ's Dream Team" },
+        { "award": "Comeback GM of the Year", "winner": "Guha", "detail": "Pain." },
+        { "award": "GM of the Year", "winner": "Guha", "detail": "Pain." },
+        { "award": "Biggest Bust", "winner": "Kaleb Johnson", "detail": "Team Fielding" },
+        { "award": "Steal of the Draft", "winner": "Javonte Williams", "detail": "PanFam" },
+        { "award": "Most Improved / Comeback Player of the Year", "winner": "Chris Olave", "detail": "Pain." },
+        { "award": "Rookie of the Year", "winner": "Tetairoa McMillan", "detail": "PanFam" },
+        { "award": "Waiver Wire Pickup of the Year", "winner": "Rico Dowdle", "detail": "PanFam" },
+        { "award": "Worst Keeper (new award in 2025)", "winner": "Joe Mixon" },
+        { "award": "MVP", "winner": "Jaxon Smith-Njigba", "detail": "Pain." }
+      ],
+      "meeting": {
+        "title": "5th Annual League Meeting",
+        "detail": "January 2nd, 2026 at 3 Brighton Court. Only Brian, Danny, Matt, Guha and Pan attend. Jerry phones in with a severe case of bitchitis, Andrew joins for half the call after bailing on an event scheduled partially around him, and Sean phones in from Baltimore.",
+        "election": "Brian is challenged for re-election by only Sean and defeats him 7-3. Danny, Lucas, and Sean dissent. Rumors swirl that Brian would have stepped down if a candidate he deemed worthy of succession had stepped up."
+      },
+      "ruleChanges": [
+        "The Toilet Bowl winner receiving money is abolished after just one year",
+        "The entry fee is increased from $150 to $200",
+        "The trade deadline is moved up one week",
+        "Players receive +1 point for recovering a fumble"
+      ]
+    },
+    {
+      "year": 2026,
+      "platform": "Sleeper",
+      "verified": true,
+      "inProgress": true,
+      "sleeperLeagueId": "1312965631825428480",
+      "notableEvents": "Brian defeats Sean in the 2026 commissioner election. Toilet Bowl terminated.",
+      "recap": "Season in progress — live standings above update automatically from Sleeper.",
+      "awards": [],
+      "ruleChanges": []
+    }
+  ],
+
+  "recordBook": [
+    {
+      "record": "Most points, single team, one week",
+      "value": "181.10",
+      "holder": "Team Fielding",
+      "when": "Week 8, 2022",
+      "verified": true
+    },
+    {
+      "record": "Most points, two teams, one week",
+      "value": "322.22",
+      "holder": "PanFam (174.78) vs Yang Gang (147.44)",
+      "when": "Week 8, 2025",
+      "verified": true,
+      "note": "Broke the previous mark of 317.30 (PanFam vs The Silent Majority, Week 5, 2021)."
+    },
+    {
+      "record": "Fewest points, single team, one week",
+      "value": "46.30",
+      "holder": "~ Suck My Ditka",
+      "when": "Week 17, 2022 (consolation)",
+      "verified": true,
+      "note": "Lowest in a regular season game: 47.06, 25 and Under, Week 9, 2024."
+    },
+    {
+      "record": "Most points, single player, one week",
+      "value": "54.70",
+      "holder": "Alvin Kamara — Team Fielding",
+      "when": "Week 16, 2020",
+      "verified": false,
+      "note": "ESPN era, not independently verifiable. Sleeper-era high is 53.10 (Joe Mixon, ~ Suck My Ditka, Week 9, 2022)."
+    },
+    {
+      "record": "Best start to a season",
+      "value": "7-0",
+      "holder": "Pain.",
+      "when": "2025",
+      "verified": true
+    },
+    {
+      "record": "Worst start to a season",
+      "value": "0-7",
+      "holder": "Team Fielding",
+      "when": "2025",
+      "verified": true
+    },
+    {
+      "record": "Most points in a season",
+      "value": "1787.92",
+      "holder": "Big Dick MVP Aaron GODgers",
+      "when": "2024",
+      "verified": true
+    }
+  ],
+
+  "rules": {
+    "scoring": {
+      "summary": "0.5 PPR. Standard positional breakdown: QB, RB, RB, WR, WR, TE, FLEX, K, D/ST. 8 bench spots and 3 IR spots. Players who are injured, out due to illness, or otherwise not playing in a given week may be moved to IR. Once they are active again, teams are unable to add/drop/trade players until the newly active player has been moved off IR.",
+      "groups": [
+        {
+          "name": "Passing",
+          "lines": [
+            "1 passing yard = 0.04 points",
+            "1 passing TD = 4 points",
+            "1 INT thrown = -2 points",
+            "2-point conversion pass = 2 points"
+          ]
+        },
+        {
+          "name": "Rushing",
+          "lines": [
+            "1 rushing yard = 0.1 points",
+            "1 rushing TD = 6 points",
+            "2-point conversion rush = 2 points"
+          ]
+        },
+        {
+          "name": "Receiving",
+          "lines": [
+            "1 receiving yard = 0.1 points",
+            "1 reception = 0.5 points",
+            "1 receiving TD = 6 points",
+            "2-point conversion reception = 2 points"
+          ]
+        },
+        {
+          "name": "Fumbles (all offensive players)",
+          "lines": [
+            "Fumble = -1 point",
+            "Fumble lost = an additional -1 point (so -2 total on a lost fumble)",
+            "Fumble recovered by own player = +1 point"
+          ]
+        },
+        {
+          "name": "Kicking",
+          "lines": [
+            "PAT made = 1 point",
+            "PAT missed = -1 point",
+            "FG made, 0-59 yards = 3 points",
+            "FG made, 60+ yards = 5 points",
+            "FG missed, 0-49 yards = -1 point",
+            "FG missed, 50+ yards = 0 points"
+          ]
+        },
+        {
+          "name": "Defense / Special Teams — plays",
+          "lines": [
+            "1 sack = 1 point",
+            "1 INT = 2 points",
+            "1 forced fumble = 1 point",
+            "1 fumble recovery = 1 point",
+            "1 special teams fumble recovery = 2 points",
+            "1 safety = 2 points",
+            "1 blocked punt, PAT, or field goal = 2 points",
+            "Defensive TD (INT or fumble return) = 6 points",
+            "Special teams TD (punt, kickoff, or blocked kick return) = 6 points",
+            "2-point conversion return = 2 points"
+          ]
+        },
+        {
+          "name": "Defense — points allowed",
+          "lines": [
+            "0 points allowed = 5 points",
+            "1-6 = 4 points",
+            "7-13 = 3 points",
+            "14-20 = 1 point",
+            "21-27 = 0 points",
+            "28-34 = -1 point",
+            "35+ = -4 points"
+          ]
+        },
+        {
+          "name": "Defense — yards allowed",
+          "lines": [
+            "Under 100 yards = 5 points",
+            "100-199 = 3 points",
+            "200-299 = 2 points",
+            "300-349 = 0 points",
+            "350-399 = -1 point",
+            "400-449 = -3 points",
+            "450-499 = -5 points",
+            "500-549 = -6 points",
+            "550+ = -7 points"
+          ]
+        }
+      ]
+    },
+    "draft": [
+      "The League's inaugural draft in August 2020 was a snake-style draft with picks randomly assigned via a name generator. In the event of a full reset at any point in the future, this would be the draft model.",
+      "Generally, the draft will be conducted in a fixed order. The first 6 picks are assigned in reverse order of record, with the worst record getting the 1st overall pick.",
+      "The final 4 picks are assigned to playoff teams: the champion gets the 10th pick, the runner-up the 9th, 3rd place the 8th, and 4th place the 7th.",
+      "Ties are broken first by total points scored, and second by head-to-head matchups.",
+      "90 seconds are allotted per pick.",
+      "Draft pick trading is allowed, during and before the draft.",
+      "Keepers must be declared and locked a minimum of 2 days prior to the beginning of the draft.",
+      "The draft will be conducted in person, online, with as many league members as possible. Joining virtually is acceptable if absolutely necessary.",
+      "The draft will ideally be conducted between the last week of July and the first week of August.",
+      "All entry fees must be collected prior to the draft (cash, Venmo, Zelle, PayPal all acceptable)."
+    ],
+    "trades": [
+      "Trade deadline: 11:59 PM EST on the Monday of the third-to-last week of the regular season.",
+      "All trades agreed upon before the deadline will be processed.",
+      "Trade review period: 24 hours.",
+      "Votes required to veto a trade: a simple majority. Involved parties do not get to vote.",
+      "The Commissioner holds review power and can push through or reject trades as The League sees fit.",
+      "A notification of the terms of the trade and a “Who won the trade” poll will be sent in The League's group chat immediately following an official agreement.",
+      "Trades executed prior to the draft will be implemented through Commissioner action to assign the moving players and picks.",
+      "The loser's punishment is nontransferable."
+    ],
+    "waivers": [
+      "Season acquisition limit: unlimited.",
+      "Waiver period: 24 hours.",
+      "Waiver order: FAAB system — 100 FAAB allotted to each GM at the start of the season.",
+      "The GM who bids the most of their budget on a given player is awarded the player.",
+      "Tiebreaker #1: total points scored. Tiebreaker #2: head-to-head matchups.",
+      "Players cannot be added, dropped, moved into or out of the starting lineup, or moved on or off IR once their games are in progress or completed.",
+      "An undroppable players list is observed to prevent tanking or corrupt bargains."
+    ],
+    "playoffs": [
+      "The 4 teams with the best overall records make the playoffs.",
+      "Seeding among the 4 teams is determined by outright record.",
+      "Tiebreaker #1: total points scored. Tiebreaker #2: head-to-head matchups.",
+      "The first week of the playoffs is Week 15 of the NFL season.",
+      "The Round 1 matchup is 1 week long.",
+      "The Championship matchup is 2 weeks long.",
+      "TOILET BOWL: terminated in 2026."
+    ],
+    "misc": [
+      "Tanking is strictly prohibited. Tanking may be brought to the attention of The League and the Commissioner by any owner. The other 9 owners must vote, and if 8 of 9 agree that tanking is happening, the guilty party forfeits their first-round pick.",
+      "Should an owner not have access to the Internet or be unable or unwilling to edit their lineup and remove players who are not playing, the Commissioner will notify The League and act to manually edit the owner's lineup, if the sub feature is not utilized.",
+      "Sale of a team must be done with the blessing of The League, and a team can only be sold to a buyer approved by 70% of The League or more.",
+      "Whining will not be tolerated.",
+      "The loser's punishment must be completed before the following draft, unless the punishment requires warm weather, being at the beach, etc."
+    ],
+    "annualMeeting": [
+      "There will be an annual league meeting conducted after the end of the fantasy football playoffs, but no later than the first week of January.",
+      "Business formal attire is expected.",
+      "Attendance at the league meeting is mandatory. Virtual attendance is acceptable if necessary.",
+      "The date and time of the meeting are up to the discretion of the Commissioner, who is expected to schedule the meeting when the most owners possible may attend in person.",
+      "Proposed rule changes may be brought by owners to the league meeting.",
+      "Rule changes will be proposed and implemented if they receive approval from 60% of The League or more.",
+      "A meal will be shared at the annual meeting, the menu to be determined by the group at large and the price shared equally.",
+      "League awards will be presented at the annual meeting."
+    ]
+  }
+}

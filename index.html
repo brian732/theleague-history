@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The League (est. 2020)</title>
+<meta name="description" content="The official record of The League (est. 2020) — standings, history, owners, and the rulebook.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap mast-inner">
+    <div class="mast-id">
+      <div class="crest" aria-hidden="true">🏆</div>
+      <div>
+        <h1 id="league-name">The League</h1>
+        <p class="est" id="league-est">est. 2020</p>
+      </div>
+    </div>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle colour theme" title="Toggle light / dark">
+      <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.8"/>
+        <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor"/>
+      </svg>
+    </button>
+  </div>
+  <nav class="tabs wrap" id="tabs" aria-label="Sections">
+    <button data-tab="now"      class="active">This Season</button>
+    <button data-tab="trophies">Trophy Case</button>
+    <button data-tab="alltime">All-Time</button>
+    <button data-tab="owners">Owners</button>
+    <button data-tab="seasons">Seasons</button>
+    <button data-tab="records">Record Book</button>
+    <button data-tab="rules">Rulebook</button>
+  </nav>
+</header>
+
+<main id="main" class="wrap">
+
+  <!-- THIS SEASON -->
+  <section id="tab-now" class="tab active">
+    <div class="live-head">
+      <h2 id="nowTitle">Live Standings</h2>
+      <span class="badge" id="liveBadge">Loading from Sleeper…</span>
+    </div>
+    <div id="nowStandings" class="loading">Fetching live data…</div>
+    <div class="grid-2" style="margin-top:2.5rem">
+      <div class="card">
+        <h3>League Info</h3>
+        <dl class="kv" id="infoList"></dl>
+      </div>
+      <div class="card">
+        <h3>Payouts</h3>
+        <dl class="kv" id="payoutList"></dl>
+        <h3 style="margin-top:1.75rem">Loser's Punishment</h3>
+        <div id="punishList" class="punish"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TROPHY CASE -->
+  <section id="tab-trophies" class="tab">
+    <h2>Trophy Case</h2>
+    <p class="lede">Six seasons. Five different champions.</p>
+    <div id="trophyGrid" class="trophy-grid"></div>
+    <h3 class="sub">Championship Appearances</h3>
+    <div id="champTable"></div>
+    <h3 class="sub">Playoff Appearances</h3>
+    <div id="playoffTable"></div>
+  </section>
+
+  <!-- ALL TIME -->
+  <section id="tab-alltime" class="tab">
+    <h2>All-Time Standings</h2>
+    <p class="lede">Regular season records across all six seasons. 2022 onward is pulled live from Sleeper; 2020&ndash;21 are the recorded ESPN-era results.</p>
+    <div id="allTimeTable" class="loading">Calculating…</div>
+    <h3 class="sub">Season by Season</h3>
+    <div id="gridHistory" class="loading"></div>
+  </section>
+
+  <!-- OWNERS -->
+  <section id="tab-owners" class="tab">
+    <h2>Owners</h2>
+    <p class="lede">The esteemed owners of The League's franchises.</p>
+    <div id="ownerGrid" class="owner-grid"></div>
+    <h3 class="sub">Former &amp; Honorary</h3>
+    <div id="formerList" class="former"></div>
+  </section>
+
+  <!-- SEASONS -->
+  <section id="tab-seasons" class="tab">
+    <h2>Season Archive</h2>
+    <div class="year-nav" id="yearNav"></div>
+    <div id="seasonBody"></div>
+  </section>
+
+  <!-- RECORDS -->
+  <section id="tab-records" class="tab">
+    <h2>Record Book</h2>
+    <p class="lede">Marks verified against Sleeper where the data exists. ESPN-era records (2020&ndash;21) are as recorded at the time.</p>
+    <div id="recordList" class="record-list"></div>
+  </section>
+
+  <!-- RULES -->
+  <section id="tab-rules" class="tab">
+    <h2>Rules &amp; Regulations</h2>
+    <p class="lede">For member-owners of The League (est. 2020).</p>
+    <div id="rulesBody"></div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <p id="footNote"></p>
+  <p class="tiny">This is a living document. To change anything on this site, edit <code>data/league.json</code>. Standings and records update themselves from Sleeper.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
