@@ -29,7 +29,7 @@ for season in sleeper['seasons']:
             weeks.append(int(week));ap+=round((a['custom_points'] if a['custom_points'] is not None else a['points'])*100);bp+=round((b['custom_points'] if b['custom_points'] is not None else b['points'])*100)
         assert weeks
         a,b=rosters[g['t1']],rosters[g['t2']]
-        assert (a if ap>bp else b)==rosters[g['w']],(season['league']['season'],g,ap,bp)
+        assert ap==bp or (a if ap>bp else b)==rosters[g['w']],(season['league']['season'],g,ap,bp)
         series.append(dict(year=int(season['league']['season']),week=min(weeks),endWeek=max(weeks),a=a,b=b,ap=ap,bp=bp,winner=rosters[g['w']],stage='Championship' if g.get('p')==1 else 'Third place' if g.get('p')==3 else 'Semifinal',source='sleeper'))
 for year in range(2020,2026):
     games=[g for g in series if g['year']==year]

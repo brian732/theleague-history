@@ -33,13 +33,21 @@ async function loadPlayoffHistory() {
     PLAYOFF_GAMES = (SNAPSHOT?.seasons || []).flatMap(s => sleeperPlayoffSeries(s.league, s.rosters, s.winnersBracket || [], s.matchups));
     PLAYOFF_WARNING = 'The playoff archive could not be loaded; ESPN playoff series may be missing. Refresh to retry.';
   }
-  if (!CURRENT || CURRENT.status === 'complete' || (CURRENT.settings.last_scored_leg || 0) < CURRENT.settings.playoff_week_start) return;
-  try {
-    const season = SEASONS[+CURRENT.season], start = CURRENT.settings.playoff_week_start;
-    const bracket = await getJSON(`${API}/league/${CURRENT.league_id}/winners_bracket`);
-    const entries = await Promise.all(Array.from({length:CURRENT.settings.last_scored_leg-start+1},async (_,i) => [start+i, await getJSON(`${API}/league/${CURRENT.league_id}/matchups/${start+i}`)]));
-    PLAYOFF_GAMES = [...PLAYOFF_GAMES.filter(g => g.year !== +CURRENT.season), ...sleeperPlayoffSeries(CURRENT,season.rosters,bracket,Object.fromEntries(entries))];
-  } catch (e) { PLAYOFF_WARNING = 'Current playoff results could not be refreshed. Showing the saved playoff archive.'; }
+  const refresh = Object.values(SEASONS).filter(season => {
+    const lg=season.league;if(!lg)return false;
+    const scored=lg.settings.last_scored_leg||0;
+    return scored>=lg.settings.playoff_week_start &&
+      (lg.league_id===CURRENT?.league_id || PLAYOFF_GAMES.filter(g=>g.year===+lg.season).length<4);
+  });
+  await Promise.all(refresh.map(async season => {
+    const lg=season.league,start=lg.settings.playoff_week_start;
+    try {
+      const bracket=await getJSON(`${API}/league/${lg.league_id}/winners_bracket`);
+      const entries=await Promise.all(Array.from({length:lg.settings.last_scored_leg-start+1},async(_,i)=>[start+i,await getJSON(`${API}/league/${lg.league_id}/matchups/${start+i}`)]));
+      const games=sleeperPlayoffSeries(lg,season.rosters,bracket,Object.fromEntries(entries));
+      PLAYOFF_GAMES=[...PLAYOFF_GAMES.filter(g=>g.year!==+lg.season),...games];
+    } catch(e) {PLAYOFF_WARNING='Some playoff results could not be refreshed. Showing the saved playoff archive where available.';}
+  }));
 }
 function explorerTotals(options=EXPLORER) {
   const acceptsYear = year => options.mode === 'all' || (+year >= options.from && +year <= options.to);

@@ -22,6 +22,11 @@ const run=code=>vm.runInContext(code,ctx),json=code=>JSON.parse(run('JSON.string
  run("EXPLORER.competition='playoffs';EXPLORER.from=2026;EXPLORER.to=2026");assert.equal(run('filteredGames().length'),0);assert(json('explorerTotals()').every(r=>r.w===0&&r.l===0));
  run("EXPLORER.mode='range';EXPLORER.from=2020;EXPLORER.to=2021");assert.equal(run('filteredGames().length'),8);assert.equal(run("PLAYOFF_GAMES.filter(g=>g.year===2020&&g.stage==='Championship')[0].endWeek"),16);
  for(const saved of snapshot.seasons){ctx.saved=saved;const actual=json('sleeperPlayoffSeries(saved.league,saved.rosters,saved.winnersBracket,saved.matchups)');assert.equal(actual.length,playoffs.games.filter(g=>g.year===+saved.league.season).length);for(const g of actual){const archived=playoffs.games.find(x=>x.year===g.year&&x.a===g.a&&x.b===g.b);assert.deepEqual(g,archived)}}
+
+ // A completed current season must still refresh even when the bundled archive is older.
+ let bracketReads=0;
+ ctx.fetch=async url=>{if(url==='data/playoffs.json')return {ok:true,json:async()=>playoffs};const saved=snapshot.seasons.find(s=>url.includes(s.league.league_id));if(url.endsWith('/winners_bracket')){bracketReads++;return{ok:true,json:async()=>saved.winnersBracket}}const week=url.split('/').pop();return{ok:true,json:async()=>saved.matchups[week]}};
+ run("CURRENT=SEASONS[2025].league");await run('loadPlayoffHistory()');assert.equal(bracketReads,1);assert.equal(run('PLAYOFF_GAMES.length'),24);
  ctx.id=data.owners[0].sleeperUserId;
  run("PUBLISHED_DATA=cloneContent(DATA);EDITOR_DRAFT=emptyDraft();EDITOR_DRAFT.owners[id]={bio:'Unicode 🏈 preview <script>text</script>'};");
  const patched=json('applyDraft(PUBLISHED_DATA,validateDraft(EDITOR_DRAFT,PUBLISHED_DATA))');assert.equal(patched.owners[0].bio,'Unicode 🏈 preview <script>text</script>');assert.equal(patched.owners[0].sleeperUserId,data.owners[0].sleeperUserId);
