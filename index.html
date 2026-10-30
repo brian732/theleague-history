@@ -79,8 +79,17 @@
   <!-- ALL TIME -->
   <section id="tab-alltime" class="tab">
     <h2>All-Time Standings</h2>
-    <p class="lede">Regular season records across all six seasons. 2022 onward is pulled live from Sleeper; 2020&ndash;21 are the recorded ESPN-era results.</p>
+    <p class="lede">Regular season records from 2020 through the latest completed games, including the season in progress. 2022 onward is pulled live from Sleeper; 2020&ndash;21 are the recorded ESPN-era results.</p>
     <div id="allTimeTable" class="loading">Calculating…</div>
+    <h3 class="sub" id="headtohead">Head-to-Head Records</h3>
+    <p class="lede" id="h2hCoverage" role="status">Loading verified matchup history…</p>
+    <p class="tiny">Each cell shows the row owner's wins–losses–ties against the column owner. Regular season only; playoffs and consolation games are excluded. Team name changes stay with the same owner.</p>
+    <div id="h2hMatrix" class="loading">Calculating matchups…</div>
+    <div class="h2h-controls">
+      <label for="h2hOwner">View an owner's matchups</label>
+      <select id="h2hOwner"></select>
+    </div>
+    <div id="h2hDetail"></div>
     <h3 class="sub">Season by Season</h3>
     <div id="gridHistory" class="loading"></div>
   </section>

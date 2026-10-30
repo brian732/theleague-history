@@ -21,6 +21,9 @@ const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 
 let DATA = null;      // league.json
 let SEASONS = {};     // year -> { standings:[...], source:'sleeper'|'espn' }
+let SNAPSHOT = null;
+let HEAD_TO_HEAD = [];
+let H2H_COVERAGE = [];
 let CURRENT = null;   // current-season league object from Sleeper
 let OWNER_BY_SLEEPER = {};
 
@@ -29,16 +32,19 @@ const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const pct = (w, l) => (w + l) ? (w / (w + l)) : 0;
+const pct = (w, l, t = 0) => (w + l + t) ? ((w + t / 2) / (w + l + t)) : 0;
 const fmt = n => Number(n).toFixed(2);
 
 async function getJSON(url) {
-  const cached = sessionStorage.getItem(url);
-  if (cached) { try { return JSON.parse(cached); } catch (e) { /* fall through */ } }
-  const r = await fetch(url);
+  // Expire live data after five minutes; ignore the old unbounded cache.
+  try {
+    const cached = JSON.parse(sessionStorage.getItem('v2:' + url));
+    if (cached && Date.now() - cached.at < 5 * 60 * 1000) return cached.data;
+  } catch (e) { /* storage unavailable or stale format */ }
+  const r = await fetch(url, { cache: 'no-cache', signal: AbortSignal.timeout(12000) });
   if (!r.ok) throw new Error(url + ' -> ' + r.status);
   const j = await r.json();
-  try { sessionStorage.setItem(url, JSON.stringify(j)); } catch (e) { /* quota; fine */ }
+  try { sessionStorage.setItem('v2:' + url, JSON.stringify({ at: Date.now(), data: j })); } catch (e) { /* quota; fine */ }
   return j;
 }
 
@@ -72,14 +78,18 @@ async function getJSON(url) {
   renderFooter();
 
   // Things that do
+  try { SNAPSHOT = await getJSON('data/sleeper-history.json'); } catch (e) { /* live API still available */ }
   await loadSleeper();
   buildEspnSeasons();
+  renderSeasonsNav();
   renderLive();
   renderAllTime();
   renderGridHistory();
   renderTrophies();
   renderOwnerRecords();
   renderSeason(currentSeasonYear());
+  await loadHeadToHead();
+  renderHeadToHead();
 })();
 
 /* ============================================================
@@ -96,6 +106,7 @@ async function loadSleeper() {
       seen.add(id);
       const lg = await getJSON(`${API}/league/${id}`);
       if (!lg) break;
+      if (+lg.season < 2022) break;
       chain.push(lg);
       id = lg.previous_league_id;
     }
@@ -126,13 +137,29 @@ async function loadSleeper() {
         };
       }).sort((a, b) => (b.w - a.w) || (b.pf - a.pf));
 
-      SEASONS[+lg.season] = { standings, source: 'sleeper', league: lg };
+      SEASONS[+lg.season] = { rosters, standings, source: 'sleeper', league: lg };
     }));
 
     badge.textContent = `Live from Sleeper · ${chain.length} seasons`;
     badge.className = 'badge live';
   } catch (e) {
-    badge.textContent = 'Sleeper unavailable — showing recorded data';
+    (SNAPSHOT?.seasons || []).forEach(saved => {
+      const lg = saved.league;
+      const standings = saved.rosters.map(r => {
+        const owner = OWNER_BY_SLEEPER[r.owner_id];
+        const user = saved.users.find(u => u.user_id === r.owner_id) || {};
+        const v = r.settings || {};
+        return { ownerName: owner?.name || user.display_name || 'Unknown',
+          team: user.metadata?.team_name || owner?.team || user.display_name,
+          canonicalTeam: owner?.team || user.display_name, sleeperUserId: r.owner_id,
+          w: v.wins || 0, l: v.losses || 0, t: v.ties || 0,
+          pf: (v.fpts || 0) + (v.fpts_decimal || 0) / 100,
+          pa: (v.fpts_against || 0) + (v.fpts_against_decimal || 0) / 100 };
+      }).sort((a, b) => b.w - a.w || b.pf - a.pf);
+      if (!SEASONS[+lg.season]) SEASONS[+lg.season] = { standings, rosters: saved.rosters, source: 'sleeper', league: lg };
+    });
+    CURRENT = SEASONS[+CURRENT?.season]?.league || Object.values(SEASONS).sort((a,b) => +b.league.season - +a.league.season)[0]?.league || null;
+    badge.textContent = SNAPSHOT ? `Sleeper unavailable · saved ${new Date(SNAPSHOT.updatedAt).toLocaleDateString()}` : 'Sleeper unavailable — showing recorded data';
     badge.className = 'badge err';
     console.warn('Sleeper fetch failed:', e);
   }
@@ -199,7 +226,7 @@ function ownerForTeamLabel(label) {
 
 function currentSeasonYear() {
   const yrs = (DATA.seasons || []).map(s => s.year);
-  return Math.max(...yrs);
+  return Math.max(...yrs, ...Object.keys(SEASONS).map(Number));
 }
 
 /* ============================================================
@@ -336,7 +363,6 @@ function allTimeTotals() {
   // This is what keeps 2020's Team McDonough out of Guha's record.
   const active = new Set(DATA.owners.map(o => normLabel(o.team)));
   Object.entries(SEASONS).forEach(([yr, s]) => {
-    if (+yr === (CURRENT ? +CURRENT.season : -1) && CURRENT && CURRENT.status === 'in_season') return;
     s.standings.forEach(r => {
       if (!active.has(normLabel(r.canonicalTeam))) return;
       const key = r.canonicalTeam;
@@ -345,7 +371,7 @@ function allTimeTotals() {
       tot[key].pf += r.pf; tot[key].seasons++;
     });
   });
-  return Object.values(tot).sort((a, b) => pct(b.w, b.l) - pct(a.w, a.l) || b.pf - a.pf);
+  return Object.values(tot).sort((a, b) => pct(b.w, b.l, b.t) - pct(a.w, a.l, a.t) || b.pf - a.pf);
 }
 
 function renderAllTime() {
@@ -363,7 +389,7 @@ function renderAllTime() {
   $('#allTimeTable').innerHTML = `<div class="tbl-wrap"><table>
     <thead><tr>
       <th></th><th>Franchise</th>
-      <th class="num">W</th><th class="num">L</th><th class="num">Pct</th>
+      <th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">Pct</th>
       <th class="num">Seasons</th><th class="num">Total PF</th><th class="num">Titles</th>
     </tr></thead>
     <tbody>${rows.map((r, i) => `
@@ -372,7 +398,8 @@ function renderAllTime() {
         <td>${teamCell(r.team)}</td>
         <td class="num">${r.w}</td>
         <td class="num">${r.l}</td>
-        <td class="num">${pct(r.w, r.l).toFixed(3).replace(/^0/, '')}</td>
+        <td class="num">${r.t}</td>
+        <td class="num">${pct(r.w, r.l, r.t).toFixed(3).replace(/^0/, '')}</td>
         <td class="num">${r.seasons}</td>
         <td class="num">${fmt(r.pf)}</td>
         <td class="num">${titles[r.team] ? '🏆'.repeat(titles[r.team]) : '—'}</td>
@@ -391,7 +418,7 @@ function renderGridHistory() {
     if (!r) return '<td class="num">—</td>';
     const season = (DATA.seasons || []).find(z => z.year === yr);
     const isChamp = season && season.champion && normLabel(canonicalTeamFor(season.champion)) === normLabel(team);
-    return `<td class="num">${r.w}-${r.l}${isChamp ? ' 🏆' : ''}</td>`;
+    return `<td class="num">${r.w}-${r.l}${r.t ? '-' + r.t : ''}${isChamp ? ' 🏆' : ''}</td>`;
   };
 
   $('#gridHistory').className = '';
@@ -441,8 +468,8 @@ function renderOwnerRecords() {
     const r = tot[key];
     el.querySelector('[data-rings]').textContent = titles[key] ? '🏆'.repeat(titles[key]) : '';
     el.querySelector('[data-rec]').innerHTML = r
-      ? `<span>All-time <b>${r.w}-${r.l}</b></span>
-         <span>Win pct <b>${pct(r.w, r.l).toFixed(3).replace(/^0/, '')}</b></span>
+      ? `<span>All-time <b>${r.w}-${r.l}${r.t ? '-' + r.t : ''}</b></span>
+         <span>Win pct <b>${pct(r.w, r.l, r.t).toFixed(3).replace(/^0/, '')}</b></span>
          <span>Titles <b>${titles[key] || 0}</b></span>`
       : '<span>No record data</span>';
   });
@@ -452,17 +479,17 @@ function renderOwnerRecords() {
    SEASON ARCHIVE
    ============================================================ */
 function renderSeasonsNav() {
-  const years = (DATA.seasons || []).map(s => s.year).sort((a, b) => b - a);
+  const years = [...new Set([...(DATA.seasons || []).map(s => s.year), ...Object.keys(SEASONS).map(Number)])].sort((a, b) => b - a);
   $('#yearNav').innerHTML = years.map(y => `<button data-year="${y}">${y}</button>`).join('');
-  $('#yearNav').addEventListener('click', e => {
+  $('#yearNav').onclick = e => {
     const b = e.target.closest('button[data-year]');
     if (b) renderSeason(+b.dataset.year);
-  });
+  };
 }
 
 function renderSeason(year) {
   $$('#yearNav button').forEach(b => b.classList.toggle('active', +b.dataset.year === year));
-  const s = (DATA.seasons || []).find(x => x.year === year);
+  const s = (DATA.seasons || []).find(x => x.year === year) || (SEASONS[year] && { year, inProgress: SEASONS[year].league?.status !== 'complete' });
   if (!s) return;
 
   const live = SEASONS[year];
@@ -622,4 +649,103 @@ function initTheme() {
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem('tl-theme', next); } catch (e) { /* ignore */ }
   });
+}
+
+/* ---------- verified regular-season head-to-head history ---------- */
+function completedRegularWeeks(league) {
+  const end = (league.settings?.playoff_week_start || 15) - 1;
+  return Math.max(0, league.status === 'complete' ? end : Math.min(end, league.settings?.last_scored_leg || 0));
+}
+
+function matchupGames(rows, rosters, year, week) {
+  const owners = Object.fromEntries(rosters.map(r => [r.roster_id, r.owner_id]));
+  const groups = {};
+  rows.forEach(r => {
+    if (r.matchup_id != null) (groups[r.matchup_id] ||= []).push(r);
+  });
+  return Object.values(groups).flatMap(pair => {
+    if (pair.length !== 2) return [];
+    const [a, b] = pair;
+    const aId = owners[a.roster_id], bId = owners[b.roster_id];
+    const ap = a.custom_points ?? a.points, bp = b.custom_points ?? b.points;
+    if (!OWNER_BY_SLEEPER[aId] || !OWNER_BY_SLEEPER[bId] || ap == null || bp == null) return [];
+    if (!Number.isFinite(Number(ap)) || !Number.isFinite(Number(bp))) return [];
+    return [{ year, week, a: aId, b: bId, ap: Math.round(Number(ap) * 100), bp: Math.round(Number(bp) * 100) }];
+  });
+}
+
+async function loadHeadToHead() {
+  HEAD_TO_HEAD = [];
+  H2H_COVERAGE = [];
+  const tasks = [];
+  Object.entries(SEASONS).forEach(([year, season]) => {
+    if (season.source !== 'sleeper') return;
+    const saved = SNAPSHOT?.seasons.find(s => s.league.league_id === season.league.league_id);
+    const coverage = { year: +year, weeks: completedRegularWeeks(season.league), loaded: 0, saved: 0, missing: 0 };
+    H2H_COVERAGE.push(coverage);
+    for (let week = 1; week <= coverage.weeks; week++) {
+      tasks.push(async () => {
+        let rows, rosters = season.rosters;
+        try { rows = await getJSON(`${API}/league/${season.league.league_id}/matchups/${week}`); }
+        catch (e) {
+          rows = saved?.matchups[week];
+          rosters = saved?.rosters;
+          if (rows) coverage.saved++;
+        }
+        if (!Array.isArray(rows) || !rosters) { coverage.missing++; return; }
+        const games = matchupGames(rows, rosters, +year, week);
+        // Never present a partial or empty response as a complete week.
+        if (games.length !== DATA.owners.length / 2) { coverage.missing++; return; }
+        HEAD_TO_HEAD.push(...games);
+        coverage.loaded++;
+      });
+    }
+  });
+  for (let i = 0; i < tasks.length; i += 8) await Promise.all(tasks.slice(i, i + 8).map(run => run()));
+}
+
+function headToHeadRecord(owner, opponent) {
+  const record = { w: 0, l: 0, t: 0, pf: 0, pa: 0 };
+  HEAD_TO_HEAD.forEach(g => {
+    if (!((g.a === owner && g.b === opponent) || (g.b === owner && g.a === opponent))) return;
+    const [pf, pa] = g.a === owner ? [g.ap, g.bp] : [g.bp, g.ap];
+    record.pf += pf / 100; record.pa += pa / 100;
+    if (pf > pa) record.w++; else if (pf < pa) record.l++; else record.t++;
+  });
+  return record;
+}
+const recordLabel = r => `${r.w}–${r.l}–${r.t}`;
+
+function renderHeadToHead() {
+  const owners = DATA.owners;
+  const coverage = H2H_COVERAGE.sort((a, b) => a.year - b.year);
+  $('#h2hCoverage').textContent = `Verified coverage: ${coverage.map(c => `${c.year} (${c.loaded}/${c.weeks} completed weeks)`).join(' · ') || 'unavailable'}. 2020–2021 ESPN weekly results are not available; those seasons are excluded. No records are inferred from season totals.` +
+    (coverage.some(c => c.missing) ? ' Some matchup weeks could not be loaded; the records below are incomplete.' : '') +
+    (coverage.some(c => c.saved) ? ` Includes saved results from ${new Date(SNAPSHOT.updatedAt).toLocaleDateString()}.` : '');
+  if (!HEAD_TO_HEAD.length) {
+    $('#h2hMatrix').innerHTML = '<p>No completed matchup data available.</p>';
+    return;
+  }
+  $('#h2hMatrix').className = '';
+  $('#h2hMatrix').innerHTML = `<div class="tbl-wrap h2h-scroll" tabindex="0" role="region" aria-label="Head-to-head records, scroll horizontally to see every owner"><table class="h2h-table">
+    <caption>Regular-season head-to-head · row owner's W–L–T</caption>
+    <thead><tr><th scope="col">Owner</th>${owners.map(o => `<th scope="col">${esc(o.name)}</th>`).join('')}</tr></thead>
+    <tbody>${owners.map(o => `<tr><th scope="row">${esc(o.name)}</th>${owners.map(other => {
+      if (o === other) return '<td class="num h2h-self" aria-label="Same owner">—</td>';
+      const r = headToHeadRecord(o.sleeperUserId, other.sleeperUserId);
+      return `<td class="num ${r.w > r.l ? 'h2h-winning' : ''}" title="${esc(o.name)} vs ${esc(other.name)}">${recordLabel(r)}</td>`;
+    }).join('')}</tr>`).join('')}</tbody></table></div>`;
+  $('#h2hOwner').innerHTML = owners.map(o => `<option value="${esc(o.sleeperUserId)}">${esc(o.name)}</option>`).join('');
+  $('#h2hOwner').onchange = renderHeadToHeadDetail;
+  renderHeadToHeadDetail();
+}
+
+function renderHeadToHeadDetail() {
+  const owner = $('#h2hOwner').value;
+  $('#h2hDetail').innerHTML = tallyTable(DATA.owners.filter(o => o.sleeperUserId !== owner),
+    ['Opponent', 'W–L–T', 'Win %', 'Points For', 'Points Against'], o => {
+      const r = headToHeadRecord(owner, o.sleeperUserId);
+      return [`<span class="tname">${esc(o.name)}</span><span class="oname">${esc(o.team)}</span>`, recordLabel(r),
+        r.w + r.l + r.t ? pct(r.w, r.l, r.t).toFixed(3) : '—', fmt(r.pf), fmt(r.pa)];
+    });
 }

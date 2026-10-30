@@ -124,6 +124,36 @@ whole reason it's plain files and not a hosted app.
 
 ---
 
+## 2026 update and head-to-head records
+
+All-time standings include the current season's recorded wins, losses and ties.
+The All-Time tab also shows an owner-versus-owner matrix and an owner selector
+with wins, losses, ties, win percentage and points for/against.
+
+Head-to-head coverage is **regular season, 2022 onward**, through Sleeper's last
+completed scoring week (currently Week 7 of 2026). Playoffs, consolation games
+and unfinished weeks are excluded. Owners are identified by their Sleeper user
+ID in each season's rosters, so team renames do not split their history.
+2020–2021 have only recorded season totals; their weekly matchups are needed
+before those years can be added. The unrelated 2021 Sleeper league is excluded.
+
+Live requests expire from the browser cache after five minutes. If Sleeper is
+unavailable, the site uses `data/sleeper-history.json` and labels the saved date.
+Missing matchup weeks are disclosed in the coverage note.
+
+To refresh the fallback snapshot from public Sleeper data, run from this folder:
+
+```sh
+python3 scripts/refresh-sleeper.py
+```
+
+To verify matchup totals against every owner's recorded season standings,
+including the saved-data fallback and current-season totals:
+
+```sh
+node scripts/test-records.cjs
+```
+
 ## How it works, briefly
 
 - `index.html` — page structure. Rarely needs touching.

@@ -298,3 +298,19 @@ code{background:var(--card-2);border:1px solid var(--line);border-radius:5px;pad
   .rec-row{gap:1rem}
   .rec-row .v{font-size:1.8rem;min-width:4.6rem}
 }
+
+/* Head-to-head history */
+.h2h-table { min-width: 1100px; }
+.h2h-table caption { text-align: left; padding: .8rem 1rem; color: var(--ink-2); font-size: .8rem; }
+.h2h-table thead th { white-space: normal; min-width: 90px; }
+.h2h-table th:first-child { position: sticky; left: 0; background: var(--card); z-index: 1; min-width: 145px; }
+.h2h-table tbody th { font-size: .8rem; text-align: left; padding: .9rem 1rem; border-bottom: 1px solid var(--line-soft); }
+.h2h-winning { color: var(--gold); font-weight: 700; }
+.h2h-self { color: var(--ink-3); }
+.h2h-controls { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; margin: 1.5rem 0 1rem; }
+.h2h-controls label { font-size: .85rem; font-weight: 600; }
+.h2h-controls select { font: inherit; padding: .65rem .8rem; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 8px; max-width: 100%; }
+.h2h-scroll:focus-visible, .h2h-controls select:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+#h2hDetail table { min-width: 650px; }
+#h2hDetail td.num { white-space: nowrap; }
