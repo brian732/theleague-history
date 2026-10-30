@@ -124,6 +124,56 @@ whole reason it's plain files and not a hosted app.
 
 ---
 
+## Customizing the site
+
+The All-Time page has one set of filters for standings, the matrix, the
+season-by-season grid, and the rivalry comparison at the bottom. Choose all
+seasons, one season, or a year range, and regular season, playoffs, or combined
+records. Click a standings heading to sort either direction, or choose a ranking
+from the menu. Titles and playoff berths always refer to the selected years.
+
+Playoff records count each championship-bracket series once, including the
+third-place series. Consolation games are excluded. Multiweek scores are summed
+for that series. `data/playoffs.json` archives 24 completed series from 2020–2025;
+current-season playoff results refresh from Sleeper after the playoffs begin.
+Run `python3 scripts/build-playoffs.py` after refreshing the source snapshots to
+rebuild that archive. If a playoff request fails, the site discloses saved or
+incomplete results.
+
+**My view** saves a favorite team, landing section, compact/detailed tables,
+theme, accent, team color, and profile photo on the current device. Personal
+photos are cropped and resized locally; they are not uploaded. Your favorite
+team is highlighted and preselected in the rivalry controls. Explicit section
+links still take priority over your landing preference.
+
+**Commissioner** edits owner display names, bios, shared photo URLs and colors,
+season recaps, and awards. It autosaves a local draft. Preview changes on the
+current device, discard them, download an updated `league.json`, or publish the
+previewed draft to the existing GitHub repository. Historical owner identifiers,
+canonical team names, scores, standings, and championship results are not editable
+through this panel.
+
+Shared publishing uses GitHub's Contents API and requires a token with Contents:
+Read and write permission for `brian732/theleague-history`. Tokens are sent only
+to `api.github.com`, cleared from the input on submission, and never stored.
+GitHub enforces access. The publisher checks the latest content, preserves
+unrelated changes, detects conflicts in edited fields, and commits against the
+current file SHA. A successful commit still needs the normal Pages deployment.
+The download workflow is available without a token.
+
+Validation:
+
+```sh
+node scripts/test-records.cjs
+node scripts/test-customization.cjs
+python3 scripts/audit-history.py
+```
+
+The customization checks cover year and competition filters, empty playoff
+seasons, all playoff series and combined totals, protected history fields,
+Unicode content, concurrent editor changes, and publishing through a mocked
+GitHub transport. They do not make a live content edit.
+
 ## 2026 update and head-to-head records
 
 All-time standings include the current season's recorded wins, losses and ties.

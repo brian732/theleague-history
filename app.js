@@ -64,6 +64,8 @@ async function getJSON(url) {
     return;
   }
 
+  if (typeof initCustomization === 'function') initCustomization();
+
   DATA.owners.forEach(o => { OWNER_BY_SLEEPER[o.sleeperUserId] = o; });
 
   document.title = `${DATA.league.name} (est. ${DATA.league.established})`;
@@ -93,7 +95,11 @@ async function getJSON(url) {
   renderOwnerRecords();
   renderSeason(currentSeasonYear());
   await loadHeadToHead();
+  if (typeof loadPlayoffHistory === 'function') await loadPlayoffHistory();
+  if (typeof initExplorer === 'function') initExplorer();
+  renderAllTime();
   renderHeadToHead();
+  if (typeof renderPersonalHome === 'function') renderPersonalHome();
 })();
 
 /* ============================================================
@@ -247,7 +253,7 @@ function renderLive() {
   const playoffTeams = (CURRENT && CURRENT.settings && CURRENT.settings.playoff_teams) || 4;
 
   const rows = s.standings.map((r, i) => `
-    <tr class="${i === playoffTeams - 1 ? 'cut' : ''}">
+    <tr class="${i === playoffTeams - 1 ? 'cut' : ''} ${typeof isFavorite === 'function' && isFavorite(r.sleeperUserId) ? 'my-team-row' : ''}">
       <td class="rank">${i + 1}</td>
       <td>
         <span class="tname">${esc(r.team)}</span>
@@ -345,7 +351,7 @@ function renderTrophies() {
 
 function teamCell(team) {
   const o = DATA.owners.find(x => normLabel(x.team) === normLabel(team));
-  return `<span class="tname">${esc(team)}</span>${o ? `<span class="oname">${esc(o.name)}</span>` : ''}`;
+  return `${typeof ownerAvatar === 'function' && o ? ownerAvatar(o) : ''}<span class="tname">${esc(o?.displayTeam || team)}</span>${o ? `<span class="oname">${esc(o.name)}</span>` : ''}`;
 }
 
 function tallyTable(rows, heads, mapRow) {
@@ -380,6 +386,7 @@ function allTimeTotals() {
 }
 
 function renderAllTime() {
+  if (typeof renderExplorerStandings === 'function') return renderExplorerStandings();
   const rows = allTimeTotals();
   if (!rows.length) { $('#allTimeTable').innerHTML = '<p class="loading">No data.</p>'; return; }
 
@@ -414,7 +421,8 @@ function renderAllTime() {
 }
 
 function renderGridHistory() {
-  const years = Object.keys(SEASONS).map(Number).sort((a, b) => a - b);
+  if (typeof renderExplorerGrid === 'function') return renderExplorerGrid();
+  const years = Object.keys(SEASONS).map(Number).filter(y => typeof selectedYear !== 'function' || selectedYear(y)).sort((a, b) => a - b);
   const teams = DATA.owners.map(o => o.team);
 
   const cell = (team, yr) => {
@@ -443,8 +451,8 @@ function renderOwnersShell() {
     <article class="owner" data-team="${esc(o.team)}">
       <div class="top">
         <div>
-          <h4>${esc(o.name)}</h4>
-          <div class="team">${esc(o.team)}</div>
+          ${typeof ownerAvatar === 'function' ? ownerAvatar(o, true) : ''}<h4>${esc(o.name)}</h4>
+          <div class="team">${esc(o.displayTeam || o.team)}</div>
           <div class="role">${esc(o.role)}</div>
         </div>
         <div class="rings" data-rings></div>
@@ -636,6 +644,7 @@ function initTabs() {
     const b = e.target.closest('button[data-tab]');
     if (b) go(b.dataset.tab);
   });
+  window.switchLeagueTab = go;
   const h = location.hash.slice(1);
   if (h && $('#tab-' + h)) go(h);
   window.addEventListener('hashchange', () => {
@@ -654,6 +663,7 @@ function initTheme() {
     const next = cur === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     try { localStorage.setItem('tl-theme', next); } catch (e) { /* ignore */ }
+    if (typeof syncThemePreference === 'function') syncThemePreference(next);
   });
 }
 
@@ -727,11 +737,12 @@ async function loadHeadToHead() {
 
 function headToHeadRecord(owner, opponent) {
   const record = { w: 0, l: 0, t: 0, pf: 0, pa: 0 };
-  HEAD_TO_HEAD.forEach(g => {
+  (typeof filteredGames === 'function' ? filteredGames() : HEAD_TO_HEAD).forEach(g => {
     if (!((g.a === owner && g.b === opponent) || (g.b === owner && g.a === opponent))) return;
     const [pf, pa] = g.a === owner ? [g.ap, g.bp] : [g.bp, g.ap];
     record.pf += pf / 100; record.pa += pa / 100;
-    if (pf > pa) record.w++; else if (pf < pa) record.l++; else record.t++;
+    if (pf > pa || (pf === pa && g.winner === owner)) record.w++;
+    else if (pf < pa || (pf === pa && g.winner === opponent)) record.l++; else record.t++;
   });
   return record;
 }
@@ -746,25 +757,28 @@ const recordLabel = r => `${r.w}–${r.l}–${r.t}`;
 
 function renderHeadToHead() {
   const owners = DATA.owners;
-  const coverage = H2H_COVERAGE.sort((a, b) => a.year - b.year);
-  $('#h2hCoverage').textContent = `Verified coverage: ${coverage.map(c => `${c.year} (${c.loaded}/${c.weeks} completed weeks)`).join(' · ') || 'unavailable'}. ESPN 2020–2021 and Sleeper 2022 onward. All ${HEAD_TO_HEAD.length} included games are regular-season matchups. Oliver McDonough’s 2020 games are excluded for both opponents; Guha’s history starts in 2021. Overall standings still count other owners’ games against Oliver.` +
+  const coverage = H2H_COVERAGE.filter(c => typeof selectedYear !== 'function' || selectedYear(c.year)).sort((a, b) => a.year - b.year);
+  $('#h2hCoverage').textContent = `Verified coverage: ${coverage.map(c => `${c.year} (${c.loaded}/${c.weeks} completed weeks)`).join(' · ') || 'unavailable'}. ESPN 2020–2021 and Sleeper 2022 onward. Showing ${typeof filteredGames === 'function' ? filteredGames().length : HEAD_TO_HEAD.length} matchups for your filters. Oliver McDonough’s 2020 games are excluded for both opponents; Guha’s history starts in 2021. Overall standings still count other owners’ games against Oliver.` +
     (!ESPN_HISTORY ? ' ESPN matchup history could not be loaded; 2020–2021 are missing from this table.' : '') +
     (coverage.some(c => c.missing) ? ' Some matchup weeks could not be loaded; the records below are incomplete.' : '') +
     (coverage.some(c => c.saved) ? ` Includes saved results from ${new Date(SNAPSHOT.updatedAt).toLocaleDateString()}.` : '');
-  if (!HEAD_TO_HEAD.length) {
+  if (typeof explorerCoverage === 'function') $('#h2hCoverage').textContent = explorerCoverage();
+  if (!HEAD_TO_HEAD.length && !(typeof PLAYOFF_GAMES !== 'undefined' && PLAYOFF_GAMES.length)) {
     $('#h2hMatrix').innerHTML = '<p>No completed matchup data available.</p>';
     return;
   }
   $('#h2hMatrix').className = '';
   $('#h2hMatrix').innerHTML = `<div class="tbl-wrap h2h-scroll" tabindex="0" role="region" aria-label="Head-to-head records, scroll horizontally to see every owner"><table class="h2h-table">
-    <caption>Regular-season head-to-head · row owner's W–L–T</caption>
+    <caption>${typeof competitionLabel === 'function' ? esc(competitionLabel()) : 'Regular-season'} head-to-head · row owner's W–L–T</caption>
     <thead><tr><th scope="col">Owner</th>${owners.map(o => `<th scope="col">${esc(o.name)}</th>`).join('')}<th scope="col">Total vs listed owners</th></tr></thead>
     <tbody>${owners.map(o => `<tr><th scope="row">${esc(o.name)}</th>${owners.map(other => {
       if (o === other) return '<td class="num h2h-self" aria-label="Same owner">—</td>';
       const r = headToHeadRecord(o.sleeperUserId, other.sleeperUserId);
       return `<td class="num ${r.w > r.l ? 'h2h-winning' : ''}" title="${esc(o.name)} vs ${esc(other.name)}">${recordLabel(r)}</td>`;
     }).join('')}<td class="num">${recordLabel(headToHeadTotal(o.sleeperUserId))}</td></tr>`).join('')}</tbody></table></div>`;
+  const selectedOwner = $('#h2hOwner').value;
   $('#h2hOwner').innerHTML = owners.map(o => `<option value="${esc(o.sleeperUserId)}">${esc(o.name)}</option>`).join('');
+  if (owners.some(o => o.sleeperUserId === selectedOwner)) $('#h2hOwner').value = selectedOwner;
   $('#h2hOwner').onchange = renderHeadToHeadDetail;
   renderHeadToHeadDetail();
 }

@@ -39,6 +39,8 @@
     <button data-tab="seasons">Seasons</button>
     <button data-tab="records">Record Book</button>
     <button data-tab="rules">Rulebook</button>
+    <button data-tab="settings">My view</button>
+    <button data-tab="commissioner">Commissioner</button>
   </nav>
 </header>
 
@@ -50,6 +52,7 @@
       <h2 id="nowTitle">Live Standings</h2>
       <span class="badge" id="liveBadge">Loading from Sleeper…</span>
     </div>
+    <div id="personalHome"></div>
     <div id="nowStandings" class="loading">Fetching live data…</div>
     <div class="grid-2" style="margin-top:2.5rem">
       <div class="card">
@@ -79,12 +82,23 @@
   <!-- ALL TIME -->
   <section id="tab-alltime" class="tab">
     <h2>All-Time Standings</h2>
-    <p class="lede">Regular season records from 2020 through the latest completed games, including the season in progress. 2020&ndash;21 are verified against ESPN; 2022 onward is pulled live from Sleeper. Guha joined in 2021; Oliver’s 2020 record is not credited to him.</p>
+    <p class="lede">Explore the league's history. Pick your seasons, choose a competition, and settle a rivalry.</p>
+    <form id="explorerFilters" class="explorer-bar" aria-label="History filters">
+      <label>Seasons<select aria-label="Seasons" id="seasonPreset"><option value="all">All-time</option><option value="single">One season</option><option value="range">Year range</option></select></label>
+      <label id="fromYearLabel" hidden>From<select aria-label="From" id="fromYear"></select></label>
+      <label id="toYearLabel" hidden>To<select aria-label="To" id="toYear"></select></label>
+      <label>Competition<select aria-label="Competition" id="competition"><option value="regular">Regular season</option><option value="playoffs">Playoffs</option><option value="combined">Regular season + playoffs</option></select></label>
+      <label>Rank standings by<select aria-label="Rank standings by" id="standingsSort"><option value="pct">Win percentage</option><option value="w">Wins</option><option value="pf">Points scored</option><option value="titles">Titles</option><option value="berths">Playoff appearances</option><option value="l">Losses</option><option value="t">Ties</option><option value="pa">Points allowed</option><option value="seasons">Seasons played</option><option value="name">Owner name</option></select></label>
+      <button type="button" id="resetExplorer" class="quiet-btn">Reset filters</button>
+    </form>
+    <p class="tiny" id="filterSummary" role="status"></p>
+    <p class="tiny" id="standingsMethod"></p>
     <div id="allTimeTable" class="loading">Calculating…</div>
     <h3 class="sub" id="headtohead">Head-to-Head Records</h3>
     <p class="lede" id="h2hCoverage" role="status">Loading verified matchup history…</p>
     <p class="tiny">Historical sources: <a href="https://fantasy.espn.com/football/league?leagueId=92157291&amp;seasonId=2020" target="_blank" rel="noopener">ESPN 2020</a> &middot; <a href="https://fantasy.espn.com/football/league?leagueId=92157291&amp;seasonId=2021" target="_blank" rel="noopener">ESPN 2021</a>.</p>
-    <p class="tiny">Each cell shows the row owner's wins–losses–ties against the column owner. Regular season only; playoffs and consolation games are excluded. Team name changes stay with the same owner.</p>
+    <p class="tiny">Each cell shows the row owner's W–L–T against the column owner for your filters. Oliver's games are excluded on both sides; Guha starts in 2021. Playoffs include championship-bracket and third-place series; consolation games are excluded. Multiweek series count once.</p>
+
     <div id="h2hMatrix" class="loading">Calculating matchups…</div>
     <div class="h2h-controls">
       <label for="h2hOwner">View an owner's matchups</label>
@@ -93,6 +107,12 @@
     <div id="h2hDetail"></div>
     <h3 class="sub">Season by Season</h3>
     <div id="gridHistory" class="loading"></div>
+    <section class="rivalry" aria-labelledby="rivalryTitle">
+      <h3 id="rivalryTitle">Settle a rivalry</h3>
+      <div class="rivalry-picks"><label>First owner<select aria-label="First owner" id="compareA"></select></label><span aria-hidden="true">vs.</span><label>Second owner<select aria-label="Second owner" id="compareB"></select></label></div>
+      <div id="comparisonSummary" aria-live="polite"></div>
+      <details id="comparisonGames"><summary>Game-by-game history</summary><div id="comparisonHistory"></div></details>
+    </section>
   </section>
 
   <!-- OWNERS -->
@@ -125,13 +145,58 @@
     <div id="rulesBody"></div>
   </section>
 
+  <section id="tab-settings" class="tab">
+    <h2>Make it your league</h2>
+    <p class="lede">Your team. Your colors. Your starting point. These preferences stay on this device.</p>
+    <form id="preferencesForm" class="settings-form">
+      <label>My team<select aria-label="My team" id="favoriteOwner"><option value="">Choose your team</option></select></label>
+      <label>Open the site to<select aria-label="Open the site to" id="homeSection"><option value="now">This season</option><option value="alltime">All-time records</option><option value="owners">Owners</option></select></label>
+      <label>Table style<select aria-label="Table style" id="tableDensity"><option value="detailed">Detailed</option><option value="compact">Compact</option></select></label>
+      <label>Theme<select aria-label="Theme" id="preferredTheme"><option value="system">Follow device</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
+      <label>Accent<select aria-label="Accent" id="accentChoice"><option value="gold">League gold</option><option value="blue">Touchdown blue</option><option value="green">Field green</option><option value="red">Rivalry red</option><option value="purple">Royal purple</option></select></label>
+      <label>My team color<input aria-label="My team color" id="personalTeamColor" type="color" value="#e3b23c"></label>
+      <label>My profile photo<input aria-label="My profile photo" id="personalPhoto" type="file" accept="image/png,image/jpeg,image/webp"><span class="tiny">Choose a PNG, JPEG, or WebP photo. It stays on this device.</span></label>
+      <div class="form-actions"><button type="submit" class="primary-btn">Save my view</button><button type="button" id="clearPersonalPhoto" class="quiet-btn">Remove my photo</button><button type="button" id="resetPreferences" class="quiet-btn">Reset my view</button></div>
+      <p id="preferencesStatus" role="status"></p>
+    </form>
+  </section>
+  <section id="tab-commissioner" class="tab">
+    <h2>Commissioner's desk</h2>
+    <p class="lede">Write the next chapter. Update owner profiles, season recaps, and awards.</p>
+    <p class="tiny">Drafts and previews stay on this device. Publishing updates the shared site and requires write access to its GitHub repository.</p>
+    <form id="editorForm" class="editor-form">
+      <fieldset><legend>Owner profile</legend>
+        <label>Owner<select aria-label="Owner" id="editOwner"></select></label>
+        <label>Display team name<input aria-label="Display team name" id="editTeamName" maxlength="100"></label>
+        <label>Bio<textarea aria-label="Bio" id="editBio" rows="5" maxlength="6000"></textarea></label>
+        <label>Photo URL<input aria-label="Photo URL" id="editPhoto" type="url" placeholder="https://…"><span class="tiny">Use a public HTTPS image link.</span></label>
+        <label>Team color<input aria-label="Team color" id="editTeamColor" type="color" value="#e3b23c"></label>
+      </fieldset>
+      <fieldset><legend>Season story</legend>
+        <label>Season<select aria-label="Season" id="editYear"></select></label>
+        <label>Recap<textarea aria-label="Recap" id="editRecap" rows="7" maxlength="16000"></textarea></label>
+        <h3>Awards</h3><div id="editAwards"></div><button id="addAward" type="button" class="quiet-btn">Add an award</button>
+      </fieldset>
+      <div class="form-actions"><button type="submit" class="primary-btn">Preview draft</button><button id="saveDraft" type="button" class="quiet-btn">Save draft</button><button id="downloadDraft" type="button" class="quiet-btn">Download updated content</button><button id="discardDraft" type="button" class="quiet-btn">Discard draft</button></div>
+    </form>
+    <p id="editorStatus" role="status" aria-live="polite"></p>
+    <details class="publish-panel"><summary>Publish to the shared site</summary>
+      <p>Preview your draft first. A GitHub token needs <b>Contents: Read and write</b> permission for <b>brian732/theleague-history</b>. It is sent only to GitHub and cleared after each attempt.</p>
+      <form id="publishForm"><label>GitHub access token<input aria-label="GitHub access token" id="publishToken" type="password" autocomplete="off" required></label><button id="publishDraft" type="submit" class="primary-btn">Publish previewed draft</button></form>
+      <p class="tiny">You can also download the updated content and replace <a href="https://github.com/brian732/theleague-history/edit/main/data/league.json" target="_blank" rel="noopener">league.json on GitHub</a>. Keep the filename league.json.</p>
+      <p id="publishStatus" role="status" aria-live="polite"></p>
+    </details>
+  </section>
 </main>
 
 <footer class="wrap">
   <p id="footNote"></p>
-  <p class="tiny">This is a living document. To change anything on this site, edit <code>data/league.json</code>. Standings and records update themselves from Sleeper.</p>
+  <p class="tiny">This is a living document. Personalize the site in My view. Add league stories at the Commissioner’s desk. Standings and records update themselves from Sleeper.</p>
 </footer>
 
+<script src="explorer.js"></script>
+<script src="preferences.js"></script>
+<script src="editor.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
