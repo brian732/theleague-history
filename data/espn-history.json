@@ -1,0 +1,3308 @@
+{
+  "leagueId": "92157291",
+  "updatedAt": "2026-10-30T18:16:35.407359+00:00",
+  "seasons": [
+    {
+      "year": 2020,
+      "sourceUrl": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2020/segments/0/leagues/92157291?view=mTeam&view=mMatchup&view=mSettings",
+      "regularWeeks": 12,
+      "teams": [
+        {
+          "teamId": 1,
+          "team": "Team Fielding",
+          "espnOwnerName": "Andrew Fielding",
+          "ownerName": "Andrew Fielding",
+          "sleeperUserId": "591056123839160320",
+          "canonicalTeam": "Team Fielding",
+          "w": 5,
+          "l": 7,
+          "t": 0,
+          "pf": 1423.68,
+          "pa": 1478.28,
+          "finalRank": 5,
+          "playoffSeed": 7
+        },
+        {
+          "teamId": 2,
+          "team": "My Ball Zach Ertz",
+          "espnOwnerName": "Jon Pan",
+          "ownerName": "Jonathan Pan",
+          "sleeperUserId": "735732776434794496",
+          "canonicalTeam": "PanFam",
+          "w": 4,
+          "l": 8,
+          "t": 0,
+          "pf": 1175.28,
+          "pa": 1358.88,
+          "finalRank": 7,
+          "playoffSeed": 9
+        },
+        {
+          "teamId": 3,
+          "team": "The Yang Gang",
+          "espnOwnerName": "Lucas Teuber",
+          "ownerName": "Lucas Teuber",
+          "sleeperUserId": "729773276074733568",
+          "canonicalTeam": "Yang Gang",
+          "w": 6,
+          "l": 6,
+          "t": 0,
+          "pf": 1452.34,
+          "pa": 1343.0,
+          "finalRank": 3,
+          "playoffSeed": 4
+        },
+        {
+          "teamId": 4,
+          "team": "The Silent Majority",
+          "espnOwnerName": "Matt Lifshitz",
+          "ownerName": "Matt Lifshitz",
+          "sleeperUserId": "735745286965698560",
+          "canonicalTeam": "The Silent Majority",
+          "w": 10,
+          "l": 2,
+          "t": 0,
+          "pf": 1530.68,
+          "pa": 1211.1,
+          "finalRank": 1,
+          "playoffSeed": 1
+        },
+        {
+          "teamId": 5,
+          "team": "OJ\u2019s  Dream Team",
+          "espnOwnerName": "Joe Gilhooly",
+          "ownerName": "Sean Gilhooly",
+          "sleeperUserId": "735645198125809664",
+          "canonicalTeam": "OJ's Dream Team",
+          "w": 8,
+          "l": 4,
+          "t": 0,
+          "pf": 1393.58,
+          "pa": 1322.1,
+          "finalRank": 4,
+          "playoffSeed": 2
+        },
+        {
+          "teamId": 6,
+          "team": "NORTH KOREA GINGA NINJA'S",
+          "espnOwnerName": "Connor Gross",
+          "ownerName": "Connor Gross",
+          "sleeperUserId": "735660262266363904",
+          "canonicalTeam": "NORTH KOREA GINGA NINJAS",
+          "w": 6,
+          "l": 6,
+          "t": 0,
+          "pf": 1318.3,
+          "pa": 1379.56,
+          "finalRank": 6,
+          "playoffSeed": 5
+        },
+        {
+          "teamId": 7,
+          "team": "Rodgers For MVP",
+          "espnOwnerName": "Brian Pedretti",
+          "ownerName": "Brian Pedretti",
+          "sleeperUserId": "735840432759668736",
+          "canonicalTeam": "Big Dick MVP Aaron GODgers",
+          "w": 3,
+          "l": 9,
+          "t": 0,
+          "pf": 1181.64,
+          "pa": 1379.12,
+          "finalRank": 10,
+          "playoffSeed": 10
+        },
+        {
+          "teamId": 8,
+          "team": "25 And Under",
+          "espnOwnerName": "Jerry Markatos",
+          "ownerName": "Jerry Markatos",
+          "sleeperUserId": "654451977673043968",
+          "canonicalTeam": "25 and Under",
+          "w": 8,
+          "l": 4,
+          "t": 0,
+          "pf": 1393.92,
+          "pa": 1183.4,
+          "finalRank": 2,
+          "playoffSeed": 3
+        },
+        {
+          "teamId": 9,
+          "team": " ~ Suck My Ditka",
+          "espnOwnerName": "Danny Pedretti",
+          "ownerName": "Danny Pedretti",
+          "sleeperUserId": "735929732616605696",
+          "canonicalTeam": "~ Suck My Ditka",
+          "w": 6,
+          "l": 6,
+          "t": 0,
+          "pf": 1277.58,
+          "pa": 1355.18,
+          "finalRank": 8,
+          "playoffSeed": 6
+        },
+        {
+          "teamId": 10,
+          "team": "Team McDonough",
+          "espnOwnerName": "Oliver McDonough",
+          "ownerName": "Oliver McDonough",
+          "sleeperUserId": null,
+          "canonicalTeam": "Team McDonough",
+          "w": 4,
+          "l": 8,
+          "t": 0,
+          "pf": 1254.1,
+          "pa": 1390.48,
+          "finalRank": 9,
+          "playoffSeed": 8
+        }
+      ],
+      "games": [
+        {
+          "id": 1,
+          "week": 1,
+          "homeTeamId": 9,
+          "awayTeamId": 4,
+          "hp": 9590,
+          "ap": 11142
+        },
+        {
+          "id": 2,
+          "week": 1,
+          "homeTeamId": 7,
+          "awayTeamId": 3,
+          "hp": 8028,
+          "ap": 11814
+        },
+        {
+          "id": 3,
+          "week": 1,
+          "homeTeamId": 6,
+          "awayTeamId": 2,
+          "hp": 14654,
+          "ap": 12950
+        },
+        {
+          "id": 4,
+          "week": 1,
+          "homeTeamId": 5,
+          "awayTeamId": 1,
+          "hp": 15358,
+          "ap": 13580
+        },
+        {
+          "id": 5,
+          "week": 1,
+          "homeTeamId": 8,
+          "awayTeamId": 10,
+          "hp": 9270,
+          "ap": 10346
+        },
+        {
+          "id": 6,
+          "week": 2,
+          "homeTeamId": 3,
+          "awayTeamId": 2,
+          "hp": 11628,
+          "ap": 12112
+        },
+        {
+          "id": 7,
+          "week": 2,
+          "homeTeamId": 1,
+          "awayTeamId": 9,
+          "hp": 16418,
+          "ap": 9466
+        },
+        {
+          "id": 8,
+          "week": 2,
+          "homeTeamId": 10,
+          "awayTeamId": 4,
+          "hp": 12198,
+          "ap": 14450
+        },
+        {
+          "id": 9,
+          "week": 2,
+          "homeTeamId": 5,
+          "awayTeamId": 7,
+          "hp": 12432,
+          "ap": 7540
+        },
+        {
+          "id": 10,
+          "week": 2,
+          "homeTeamId": 8,
+          "awayTeamId": 6,
+          "hp": 15714,
+          "ap": 11860
+        },
+        {
+          "id": 11,
+          "week": 3,
+          "homeTeamId": 1,
+          "awayTeamId": 10,
+          "hp": 12378,
+          "ap": 10118
+        },
+        {
+          "id": 12,
+          "week": 3,
+          "homeTeamId": 3,
+          "awayTeamId": 5,
+          "hp": 12410,
+          "ap": 14590
+        },
+        {
+          "id": 13,
+          "week": 3,
+          "homeTeamId": 2,
+          "awayTeamId": 8,
+          "hp": 10892,
+          "ap": 10770
+        },
+        {
+          "id": 14,
+          "week": 3,
+          "homeTeamId": 9,
+          "awayTeamId": 7,
+          "hp": 12818,
+          "ap": 12492
+        },
+        {
+          "id": 15,
+          "week": 3,
+          "homeTeamId": 4,
+          "awayTeamId": 6,
+          "hp": 13986,
+          "ap": 10508
+        },
+        {
+          "id": 16,
+          "week": 4,
+          "homeTeamId": 5,
+          "awayTeamId": 8,
+          "hp": 10900,
+          "ap": 11802
+        },
+        {
+          "id": 17,
+          "week": 4,
+          "homeTeamId": 7,
+          "awayTeamId": 1,
+          "hp": 13788,
+          "ap": 10500
+        },
+        {
+          "id": 18,
+          "week": 4,
+          "homeTeamId": 6,
+          "awayTeamId": 10,
+          "hp": 10618,
+          "ap": 11156
+        },
+        {
+          "id": 19,
+          "week": 4,
+          "homeTeamId": 9,
+          "awayTeamId": 3,
+          "hp": 13392,
+          "ap": 10354
+        },
+        {
+          "id": 20,
+          "week": 4,
+          "homeTeamId": 4,
+          "awayTeamId": 2,
+          "hp": 13440,
+          "ap": 10760
+        },
+        {
+          "id": 21,
+          "week": 5,
+          "homeTeamId": 7,
+          "awayTeamId": 6,
+          "hp": 6932,
+          "ap": 12394
+        },
+        {
+          "id": 22,
+          "week": 5,
+          "homeTeamId": 5,
+          "awayTeamId": 9,
+          "hp": 13538,
+          "ap": 8750
+        },
+        {
+          "id": 23,
+          "week": 5,
+          "homeTeamId": 8,
+          "awayTeamId": 4,
+          "hp": 11922,
+          "ap": 11006
+        },
+        {
+          "id": 24,
+          "week": 5,
+          "homeTeamId": 1,
+          "awayTeamId": 3,
+          "hp": 14184,
+          "ap": 12540
+        },
+        {
+          "id": 25,
+          "week": 5,
+          "homeTeamId": 10,
+          "awayTeamId": 2,
+          "hp": 10012,
+          "ap": 12354
+        },
+        {
+          "id": 26,
+          "week": 6,
+          "homeTeamId": 4,
+          "awayTeamId": 3,
+          "hp": 11110,
+          "ap": 12970
+        },
+        {
+          "id": 27,
+          "week": 6,
+          "homeTeamId": 2,
+          "awayTeamId": 1,
+          "hp": 10352,
+          "ap": 10208
+        },
+        {
+          "id": 28,
+          "week": 6,
+          "homeTeamId": 10,
+          "awayTeamId": 5,
+          "hp": 9844,
+          "ap": 10694
+        },
+        {
+          "id": 29,
+          "week": 6,
+          "homeTeamId": 8,
+          "awayTeamId": 7,
+          "hp": 10782,
+          "ap": 9368
+        },
+        {
+          "id": 30,
+          "week": 6,
+          "homeTeamId": 6,
+          "awayTeamId": 9,
+          "hp": 7436,
+          "ap": 15334
+        },
+        {
+          "id": 31,
+          "week": 7,
+          "homeTeamId": 1,
+          "awayTeamId": 4,
+          "hp": 7382,
+          "ap": 14436
+        },
+        {
+          "id": 32,
+          "week": 7,
+          "homeTeamId": 5,
+          "awayTeamId": 2,
+          "hp": 11872,
+          "ap": 8622
+        },
+        {
+          "id": 33,
+          "week": 7,
+          "homeTeamId": 7,
+          "awayTeamId": 10,
+          "hp": 11876,
+          "ap": 15116
+        },
+        {
+          "id": 34,
+          "week": 7,
+          "homeTeamId": 9,
+          "awayTeamId": 8,
+          "hp": 9552,
+          "ap": 11170
+        },
+        {
+          "id": 35,
+          "week": 7,
+          "homeTeamId": 3,
+          "awayTeamId": 6,
+          "hp": 10260,
+          "ap": 14194
+        },
+        {
+          "id": 36,
+          "week": 8,
+          "homeTeamId": 4,
+          "awayTeamId": 5,
+          "hp": 11874,
+          "ap": 10404
+        },
+        {
+          "id": 37,
+          "week": 8,
+          "homeTeamId": 2,
+          "awayTeamId": 7,
+          "hp": 7104,
+          "ap": 8584
+        },
+        {
+          "id": 38,
+          "week": 8,
+          "homeTeamId": 10,
+          "awayTeamId": 9,
+          "hp": 9596,
+          "ap": 10892
+        },
+        {
+          "id": 39,
+          "week": 8,
+          "homeTeamId": 8,
+          "awayTeamId": 3,
+          "hp": 8942,
+          "ap": 11924
+        },
+        {
+          "id": 40,
+          "week": 8,
+          "homeTeamId": 6,
+          "awayTeamId": 1,
+          "hp": 12406,
+          "ap": 10442
+        },
+        {
+          "id": 41,
+          "week": 9,
+          "homeTeamId": 7,
+          "awayTeamId": 4,
+          "hp": 8620,
+          "ap": 13214
+        },
+        {
+          "id": 42,
+          "week": 9,
+          "homeTeamId": 9,
+          "awayTeamId": 5,
+          "hp": 7640,
+          "ap": 10400
+        },
+        {
+          "id": 43,
+          "week": 9,
+          "homeTeamId": 2,
+          "awayTeamId": 6,
+          "hp": 7646,
+          "ap": 10544
+        },
+        {
+          "id": 44,
+          "week": 9,
+          "homeTeamId": 3,
+          "awayTeamId": 1,
+          "hp": 13068,
+          "ap": 10914
+        },
+        {
+          "id": 45,
+          "week": 9,
+          "homeTeamId": 10,
+          "awayTeamId": 8,
+          "hp": 7536,
+          "ap": 12342
+        },
+        {
+          "id": 46,
+          "week": 10,
+          "homeTeamId": 9,
+          "awayTeamId": 2,
+          "hp": 9686,
+          "ap": 8568
+        },
+        {
+          "id": 47,
+          "week": 10,
+          "homeTeamId": 3,
+          "awayTeamId": 7,
+          "hp": 8126,
+          "ap": 9760
+        },
+        {
+          "id": 48,
+          "week": 10,
+          "homeTeamId": 4,
+          "awayTeamId": 10,
+          "hp": 10722,
+          "ap": 8654
+        },
+        {
+          "id": 49,
+          "week": 10,
+          "homeTeamId": 1,
+          "awayTeamId": 5,
+          "hp": 12878,
+          "ap": 10172
+        },
+        {
+          "id": 50,
+          "week": 10,
+          "homeTeamId": 6,
+          "awayTeamId": 8,
+          "hp": 9394,
+          "ap": 9040
+        },
+        {
+          "id": 51,
+          "week": 11,
+          "homeTeamId": 3,
+          "awayTeamId": 10,
+          "hp": 13942,
+          "ap": 11204
+        },
+        {
+          "id": 52,
+          "week": 11,
+          "homeTeamId": 9,
+          "awayTeamId": 1,
+          "hp": 10154,
+          "ap": 14300
+        },
+        {
+          "id": 53,
+          "week": 11,
+          "homeTeamId": 8,
+          "awayTeamId": 2,
+          "hp": 11668,
+          "ap": 6378
+        },
+        {
+          "id": 54,
+          "week": 11,
+          "homeTeamId": 7,
+          "awayTeamId": 5,
+          "hp": 11072,
+          "ap": 13128
+        },
+        {
+          "id": 55,
+          "week": 11,
+          "homeTeamId": 6,
+          "awayTeamId": 4,
+          "hp": 8312,
+          "ap": 14866
+        },
+        {
+          "id": 56,
+          "week": 12,
+          "homeTeamId": 1,
+          "awayTeamId": 8,
+          "hp": 9184,
+          "ap": 15970
+        },
+        {
+          "id": 57,
+          "week": 12,
+          "homeTeamId": 5,
+          "awayTeamId": 3,
+          "hp": 5870,
+          "ap": 16198
+        },
+        {
+          "id": 58,
+          "week": 12,
+          "homeTeamId": 10,
+          "awayTeamId": 6,
+          "hp": 9630,
+          "ap": 9510
+        },
+        {
+          "id": 59,
+          "week": 12,
+          "homeTeamId": 7,
+          "awayTeamId": 9,
+          "hp": 10104,
+          "ap": 10484
+        },
+        {
+          "id": 60,
+          "week": 12,
+          "homeTeamId": 2,
+          "awayTeamId": 4,
+          "hp": 9790,
+          "ap": 12822
+        }
+      ],
+      "weeklyScores": [
+        {
+          "week": 1,
+          "teamId": 9,
+          "opponentId": 4,
+          "points": 9590
+        },
+        {
+          "week": 1,
+          "teamId": 4,
+          "opponentId": 9,
+          "points": 11142
+        },
+        {
+          "week": 1,
+          "teamId": 7,
+          "opponentId": 3,
+          "points": 8028
+        },
+        {
+          "week": 1,
+          "teamId": 3,
+          "opponentId": 7,
+          "points": 11814
+        },
+        {
+          "week": 1,
+          "teamId": 6,
+          "opponentId": 2,
+          "points": 14654
+        },
+        {
+          "week": 1,
+          "teamId": 2,
+          "opponentId": 6,
+          "points": 12950
+        },
+        {
+          "week": 1,
+          "teamId": 5,
+          "opponentId": 1,
+          "points": 15358
+        },
+        {
+          "week": 1,
+          "teamId": 1,
+          "opponentId": 5,
+          "points": 13580
+        },
+        {
+          "week": 1,
+          "teamId": 8,
+          "opponentId": 10,
+          "points": 9270
+        },
+        {
+          "week": 1,
+          "teamId": 10,
+          "opponentId": 8,
+          "points": 10346
+        },
+        {
+          "week": 2,
+          "teamId": 3,
+          "opponentId": 2,
+          "points": 11628
+        },
+        {
+          "week": 2,
+          "teamId": 2,
+          "opponentId": 3,
+          "points": 12112
+        },
+        {
+          "week": 2,
+          "teamId": 1,
+          "opponentId": 9,
+          "points": 16418
+        },
+        {
+          "week": 2,
+          "teamId": 9,
+          "opponentId": 1,
+          "points": 9466
+        },
+        {
+          "week": 2,
+          "teamId": 10,
+          "opponentId": 4,
+          "points": 12198
+        },
+        {
+          "week": 2,
+          "teamId": 4,
+          "opponentId": 10,
+          "points": 14450
+        },
+        {
+          "week": 2,
+          "teamId": 5,
+          "opponentId": 7,
+          "points": 12432
+        },
+        {
+          "week": 2,
+          "teamId": 7,
+          "opponentId": 5,
+          "points": 7540
+        },
+        {
+          "week": 2,
+          "teamId": 8,
+          "opponentId": 6,
+          "points": 15714
+        },
+        {
+          "week": 2,
+          "teamId": 6,
+          "opponentId": 8,
+          "points": 11860
+        },
+        {
+          "week": 3,
+          "teamId": 1,
+          "opponentId": 10,
+          "points": 12378
+        },
+        {
+          "week": 3,
+          "teamId": 10,
+          "opponentId": 1,
+          "points": 10118
+        },
+        {
+          "week": 3,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 12410
+        },
+        {
+          "week": 3,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 14590
+        },
+        {
+          "week": 3,
+          "teamId": 2,
+          "opponentId": 8,
+          "points": 10892
+        },
+        {
+          "week": 3,
+          "teamId": 8,
+          "opponentId": 2,
+          "points": 10770
+        },
+        {
+          "week": 3,
+          "teamId": 9,
+          "opponentId": 7,
+          "points": 12818
+        },
+        {
+          "week": 3,
+          "teamId": 7,
+          "opponentId": 9,
+          "points": 12492
+        },
+        {
+          "week": 3,
+          "teamId": 4,
+          "opponentId": 6,
+          "points": 13986
+        },
+        {
+          "week": 3,
+          "teamId": 6,
+          "opponentId": 4,
+          "points": 10508
+        },
+        {
+          "week": 4,
+          "teamId": 5,
+          "opponentId": 8,
+          "points": 10900
+        },
+        {
+          "week": 4,
+          "teamId": 8,
+          "opponentId": 5,
+          "points": 11802
+        },
+        {
+          "week": 4,
+          "teamId": 7,
+          "opponentId": 1,
+          "points": 13788
+        },
+        {
+          "week": 4,
+          "teamId": 1,
+          "opponentId": 7,
+          "points": 10500
+        },
+        {
+          "week": 4,
+          "teamId": 6,
+          "opponentId": 10,
+          "points": 10618
+        },
+        {
+          "week": 4,
+          "teamId": 10,
+          "opponentId": 6,
+          "points": 11156
+        },
+        {
+          "week": 4,
+          "teamId": 9,
+          "opponentId": 3,
+          "points": 13392
+        },
+        {
+          "week": 4,
+          "teamId": 3,
+          "opponentId": 9,
+          "points": 10354
+        },
+        {
+          "week": 4,
+          "teamId": 4,
+          "opponentId": 2,
+          "points": 13440
+        },
+        {
+          "week": 4,
+          "teamId": 2,
+          "opponentId": 4,
+          "points": 10760
+        },
+        {
+          "week": 5,
+          "teamId": 7,
+          "opponentId": 6,
+          "points": 6932
+        },
+        {
+          "week": 5,
+          "teamId": 6,
+          "opponentId": 7,
+          "points": 12394
+        },
+        {
+          "week": 5,
+          "teamId": 5,
+          "opponentId": 9,
+          "points": 13538
+        },
+        {
+          "week": 5,
+          "teamId": 9,
+          "opponentId": 5,
+          "points": 8750
+        },
+        {
+          "week": 5,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 11922
+        },
+        {
+          "week": 5,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 11006
+        },
+        {
+          "week": 5,
+          "teamId": 1,
+          "opponentId": 3,
+          "points": 14184
+        },
+        {
+          "week": 5,
+          "teamId": 3,
+          "opponentId": 1,
+          "points": 12540
+        },
+        {
+          "week": 5,
+          "teamId": 10,
+          "opponentId": 2,
+          "points": 10012
+        },
+        {
+          "week": 5,
+          "teamId": 2,
+          "opponentId": 10,
+          "points": 12354
+        },
+        {
+          "week": 6,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 11110
+        },
+        {
+          "week": 6,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 12970
+        },
+        {
+          "week": 6,
+          "teamId": 2,
+          "opponentId": 1,
+          "points": 10352
+        },
+        {
+          "week": 6,
+          "teamId": 1,
+          "opponentId": 2,
+          "points": 10208
+        },
+        {
+          "week": 6,
+          "teamId": 10,
+          "opponentId": 5,
+          "points": 9844
+        },
+        {
+          "week": 6,
+          "teamId": 5,
+          "opponentId": 10,
+          "points": 10694
+        },
+        {
+          "week": 6,
+          "teamId": 8,
+          "opponentId": 7,
+          "points": 10782
+        },
+        {
+          "week": 6,
+          "teamId": 7,
+          "opponentId": 8,
+          "points": 9368
+        },
+        {
+          "week": 6,
+          "teamId": 6,
+          "opponentId": 9,
+          "points": 7436
+        },
+        {
+          "week": 6,
+          "teamId": 9,
+          "opponentId": 6,
+          "points": 15334
+        },
+        {
+          "week": 7,
+          "teamId": 1,
+          "opponentId": 4,
+          "points": 7382
+        },
+        {
+          "week": 7,
+          "teamId": 4,
+          "opponentId": 1,
+          "points": 14436
+        },
+        {
+          "week": 7,
+          "teamId": 5,
+          "opponentId": 2,
+          "points": 11872
+        },
+        {
+          "week": 7,
+          "teamId": 2,
+          "opponentId": 5,
+          "points": 8622
+        },
+        {
+          "week": 7,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 11876
+        },
+        {
+          "week": 7,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 15116
+        },
+        {
+          "week": 7,
+          "teamId": 9,
+          "opponentId": 8,
+          "points": 9552
+        },
+        {
+          "week": 7,
+          "teamId": 8,
+          "opponentId": 9,
+          "points": 11170
+        },
+        {
+          "week": 7,
+          "teamId": 3,
+          "opponentId": 6,
+          "points": 10260
+        },
+        {
+          "week": 7,
+          "teamId": 6,
+          "opponentId": 3,
+          "points": 14194
+        },
+        {
+          "week": 8,
+          "teamId": 4,
+          "opponentId": 5,
+          "points": 11874
+        },
+        {
+          "week": 8,
+          "teamId": 5,
+          "opponentId": 4,
+          "points": 10404
+        },
+        {
+          "week": 8,
+          "teamId": 2,
+          "opponentId": 7,
+          "points": 7104
+        },
+        {
+          "week": 8,
+          "teamId": 7,
+          "opponentId": 2,
+          "points": 8584
+        },
+        {
+          "week": 8,
+          "teamId": 10,
+          "opponentId": 9,
+          "points": 9596
+        },
+        {
+          "week": 8,
+          "teamId": 9,
+          "opponentId": 10,
+          "points": 10892
+        },
+        {
+          "week": 8,
+          "teamId": 8,
+          "opponentId": 3,
+          "points": 8942
+        },
+        {
+          "week": 8,
+          "teamId": 3,
+          "opponentId": 8,
+          "points": 11924
+        },
+        {
+          "week": 8,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 12406
+        },
+        {
+          "week": 8,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 10442
+        },
+        {
+          "week": 9,
+          "teamId": 7,
+          "opponentId": 4,
+          "points": 8620
+        },
+        {
+          "week": 9,
+          "teamId": 4,
+          "opponentId": 7,
+          "points": 13214
+        },
+        {
+          "week": 9,
+          "teamId": 9,
+          "opponentId": 5,
+          "points": 7640
+        },
+        {
+          "week": 9,
+          "teamId": 5,
+          "opponentId": 9,
+          "points": 10400
+        },
+        {
+          "week": 9,
+          "teamId": 2,
+          "opponentId": 6,
+          "points": 7646
+        },
+        {
+          "week": 9,
+          "teamId": 6,
+          "opponentId": 2,
+          "points": 10544
+        },
+        {
+          "week": 9,
+          "teamId": 3,
+          "opponentId": 1,
+          "points": 13068
+        },
+        {
+          "week": 9,
+          "teamId": 1,
+          "opponentId": 3,
+          "points": 10914
+        },
+        {
+          "week": 9,
+          "teamId": 10,
+          "opponentId": 8,
+          "points": 7536
+        },
+        {
+          "week": 9,
+          "teamId": 8,
+          "opponentId": 10,
+          "points": 12342
+        },
+        {
+          "week": 10,
+          "teamId": 9,
+          "opponentId": 2,
+          "points": 9686
+        },
+        {
+          "week": 10,
+          "teamId": 2,
+          "opponentId": 9,
+          "points": 8568
+        },
+        {
+          "week": 10,
+          "teamId": 3,
+          "opponentId": 7,
+          "points": 8126
+        },
+        {
+          "week": 10,
+          "teamId": 7,
+          "opponentId": 3,
+          "points": 9760
+        },
+        {
+          "week": 10,
+          "teamId": 4,
+          "opponentId": 10,
+          "points": 10722
+        },
+        {
+          "week": 10,
+          "teamId": 10,
+          "opponentId": 4,
+          "points": 8654
+        },
+        {
+          "week": 10,
+          "teamId": 1,
+          "opponentId": 5,
+          "points": 12878
+        },
+        {
+          "week": 10,
+          "teamId": 5,
+          "opponentId": 1,
+          "points": 10172
+        },
+        {
+          "week": 10,
+          "teamId": 6,
+          "opponentId": 8,
+          "points": 9394
+        },
+        {
+          "week": 10,
+          "teamId": 8,
+          "opponentId": 6,
+          "points": 9040
+        },
+        {
+          "week": 11,
+          "teamId": 3,
+          "opponentId": 10,
+          "points": 13942
+        },
+        {
+          "week": 11,
+          "teamId": 10,
+          "opponentId": 3,
+          "points": 11204
+        },
+        {
+          "week": 11,
+          "teamId": 9,
+          "opponentId": 1,
+          "points": 10154
+        },
+        {
+          "week": 11,
+          "teamId": 1,
+          "opponentId": 9,
+          "points": 14300
+        },
+        {
+          "week": 11,
+          "teamId": 8,
+          "opponentId": 2,
+          "points": 11668
+        },
+        {
+          "week": 11,
+          "teamId": 2,
+          "opponentId": 8,
+          "points": 6378
+        },
+        {
+          "week": 11,
+          "teamId": 7,
+          "opponentId": 5,
+          "points": 11072
+        },
+        {
+          "week": 11,
+          "teamId": 5,
+          "opponentId": 7,
+          "points": 13128
+        },
+        {
+          "week": 11,
+          "teamId": 6,
+          "opponentId": 4,
+          "points": 8312
+        },
+        {
+          "week": 11,
+          "teamId": 4,
+          "opponentId": 6,
+          "points": 14866
+        },
+        {
+          "week": 12,
+          "teamId": 1,
+          "opponentId": 8,
+          "points": 9184
+        },
+        {
+          "week": 12,
+          "teamId": 8,
+          "opponentId": 1,
+          "points": 15970
+        },
+        {
+          "week": 12,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 5870
+        },
+        {
+          "week": 12,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 16198
+        },
+        {
+          "week": 12,
+          "teamId": 10,
+          "opponentId": 6,
+          "points": 9630
+        },
+        {
+          "week": 12,
+          "teamId": 6,
+          "opponentId": 10,
+          "points": 9510
+        },
+        {
+          "week": 12,
+          "teamId": 7,
+          "opponentId": 9,
+          "points": 10104
+        },
+        {
+          "week": 12,
+          "teamId": 9,
+          "opponentId": 7,
+          "points": 10484
+        },
+        {
+          "week": 12,
+          "teamId": 2,
+          "opponentId": 4,
+          "points": 9790
+        },
+        {
+          "week": 12,
+          "teamId": 4,
+          "opponentId": 2,
+          "points": 12822
+        },
+        {
+          "week": 13,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 14034
+        },
+        {
+          "week": 14,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 11296
+        },
+        {
+          "week": 13,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 9082
+        },
+        {
+          "week": 14,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 6092
+        },
+        {
+          "week": 13,
+          "teamId": 5,
+          "opponentId": 8,
+          "points": 9662
+        },
+        {
+          "week": 14,
+          "teamId": 5,
+          "opponentId": 8,
+          "points": 11994
+        },
+        {
+          "week": 13,
+          "teamId": 8,
+          "opponentId": 5,
+          "points": 11512
+        },
+        {
+          "week": 14,
+          "teamId": 8,
+          "opponentId": 5,
+          "points": 12306
+        },
+        {
+          "week": 13,
+          "teamId": 6,
+          "opponentId": 9,
+          "points": 11148
+        },
+        {
+          "week": 14,
+          "teamId": 6,
+          "opponentId": 9,
+          "points": 9984
+        },
+        {
+          "week": 13,
+          "teamId": 9,
+          "opponentId": 6,
+          "points": 7430
+        },
+        {
+          "week": 14,
+          "teamId": 9,
+          "opponentId": 6,
+          "points": 10468
+        },
+        {
+          "week": 13,
+          "teamId": 1,
+          "opponentId": 10,
+          "points": 11786
+        },
+        {
+          "week": 14,
+          "teamId": 1,
+          "opponentId": 10,
+          "points": 11772
+        },
+        {
+          "week": 13,
+          "teamId": 10,
+          "opponentId": 1,
+          "points": 6810
+        },
+        {
+          "week": 14,
+          "teamId": 10,
+          "opponentId": 1,
+          "points": 7484
+        },
+        {
+          "week": 13,
+          "teamId": 2,
+          "opponentId": 7,
+          "points": 11402
+        },
+        {
+          "week": 14,
+          "teamId": 2,
+          "opponentId": 7,
+          "points": 9766
+        },
+        {
+          "week": 13,
+          "teamId": 7,
+          "opponentId": 2,
+          "points": 8210
+        },
+        {
+          "week": 14,
+          "teamId": 7,
+          "opponentId": 2,
+          "points": 10180
+        },
+        {
+          "week": 16,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 13276
+        },
+        {
+          "week": 15,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 13082
+        },
+        {
+          "week": 16,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 10908
+        },
+        {
+          "week": 15,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 12674
+        },
+        {
+          "week": 16,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 13000
+        },
+        {
+          "week": 15,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 8754
+        },
+        {
+          "week": 16,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 8642
+        },
+        {
+          "week": 15,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 14646
+        },
+        {
+          "week": 16,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 13576
+        },
+        {
+          "week": 15,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 7826
+        },
+        {
+          "week": 16,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 17932
+        },
+        {
+          "week": 15,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 15356
+        },
+        {
+          "week": 16,
+          "teamId": 9,
+          "opponentId": 2,
+          "points": 9434
+        },
+        {
+          "week": 15,
+          "teamId": 9,
+          "opponentId": 2,
+          "points": 7190
+        },
+        {
+          "week": 16,
+          "teamId": 2,
+          "opponentId": 9,
+          "points": 12278
+        },
+        {
+          "week": 15,
+          "teamId": 2,
+          "opponentId": 9,
+          "points": 12092
+        },
+        {
+          "week": 16,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 9282
+        },
+        {
+          "week": 15,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 6840
+        },
+        {
+          "week": 16,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 7504
+        },
+        {
+          "week": 15,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 5092
+        }
+      ]
+    },
+    {
+      "year": 2021,
+      "sourceUrl": "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/2021/segments/0/leagues/92157291?view=mTeam&view=mMatchup&view=mSettings",
+      "regularWeeks": 13,
+      "teams": [
+        {
+          "teamId": 1,
+          "team": "Team Fielding",
+          "espnOwnerName": "Andrew Fielding",
+          "ownerName": "Andrew Fielding",
+          "sleeperUserId": "591056123839160320",
+          "canonicalTeam": "Team Fielding",
+          "w": 6,
+          "l": 7,
+          "t": 0,
+          "pf": 1504.62,
+          "pa": 1424.48,
+          "finalRank": 6,
+          "playoffSeed": 6
+        },
+        {
+          "teamId": 2,
+          "team": "Hide and Zeke",
+          "espnOwnerName": "Jon Pan",
+          "ownerName": "Jonathan Pan",
+          "sleeperUserId": "735732776434794496",
+          "canonicalTeam": "PanFam",
+          "w": 4,
+          "l": 9,
+          "t": 0,
+          "pf": 1344.5,
+          "pa": 1517.94,
+          "finalRank": 9,
+          "playoffSeed": 9
+        },
+        {
+          "teamId": 3,
+          "team": "The Yang Gang",
+          "espnOwnerName": "Lucas Teuber",
+          "ownerName": "Lucas Teuber",
+          "sleeperUserId": "729773276074733568",
+          "canonicalTeam": "Yang Gang",
+          "w": 8,
+          "l": 5,
+          "t": 0,
+          "pf": 1417.48,
+          "pa": 1335.84,
+          "finalRank": 1,
+          "playoffSeed": 2
+        },
+        {
+          "teamId": 4,
+          "team": "The Silent Majority",
+          "espnOwnerName": "Matt Lifshitz",
+          "ownerName": "Matt Lifshitz",
+          "sleeperUserId": "735745286965698560",
+          "canonicalTeam": "The Silent Majority",
+          "w": 11,
+          "l": 2,
+          "t": 0,
+          "pf": 1607.36,
+          "pa": 1282.78,
+          "finalRank": 2,
+          "playoffSeed": 1
+        },
+        {
+          "teamId": 5,
+          "team": "OJ\u2019s  Dream Team",
+          "espnOwnerName": "Joe Gilhooly",
+          "ownerName": "Sean Gilhooly",
+          "sleeperUserId": "735645198125809664",
+          "canonicalTeam": "OJ's Dream Team",
+          "w": 3,
+          "l": 10,
+          "t": 0,
+          "pf": 1373.02,
+          "pa": 1478.16,
+          "finalRank": 8,
+          "playoffSeed": 10
+        },
+        {
+          "teamId": 6,
+          "team": "NORTH KOREA GINGA NINJA'S",
+          "espnOwnerName": "Connor Gross",
+          "ownerName": "Connor Gross",
+          "sleeperUserId": "735660262266363904",
+          "canonicalTeam": "NORTH KOREA GINGA NINJAS",
+          "w": 7,
+          "l": 6,
+          "t": 0,
+          "pf": 1369.02,
+          "pa": 1448.9,
+          "finalRank": 7,
+          "playoffSeed": 5
+        },
+        {
+          "teamId": 7,
+          "team": "Big D*ck MVP Aaron GODgers",
+          "espnOwnerName": "Brian Pedretti",
+          "ownerName": "Brian Pedretti",
+          "sleeperUserId": "735840432759668736",
+          "canonicalTeam": "Big Dick MVP Aaron GODgers",
+          "w": 6,
+          "l": 7,
+          "t": 0,
+          "pf": 1435.28,
+          "pa": 1412.16,
+          "finalRank": 5,
+          "playoffSeed": 7
+        },
+        {
+          "teamId": 8,
+          "team": "25 And Under",
+          "espnOwnerName": "Jerry Markatos",
+          "ownerName": "Jerry Markatos",
+          "sleeperUserId": "654451977673043968",
+          "canonicalTeam": "25 and Under",
+          "w": 7,
+          "l": 6,
+          "t": 0,
+          "pf": 1471.34,
+          "pa": 1465.74,
+          "finalRank": 4,
+          "playoffSeed": 4
+        },
+        {
+          "teamId": 9,
+          "team": " ~ Suck My Ditka",
+          "espnOwnerName": "Danny Pedretti",
+          "ownerName": "Danny Pedretti",
+          "sleeperUserId": "735929732616605696",
+          "canonicalTeam": "~ Suck My Ditka",
+          "w": 7,
+          "l": 6,
+          "t": 0,
+          "pf": 1570.82,
+          "pa": 1635.02,
+          "finalRank": 3,
+          "playoffSeed": 3
+        },
+        {
+          "teamId": 10,
+          "team": "Netflix and Hill",
+          "espnOwnerName": "Guha Sundaram",
+          "ownerName": "Guha Sundaram",
+          "sleeperUserId": "735732965774053376",
+          "canonicalTeam": "Pain.",
+          "w": 6,
+          "l": 7,
+          "t": 0,
+          "pf": 1318.08,
+          "pa": 1410.5,
+          "finalRank": 10,
+          "playoffSeed": 8
+        }
+      ],
+      "games": [
+        {
+          "id": 1,
+          "week": 1,
+          "homeTeamId": 5,
+          "awayTeamId": 6,
+          "hp": 11416,
+          "ap": 13152
+        },
+        {
+          "id": 2,
+          "week": 1,
+          "homeTeamId": 3,
+          "awayTeamId": 9,
+          "hp": 11502,
+          "ap": 14876
+        },
+        {
+          "id": 3,
+          "week": 1,
+          "homeTeamId": 8,
+          "awayTeamId": 2,
+          "hp": 11736,
+          "ap": 8720
+        },
+        {
+          "id": 4,
+          "week": 1,
+          "homeTeamId": 7,
+          "awayTeamId": 1,
+          "hp": 9200,
+          "ap": 11472
+        },
+        {
+          "id": 5,
+          "week": 1,
+          "homeTeamId": 10,
+          "awayTeamId": 4,
+          "hp": 13604,
+          "ap": 10318
+        },
+        {
+          "id": 6,
+          "week": 2,
+          "homeTeamId": 9,
+          "awayTeamId": 2,
+          "hp": 15254,
+          "ap": 13156
+        },
+        {
+          "id": 7,
+          "week": 2,
+          "homeTeamId": 1,
+          "awayTeamId": 5,
+          "hp": 11900,
+          "ap": 9122
+        },
+        {
+          "id": 8,
+          "week": 2,
+          "homeTeamId": 4,
+          "awayTeamId": 6,
+          "hp": 11902,
+          "ap": 10048
+        },
+        {
+          "id": 9,
+          "week": 2,
+          "homeTeamId": 7,
+          "awayTeamId": 3,
+          "hp": 9826,
+          "ap": 12372
+        },
+        {
+          "id": 10,
+          "week": 2,
+          "homeTeamId": 10,
+          "awayTeamId": 8,
+          "hp": 10662,
+          "ap": 10820
+        },
+        {
+          "id": 11,
+          "week": 3,
+          "homeTeamId": 1,
+          "awayTeamId": 4,
+          "hp": 11484,
+          "ap": 12744
+        },
+        {
+          "id": 12,
+          "week": 3,
+          "homeTeamId": 9,
+          "awayTeamId": 7,
+          "hp": 10548,
+          "ap": 13412
+        },
+        {
+          "id": 13,
+          "week": 3,
+          "homeTeamId": 2,
+          "awayTeamId": 10,
+          "hp": 13048,
+          "ap": 9742
+        },
+        {
+          "id": 14,
+          "week": 3,
+          "homeTeamId": 5,
+          "awayTeamId": 3,
+          "hp": 10512,
+          "ap": 12240
+        },
+        {
+          "id": 15,
+          "week": 3,
+          "homeTeamId": 6,
+          "awayTeamId": 8,
+          "hp": 10812,
+          "ap": 8824
+        },
+        {
+          "id": 16,
+          "week": 4,
+          "homeTeamId": 7,
+          "awayTeamId": 10,
+          "hp": 12162,
+          "ap": 12290
+        },
+        {
+          "id": 17,
+          "week": 4,
+          "homeTeamId": 3,
+          "awayTeamId": 1,
+          "hp": 14202,
+          "ap": 13512
+        },
+        {
+          "id": 18,
+          "week": 4,
+          "homeTeamId": 8,
+          "awayTeamId": 4,
+          "hp": 10282,
+          "ap": 14098
+        },
+        {
+          "id": 19,
+          "week": 4,
+          "homeTeamId": 5,
+          "awayTeamId": 9,
+          "hp": 9846,
+          "ap": 9226
+        },
+        {
+          "id": 20,
+          "week": 4,
+          "homeTeamId": 6,
+          "awayTeamId": 2,
+          "hp": 8942,
+          "ap": 7774
+        },
+        {
+          "id": 21,
+          "week": 5,
+          "homeTeamId": 3,
+          "awayTeamId": 8,
+          "hp": 11668,
+          "ap": 14646
+        },
+        {
+          "id": 22,
+          "week": 5,
+          "homeTeamId": 7,
+          "awayTeamId": 5,
+          "hp": 13790,
+          "ap": 9958
+        },
+        {
+          "id": 23,
+          "week": 5,
+          "homeTeamId": 10,
+          "awayTeamId": 6,
+          "hp": 7240,
+          "ap": 14338
+        },
+        {
+          "id": 24,
+          "week": 5,
+          "homeTeamId": 1,
+          "awayTeamId": 9,
+          "hp": 13606,
+          "ap": 12844
+        },
+        {
+          "id": 25,
+          "week": 5,
+          "homeTeamId": 4,
+          "awayTeamId": 2,
+          "hp": 16642,
+          "ap": 15088
+        },
+        {
+          "id": 26,
+          "week": 6,
+          "homeTeamId": 6,
+          "awayTeamId": 9,
+          "hp": 11660,
+          "ap": 17028
+        },
+        {
+          "id": 27,
+          "week": 6,
+          "homeTeamId": 2,
+          "awayTeamId": 1,
+          "hp": 10068,
+          "ap": 11040
+        },
+        {
+          "id": 28,
+          "week": 6,
+          "homeTeamId": 4,
+          "awayTeamId": 7,
+          "hp": 10640,
+          "ap": 10072
+        },
+        {
+          "id": 29,
+          "week": 6,
+          "homeTeamId": 10,
+          "awayTeamId": 3,
+          "hp": 8484,
+          "ap": 9908
+        },
+        {
+          "id": 30,
+          "week": 6,
+          "homeTeamId": 8,
+          "awayTeamId": 5,
+          "hp": 14706,
+          "ap": 11648
+        },
+        {
+          "id": 31,
+          "week": 7,
+          "homeTeamId": 1,
+          "awayTeamId": 6,
+          "hp": 14936,
+          "ap": 8614
+        },
+        {
+          "id": 32,
+          "week": 7,
+          "homeTeamId": 7,
+          "awayTeamId": 2,
+          "hp": 12394,
+          "ap": 13648
+        },
+        {
+          "id": 33,
+          "week": 7,
+          "homeTeamId": 3,
+          "awayTeamId": 4,
+          "hp": 7064,
+          "ap": 5798
+        },
+        {
+          "id": 34,
+          "week": 7,
+          "homeTeamId": 5,
+          "awayTeamId": 10,
+          "hp": 10030,
+          "ap": 11656
+        },
+        {
+          "id": 35,
+          "week": 7,
+          "homeTeamId": 9,
+          "awayTeamId": 8,
+          "hp": 13824,
+          "ap": 14574
+        },
+        {
+          "id": 36,
+          "week": 8,
+          "homeTeamId": 6,
+          "awayTeamId": 7,
+          "hp": 9058,
+          "ap": 12706
+        },
+        {
+          "id": 37,
+          "week": 8,
+          "homeTeamId": 2,
+          "awayTeamId": 3,
+          "hp": 8832,
+          "ap": 6630
+        },
+        {
+          "id": 38,
+          "week": 8,
+          "homeTeamId": 4,
+          "awayTeamId": 5,
+          "hp": 11412,
+          "ap": 8566
+        },
+        {
+          "id": 39,
+          "week": 8,
+          "homeTeamId": 10,
+          "awayTeamId": 9,
+          "hp": 11770,
+          "ap": 11890
+        },
+        {
+          "id": 40,
+          "week": 8,
+          "homeTeamId": 8,
+          "awayTeamId": 1,
+          "hp": 11186,
+          "ap": 10776
+        },
+        {
+          "id": 41,
+          "week": 9,
+          "homeTeamId": 3,
+          "awayTeamId": 6,
+          "hp": 7714,
+          "ap": 7828
+        },
+        {
+          "id": 42,
+          "week": 9,
+          "homeTeamId": 5,
+          "awayTeamId": 7,
+          "hp": 7366,
+          "ap": 8596
+        },
+        {
+          "id": 43,
+          "week": 9,
+          "homeTeamId": 2,
+          "awayTeamId": 8,
+          "hp": 10644,
+          "ap": 9770
+        },
+        {
+          "id": 44,
+          "week": 9,
+          "homeTeamId": 9,
+          "awayTeamId": 1,
+          "hp": 10978,
+          "ap": 10404
+        },
+        {
+          "id": 45,
+          "week": 9,
+          "homeTeamId": 4,
+          "awayTeamId": 10,
+          "hp": 11714,
+          "ap": 7738
+        },
+        {
+          "id": 46,
+          "week": 10,
+          "homeTeamId": 5,
+          "awayTeamId": 2,
+          "hp": 13242,
+          "ap": 6618
+        },
+        {
+          "id": 47,
+          "week": 10,
+          "homeTeamId": 9,
+          "awayTeamId": 3,
+          "hp": 6080,
+          "ap": 15954
+        },
+        {
+          "id": 48,
+          "week": 10,
+          "homeTeamId": 6,
+          "awayTeamId": 4,
+          "hp": 9064,
+          "ap": 13070
+        },
+        {
+          "id": 49,
+          "week": 10,
+          "homeTeamId": 1,
+          "awayTeamId": 7,
+          "hp": 9448,
+          "ap": 10724
+        },
+        {
+          "id": 50,
+          "week": 10,
+          "homeTeamId": 8,
+          "awayTeamId": 10,
+          "hp": 8310,
+          "ap": 8566
+        },
+        {
+          "id": 51,
+          "week": 11,
+          "homeTeamId": 9,
+          "awayTeamId": 4,
+          "hp": 8808,
+          "ap": 18008
+        },
+        {
+          "id": 52,
+          "week": 11,
+          "homeTeamId": 5,
+          "awayTeamId": 1,
+          "hp": 10628,
+          "ap": 12430
+        },
+        {
+          "id": 53,
+          "week": 11,
+          "homeTeamId": 10,
+          "awayTeamId": 2,
+          "hp": 11624,
+          "ap": 8402
+        },
+        {
+          "id": 54,
+          "week": 11,
+          "homeTeamId": 3,
+          "awayTeamId": 7,
+          "hp": 10160,
+          "ap": 9626
+        },
+        {
+          "id": 55,
+          "week": 11,
+          "homeTeamId": 8,
+          "awayTeamId": 6,
+          "hp": 12130,
+          "ap": 9964
+        },
+        {
+          "id": 56,
+          "week": 12,
+          "homeTeamId": 1,
+          "awayTeamId": 10,
+          "hp": 8878,
+          "ap": 9152
+        },
+        {
+          "id": 57,
+          "week": 12,
+          "homeTeamId": 7,
+          "awayTeamId": 9,
+          "hp": 7630,
+          "ap": 12984
+        },
+        {
+          "id": 58,
+          "week": 12,
+          "homeTeamId": 4,
+          "awayTeamId": 8,
+          "hp": 11802,
+          "ap": 8878
+        },
+        {
+          "id": 59,
+          "week": 12,
+          "homeTeamId": 3,
+          "awayTeamId": 5,
+          "hp": 9348,
+          "ap": 12988
+        },
+        {
+          "id": 60,
+          "week": 12,
+          "homeTeamId": 2,
+          "awayTeamId": 6,
+          "hp": 10870,
+          "ap": 12190
+        },
+        {
+          "id": 61,
+          "week": 13,
+          "homeTeamId": 7,
+          "awayTeamId": 8,
+          "hp": 13390,
+          "ap": 11272
+        },
+        {
+          "id": 62,
+          "week": 13,
+          "homeTeamId": 1,
+          "awayTeamId": 3,
+          "hp": 10576,
+          "ap": 12986
+        },
+        {
+          "id": 63,
+          "week": 13,
+          "homeTeamId": 6,
+          "awayTeamId": 10,
+          "hp": 11232,
+          "ap": 9280
+        },
+        {
+          "id": 64,
+          "week": 13,
+          "homeTeamId": 9,
+          "awayTeamId": 5,
+          "hp": 12742,
+          "ap": 11980
+        },
+        {
+          "id": 65,
+          "week": 13,
+          "homeTeamId": 2,
+          "awayTeamId": 4,
+          "hp": 7582,
+          "ap": 12588
+        }
+      ],
+      "weeklyScores": [
+        {
+          "week": 1,
+          "teamId": 5,
+          "opponentId": 6,
+          "points": 11416
+        },
+        {
+          "week": 1,
+          "teamId": 6,
+          "opponentId": 5,
+          "points": 13152
+        },
+        {
+          "week": 1,
+          "teamId": 3,
+          "opponentId": 9,
+          "points": 11502
+        },
+        {
+          "week": 1,
+          "teamId": 9,
+          "opponentId": 3,
+          "points": 14876
+        },
+        {
+          "week": 1,
+          "teamId": 8,
+          "opponentId": 2,
+          "points": 11736
+        },
+        {
+          "week": 1,
+          "teamId": 2,
+          "opponentId": 8,
+          "points": 8720
+        },
+        {
+          "week": 1,
+          "teamId": 7,
+          "opponentId": 1,
+          "points": 9200
+        },
+        {
+          "week": 1,
+          "teamId": 1,
+          "opponentId": 7,
+          "points": 11472
+        },
+        {
+          "week": 1,
+          "teamId": 10,
+          "opponentId": 4,
+          "points": 13604
+        },
+        {
+          "week": 1,
+          "teamId": 4,
+          "opponentId": 10,
+          "points": 10318
+        },
+        {
+          "week": 2,
+          "teamId": 9,
+          "opponentId": 2,
+          "points": 15254
+        },
+        {
+          "week": 2,
+          "teamId": 2,
+          "opponentId": 9,
+          "points": 13156
+        },
+        {
+          "week": 2,
+          "teamId": 1,
+          "opponentId": 5,
+          "points": 11900
+        },
+        {
+          "week": 2,
+          "teamId": 5,
+          "opponentId": 1,
+          "points": 9122
+        },
+        {
+          "week": 2,
+          "teamId": 4,
+          "opponentId": 6,
+          "points": 11902
+        },
+        {
+          "week": 2,
+          "teamId": 6,
+          "opponentId": 4,
+          "points": 10048
+        },
+        {
+          "week": 2,
+          "teamId": 7,
+          "opponentId": 3,
+          "points": 9826
+        },
+        {
+          "week": 2,
+          "teamId": 3,
+          "opponentId": 7,
+          "points": 12372
+        },
+        {
+          "week": 2,
+          "teamId": 10,
+          "opponentId": 8,
+          "points": 10662
+        },
+        {
+          "week": 2,
+          "teamId": 8,
+          "opponentId": 10,
+          "points": 10820
+        },
+        {
+          "week": 3,
+          "teamId": 1,
+          "opponentId": 4,
+          "points": 11484
+        },
+        {
+          "week": 3,
+          "teamId": 4,
+          "opponentId": 1,
+          "points": 12744
+        },
+        {
+          "week": 3,
+          "teamId": 9,
+          "opponentId": 7,
+          "points": 10548
+        },
+        {
+          "week": 3,
+          "teamId": 7,
+          "opponentId": 9,
+          "points": 13412
+        },
+        {
+          "week": 3,
+          "teamId": 2,
+          "opponentId": 10,
+          "points": 13048
+        },
+        {
+          "week": 3,
+          "teamId": 10,
+          "opponentId": 2,
+          "points": 9742
+        },
+        {
+          "week": 3,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 10512
+        },
+        {
+          "week": 3,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 12240
+        },
+        {
+          "week": 3,
+          "teamId": 6,
+          "opponentId": 8,
+          "points": 10812
+        },
+        {
+          "week": 3,
+          "teamId": 8,
+          "opponentId": 6,
+          "points": 8824
+        },
+        {
+          "week": 4,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 12162
+        },
+        {
+          "week": 4,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 12290
+        },
+        {
+          "week": 4,
+          "teamId": 3,
+          "opponentId": 1,
+          "points": 14202
+        },
+        {
+          "week": 4,
+          "teamId": 1,
+          "opponentId": 3,
+          "points": 13512
+        },
+        {
+          "week": 4,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 10282
+        },
+        {
+          "week": 4,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 14098
+        },
+        {
+          "week": 4,
+          "teamId": 5,
+          "opponentId": 9,
+          "points": 9846
+        },
+        {
+          "week": 4,
+          "teamId": 9,
+          "opponentId": 5,
+          "points": 9226
+        },
+        {
+          "week": 4,
+          "teamId": 6,
+          "opponentId": 2,
+          "points": 8942
+        },
+        {
+          "week": 4,
+          "teamId": 2,
+          "opponentId": 6,
+          "points": 7774
+        },
+        {
+          "week": 5,
+          "teamId": 3,
+          "opponentId": 8,
+          "points": 11668
+        },
+        {
+          "week": 5,
+          "teamId": 8,
+          "opponentId": 3,
+          "points": 14646
+        },
+        {
+          "week": 5,
+          "teamId": 7,
+          "opponentId": 5,
+          "points": 13790
+        },
+        {
+          "week": 5,
+          "teamId": 5,
+          "opponentId": 7,
+          "points": 9958
+        },
+        {
+          "week": 5,
+          "teamId": 10,
+          "opponentId": 6,
+          "points": 7240
+        },
+        {
+          "week": 5,
+          "teamId": 6,
+          "opponentId": 10,
+          "points": 14338
+        },
+        {
+          "week": 5,
+          "teamId": 1,
+          "opponentId": 9,
+          "points": 13606
+        },
+        {
+          "week": 5,
+          "teamId": 9,
+          "opponentId": 1,
+          "points": 12844
+        },
+        {
+          "week": 5,
+          "teamId": 4,
+          "opponentId": 2,
+          "points": 16642
+        },
+        {
+          "week": 5,
+          "teamId": 2,
+          "opponentId": 4,
+          "points": 15088
+        },
+        {
+          "week": 6,
+          "teamId": 6,
+          "opponentId": 9,
+          "points": 11660
+        },
+        {
+          "week": 6,
+          "teamId": 9,
+          "opponentId": 6,
+          "points": 17028
+        },
+        {
+          "week": 6,
+          "teamId": 2,
+          "opponentId": 1,
+          "points": 10068
+        },
+        {
+          "week": 6,
+          "teamId": 1,
+          "opponentId": 2,
+          "points": 11040
+        },
+        {
+          "week": 6,
+          "teamId": 4,
+          "opponentId": 7,
+          "points": 10640
+        },
+        {
+          "week": 6,
+          "teamId": 7,
+          "opponentId": 4,
+          "points": 10072
+        },
+        {
+          "week": 6,
+          "teamId": 10,
+          "opponentId": 3,
+          "points": 8484
+        },
+        {
+          "week": 6,
+          "teamId": 3,
+          "opponentId": 10,
+          "points": 9908
+        },
+        {
+          "week": 6,
+          "teamId": 8,
+          "opponentId": 5,
+          "points": 14706
+        },
+        {
+          "week": 6,
+          "teamId": 5,
+          "opponentId": 8,
+          "points": 11648
+        },
+        {
+          "week": 7,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 14936
+        },
+        {
+          "week": 7,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 8614
+        },
+        {
+          "week": 7,
+          "teamId": 7,
+          "opponentId": 2,
+          "points": 12394
+        },
+        {
+          "week": 7,
+          "teamId": 2,
+          "opponentId": 7,
+          "points": 13648
+        },
+        {
+          "week": 7,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 7064
+        },
+        {
+          "week": 7,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 5798
+        },
+        {
+          "week": 7,
+          "teamId": 5,
+          "opponentId": 10,
+          "points": 10030
+        },
+        {
+          "week": 7,
+          "teamId": 10,
+          "opponentId": 5,
+          "points": 11656
+        },
+        {
+          "week": 7,
+          "teamId": 9,
+          "opponentId": 8,
+          "points": 13824
+        },
+        {
+          "week": 7,
+          "teamId": 8,
+          "opponentId": 9,
+          "points": 14574
+        },
+        {
+          "week": 8,
+          "teamId": 6,
+          "opponentId": 7,
+          "points": 9058
+        },
+        {
+          "week": 8,
+          "teamId": 7,
+          "opponentId": 6,
+          "points": 12706
+        },
+        {
+          "week": 8,
+          "teamId": 2,
+          "opponentId": 3,
+          "points": 8832
+        },
+        {
+          "week": 8,
+          "teamId": 3,
+          "opponentId": 2,
+          "points": 6630
+        },
+        {
+          "week": 8,
+          "teamId": 4,
+          "opponentId": 5,
+          "points": 11412
+        },
+        {
+          "week": 8,
+          "teamId": 5,
+          "opponentId": 4,
+          "points": 8566
+        },
+        {
+          "week": 8,
+          "teamId": 10,
+          "opponentId": 9,
+          "points": 11770
+        },
+        {
+          "week": 8,
+          "teamId": 9,
+          "opponentId": 10,
+          "points": 11890
+        },
+        {
+          "week": 8,
+          "teamId": 8,
+          "opponentId": 1,
+          "points": 11186
+        },
+        {
+          "week": 8,
+          "teamId": 1,
+          "opponentId": 8,
+          "points": 10776
+        },
+        {
+          "week": 9,
+          "teamId": 3,
+          "opponentId": 6,
+          "points": 7714
+        },
+        {
+          "week": 9,
+          "teamId": 6,
+          "opponentId": 3,
+          "points": 7828
+        },
+        {
+          "week": 9,
+          "teamId": 5,
+          "opponentId": 7,
+          "points": 7366
+        },
+        {
+          "week": 9,
+          "teamId": 7,
+          "opponentId": 5,
+          "points": 8596
+        },
+        {
+          "week": 9,
+          "teamId": 2,
+          "opponentId": 8,
+          "points": 10644
+        },
+        {
+          "week": 9,
+          "teamId": 8,
+          "opponentId": 2,
+          "points": 9770
+        },
+        {
+          "week": 9,
+          "teamId": 9,
+          "opponentId": 1,
+          "points": 10978
+        },
+        {
+          "week": 9,
+          "teamId": 1,
+          "opponentId": 9,
+          "points": 10404
+        },
+        {
+          "week": 9,
+          "teamId": 4,
+          "opponentId": 10,
+          "points": 11714
+        },
+        {
+          "week": 9,
+          "teamId": 10,
+          "opponentId": 4,
+          "points": 7738
+        },
+        {
+          "week": 10,
+          "teamId": 5,
+          "opponentId": 2,
+          "points": 13242
+        },
+        {
+          "week": 10,
+          "teamId": 2,
+          "opponentId": 5,
+          "points": 6618
+        },
+        {
+          "week": 10,
+          "teamId": 9,
+          "opponentId": 3,
+          "points": 6080
+        },
+        {
+          "week": 10,
+          "teamId": 3,
+          "opponentId": 9,
+          "points": 15954
+        },
+        {
+          "week": 10,
+          "teamId": 6,
+          "opponentId": 4,
+          "points": 9064
+        },
+        {
+          "week": 10,
+          "teamId": 4,
+          "opponentId": 6,
+          "points": 13070
+        },
+        {
+          "week": 10,
+          "teamId": 1,
+          "opponentId": 7,
+          "points": 9448
+        },
+        {
+          "week": 10,
+          "teamId": 7,
+          "opponentId": 1,
+          "points": 10724
+        },
+        {
+          "week": 10,
+          "teamId": 8,
+          "opponentId": 10,
+          "points": 8310
+        },
+        {
+          "week": 10,
+          "teamId": 10,
+          "opponentId": 8,
+          "points": 8566
+        },
+        {
+          "week": 11,
+          "teamId": 9,
+          "opponentId": 4,
+          "points": 8808
+        },
+        {
+          "week": 11,
+          "teamId": 4,
+          "opponentId": 9,
+          "points": 18008
+        },
+        {
+          "week": 11,
+          "teamId": 5,
+          "opponentId": 1,
+          "points": 10628
+        },
+        {
+          "week": 11,
+          "teamId": 1,
+          "opponentId": 5,
+          "points": 12430
+        },
+        {
+          "week": 11,
+          "teamId": 10,
+          "opponentId": 2,
+          "points": 11624
+        },
+        {
+          "week": 11,
+          "teamId": 2,
+          "opponentId": 10,
+          "points": 8402
+        },
+        {
+          "week": 11,
+          "teamId": 3,
+          "opponentId": 7,
+          "points": 10160
+        },
+        {
+          "week": 11,
+          "teamId": 7,
+          "opponentId": 3,
+          "points": 9626
+        },
+        {
+          "week": 11,
+          "teamId": 8,
+          "opponentId": 6,
+          "points": 12130
+        },
+        {
+          "week": 11,
+          "teamId": 6,
+          "opponentId": 8,
+          "points": 9964
+        },
+        {
+          "week": 12,
+          "teamId": 1,
+          "opponentId": 10,
+          "points": 8878
+        },
+        {
+          "week": 12,
+          "teamId": 10,
+          "opponentId": 1,
+          "points": 9152
+        },
+        {
+          "week": 12,
+          "teamId": 7,
+          "opponentId": 9,
+          "points": 7630
+        },
+        {
+          "week": 12,
+          "teamId": 9,
+          "opponentId": 7,
+          "points": 12984
+        },
+        {
+          "week": 12,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 11802
+        },
+        {
+          "week": 12,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 8878
+        },
+        {
+          "week": 12,
+          "teamId": 3,
+          "opponentId": 5,
+          "points": 9348
+        },
+        {
+          "week": 12,
+          "teamId": 5,
+          "opponentId": 3,
+          "points": 12988
+        },
+        {
+          "week": 12,
+          "teamId": 2,
+          "opponentId": 6,
+          "points": 10870
+        },
+        {
+          "week": 12,
+          "teamId": 6,
+          "opponentId": 2,
+          "points": 12190
+        },
+        {
+          "week": 13,
+          "teamId": 7,
+          "opponentId": 8,
+          "points": 13390
+        },
+        {
+          "week": 13,
+          "teamId": 8,
+          "opponentId": 7,
+          "points": 11272
+        },
+        {
+          "week": 13,
+          "teamId": 1,
+          "opponentId": 3,
+          "points": 10576
+        },
+        {
+          "week": 13,
+          "teamId": 3,
+          "opponentId": 1,
+          "points": 12986
+        },
+        {
+          "week": 13,
+          "teamId": 6,
+          "opponentId": 10,
+          "points": 11232
+        },
+        {
+          "week": 13,
+          "teamId": 10,
+          "opponentId": 6,
+          "points": 9280
+        },
+        {
+          "week": 13,
+          "teamId": 9,
+          "opponentId": 5,
+          "points": 12742
+        },
+        {
+          "week": 13,
+          "teamId": 5,
+          "opponentId": 9,
+          "points": 11980
+        },
+        {
+          "week": 13,
+          "teamId": 2,
+          "opponentId": 4,
+          "points": 7582
+        },
+        {
+          "week": 13,
+          "teamId": 4,
+          "opponentId": 2,
+          "points": 12588
+        },
+        {
+          "week": 14,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 12430
+        },
+        {
+          "week": 15,
+          "teamId": 4,
+          "opponentId": 8,
+          "points": 10124
+        },
+        {
+          "week": 14,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 9072
+        },
+        {
+          "week": 15,
+          "teamId": 8,
+          "opponentId": 4,
+          "points": 11288
+        },
+        {
+          "week": 14,
+          "teamId": 3,
+          "opponentId": 9,
+          "points": 13042
+        },
+        {
+          "week": 15,
+          "teamId": 3,
+          "opponentId": 9,
+          "points": 10500
+        },
+        {
+          "week": 14,
+          "teamId": 9,
+          "opponentId": 3,
+          "points": 12802
+        },
+        {
+          "week": 15,
+          "teamId": 9,
+          "opponentId": 3,
+          "points": 7546
+        },
+        {
+          "week": 14,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 10034
+        },
+        {
+          "week": 15,
+          "teamId": 6,
+          "opponentId": 1,
+          "points": 8558
+        },
+        {
+          "week": 14,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 10262
+        },
+        {
+          "week": 15,
+          "teamId": 1,
+          "opponentId": 6,
+          "points": 10142
+        },
+        {
+          "week": 14,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 14522
+        },
+        {
+          "week": 15,
+          "teamId": 7,
+          "opponentId": 10,
+          "points": 8020
+        },
+        {
+          "week": 14,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 10024
+        },
+        {
+          "week": 15,
+          "teamId": 10,
+          "opponentId": 7,
+          "points": 6338
+        },
+        {
+          "week": 14,
+          "teamId": 2,
+          "opponentId": 5,
+          "points": 6868
+        },
+        {
+          "week": 15,
+          "teamId": 2,
+          "opponentId": 5,
+          "points": 9174
+        },
+        {
+          "week": 14,
+          "teamId": 5,
+          "opponentId": 2,
+          "points": 14178
+        },
+        {
+          "week": 15,
+          "teamId": 5,
+          "opponentId": 2,
+          "points": 9586
+        },
+        {
+          "week": 16,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 13924
+        },
+        {
+          "week": 17,
+          "teamId": 4,
+          "opponentId": 3,
+          "points": 9068
+        },
+        {
+          "week": 16,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 13532
+        },
+        {
+          "week": 17,
+          "teamId": 3,
+          "opponentId": 4,
+          "points": 10666
+        },
+        {
+          "week": 16,
+          "teamId": 9,
+          "opponentId": 8,
+          "points": 12858
+        },
+        {
+          "week": 17,
+          "teamId": 9,
+          "opponentId": 8,
+          "points": 10050
+        },
+        {
+          "week": 16,
+          "teamId": 8,
+          "opponentId": 9,
+          "points": 8320
+        },
+        {
+          "week": 17,
+          "teamId": 8,
+          "opponentId": 9,
+          "points": 10422
+        },
+        {
+          "week": 16,
+          "teamId": 1,
+          "opponentId": 7,
+          "points": 9308
+        },
+        {
+          "week": 17,
+          "teamId": 1,
+          "opponentId": 7,
+          "points": 10232
+        },
+        {
+          "week": 16,
+          "teamId": 7,
+          "opponentId": 1,
+          "points": 10176
+        },
+        {
+          "week": 17,
+          "teamId": 7,
+          "opponentId": 1,
+          "points": 12200
+        },
+        {
+          "week": 16,
+          "teamId": 6,
+          "opponentId": 5,
+          "points": 8810
+        },
+        {
+          "week": 17,
+          "teamId": 6,
+          "opponentId": 5,
+          "points": 12304
+        },
+        {
+          "week": 16,
+          "teamId": 5,
+          "opponentId": 6,
+          "points": 9328
+        },
+        {
+          "week": 17,
+          "teamId": 5,
+          "opponentId": 6,
+          "points": 11146
+        },
+        {
+          "week": 16,
+          "teamId": 10,
+          "opponentId": 2,
+          "points": 6720
+        },
+        {
+          "week": 17,
+          "teamId": 10,
+          "opponentId": 2,
+          "points": 8170
+        },
+        {
+          "week": 16,
+          "teamId": 2,
+          "opponentId": 10,
+          "points": 8320
+        },
+        {
+          "week": 17,
+          "teamId": 2,
+          "opponentId": 10,
+          "points": 10920
+        }
+      ]
+    }
+  ]
+}

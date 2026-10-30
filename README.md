@@ -130,12 +130,21 @@ All-time standings include the current season's recorded wins, losses and ties.
 The All-Time tab also shows an owner-versus-owner matrix and an owner selector
 with wins, losses, ties, win percentage and points for/against.
 
-Head-to-head coverage is **regular season, 2022 onward**, through Sleeper's last
-completed scoring week (currently Week 7 of 2026). Playoffs, consolation games
-and unfinished weeks are excluded. Owners are identified by their Sleeper user
-ID in each season's rosters, so team renames do not split their history.
-2020–2021 have only recorded season totals; their weekly matchups are needed
-before those years can be added. The unrelated 2021 Sleeper league is excluded.
+Head-to-head coverage is **regular season, 2020 onward**, through Sleeper's last
+completed scoring week. ESPN league **92157291** supplies 2020 (12 weeks) and
+2021 (13 weeks); Sleeper supplies 2022 onward. Playoffs, consolation games and
+unfinished weeks are excluded from head-to-head records.
+
+The ESPN archive is mapped by owner name in each season. Jon Pan maps to Jonathan
+Pan; ESPN's Joe Gilhooly profile owns OJ's Dream Team and maps to Sean Gilhooly.
+Sleeper seasons use each season's roster owner IDs. Historical team names are
+preserved while records belong to their owners.
+
+**Oliver's 12 games in 2020 are excluded for BOTH opponents from head-to-head
+records. Guha starts in 2021 and inherits none of Oliver's results.** Overall
+standings still include other owners' legitimate 2020 games against Oliver, so
+matrix row totals can differ from overall standings. A total column makes this
+explicit. The unrelated 2021 Sleeper league remains excluded.
 
 Live requests expire from the browser cache after five minutes. If Sleeper is
 unavailable, the site uses `data/sleeper-history.json` and labels the saved date.
@@ -145,14 +154,25 @@ To refresh the fallback snapshot from public Sleeper data, run from this folder:
 
 ```sh
 python3 scripts/refresh-sleeper.py
+python3 scripts/refresh-espn.py
 ```
 
 To verify matchup totals against every owner's recorded season standings,
-including the saved-data fallback and current-season totals:
+including all seven seasons, PF/PA, championship finishes, the saved-data fallback,
+current-season totals, and the Oliver/Guha ownership boundary:
 
 ```sh
 node scripts/test-records.cjs
+python3 scripts/audit-history.py
 ```
+
+The October 2026 audit reconciled every owner's wins, losses, ties, points for
+and points against to the weekly matchups and platform standings. It verified
+ESPN final ranks and Sleeper winners brackets against the written trophy history.
+It also checked team scoring records and season-opening streaks. Team Fielding's
+worst-start record was corrected from 0–7 to **0–6**: he won Week 7 of 2025,
+109.94–94.34. Unpaired Sleeper playoff/bye scores are excluded from game records.
+The historical single-player record remains explicitly unverified.
 
 ## How it works, briefly
 
@@ -204,5 +224,5 @@ There is a **fully-played 2021 Sleeper league** in your account
 14-game season, and a champion of Jerry — none of which matches the doc's 2021 ESPN season
 (13 games, champion Yang Gang). The site currently ignores it and uses the doc's ESPN numbers.
 
-If that Sleeper league was the real 2021 season, the all-time records need rebuilding. If it was a
-second/practice league, nothing changes. Worth a two-minute look.
+The 2020–2021 ESPN seasons are now independently verified from ESPN league 92157291,
+including weekly scores and final ranks. The 2021 Sleeper league remains excluded.

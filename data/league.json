@@ -149,7 +149,8 @@
     {
       "year": 2020,
       "platform": "ESPN",
-      "verified": false,
+      "espnLeagueId": "92157291",
+      "verified": true,
       "notableEvents": "Inaugural season; final year of high school",
       "champion": "The Silent Majority",
       "runnerUp": "25 and Under",
@@ -158,16 +159,16 @@
       "dfl": "Big Dick MVP Aaron GODgers",
       "recap": "The 2020 championship was a high-scoring barn burner. Strong showings from RB Dalvin Cook and TE Darren Waller locked The Silent Majority into a tight battle with 25 and Under, led by QB Kyler Murray and RB Jonathan Taylor, through the matchup's first week. The Silent Majority's strong talent base ultimately proved too much for 25 and Under, as QB Deshaun Watson and WR CeeDee Lamb helped it capitalize on a down week for 25 and Under's star WRs and take home the championship, 263.58–235.82.",
       "standings": [
-        { "team": "The Silent Majority", "w": 10, "l": 2, "pf": 1530.68 },
-        { "team": "25 and Under", "w": 8, "l": 4, "pf": 1393.92 },
-        { "team": "OJ's Dream Team", "w": 8, "l": 4, "pf": 1393.58 },
-        { "team": "The Yang Gang", "w": 6, "l": 6, "pf": 1452.34 },
-        { "team": "NORTH KOREA GINGA NINJAS", "w": 6, "l": 6, "pf": 1318.30 },
-        { "team": "~ Suck My Ditka", "w": 6, "l": 6, "pf": 1277.58 },
-        { "team": "Team Fielding", "w": 5, "l": 7, "pf": 1423.68 },
-        { "team": "My Ball Zach Ertz (PanFam)", "w": 4, "l": 8, "pf": 1175.28 },
-        { "team": "Team McDonough", "w": 4, "l": 8, "pf": 1254.10 },
-        { "team": "Big Dick MVP Aaron GODgers", "w": 3, "l": 9, "pf": 1181.64 }
+        {"team": "The Silent Majority", "ownerName": "Matt Lifshitz", "sleeperUserId": "735745286965698560", "canonicalTeam": "The Silent Majority", "w": 10, "l": 2, "t": 0, "pf": 1530.68, "pa": 1211.1},
+        {"team": "25 And Under", "ownerName": "Jerry Markatos", "sleeperUserId": "654451977673043968", "canonicalTeam": "25 and Under", "w": 8, "l": 4, "t": 0, "pf": 1393.92, "pa": 1183.4},
+        {"team": "OJ’s  Dream Team", "ownerName": "Sean Gilhooly", "sleeperUserId": "735645198125809664", "canonicalTeam": "OJ's Dream Team", "w": 8, "l": 4, "t": 0, "pf": 1393.58, "pa": 1322.1},
+        {"team": "The Yang Gang", "ownerName": "Lucas Teuber", "sleeperUserId": "729773276074733568", "canonicalTeam": "Yang Gang", "w": 6, "l": 6, "t": 0, "pf": 1452.34, "pa": 1343.0},
+        {"team": "NORTH KOREA GINGA NINJA'S", "ownerName": "Connor Gross", "sleeperUserId": "735660262266363904", "canonicalTeam": "NORTH KOREA GINGA NINJAS", "w": 6, "l": 6, "t": 0, "pf": 1318.3, "pa": 1379.56},
+        {"team": " ~ Suck My Ditka", "ownerName": "Danny Pedretti", "sleeperUserId": "735929732616605696", "canonicalTeam": "~ Suck My Ditka", "w": 6, "l": 6, "t": 0, "pf": 1277.58, "pa": 1355.18},
+        {"team": "Team Fielding", "ownerName": "Andrew Fielding", "sleeperUserId": "591056123839160320", "canonicalTeam": "Team Fielding", "w": 5, "l": 7, "t": 0, "pf": 1423.68, "pa": 1478.28},
+        {"team": "Team McDonough", "ownerName": "Oliver McDonough", "sleeperUserId": null, "canonicalTeam": "Team McDonough", "w": 4, "l": 8, "t": 0, "pf": 1254.1, "pa": 1390.48},
+        {"team": "My Ball Zach Ertz", "ownerName": "Jonathan Pan", "sleeperUserId": "735732776434794496", "canonicalTeam": "PanFam", "w": 4, "l": 8, "t": 0, "pf": 1175.28, "pa": 1358.88},
+        {"team": "Rodgers For MVP", "ownerName": "Brian Pedretti", "sleeperUserId": "735840432759668736", "canonicalTeam": "Big Dick MVP Aaron GODgers", "w": 3, "l": 9, "t": 0, "pf": 1181.64, "pa": 1379.12}
       ],
       "awards": [],
       "ruleChanges": []
@@ -175,7 +176,8 @@
     {
       "year": 2021,
       "platform": "ESPN",
-      "verified": false,
+      "espnLeagueId": "92157291",
+      "verified": true,
       "notableEvents": "Guha Sundaram buys out Oliver McDonough as owner of former Team McDonough, renames team Netflix 'n Hill; Matthew Egg joins The League in an advisory capacity",
       "champion": "The Yang Gang",
       "runnerUp": "The Silent Majority",
@@ -184,16 +186,16 @@
       "dfl": "OJ's Dream Team",
       "recap": "The 2021 championship saw a lower-scoring battle between second-time playoff participant The Yang Gang and certified League blueblood The Silent Majority. Coming in the heavy favorite despite critical injuries, many expected The Silent Majority to pull away in the matchup's first week. Strong showings from critical waiver addition WR Amon-Ra St. Brown and the Dallas defense helped The Yang Gang fend off a 30-burger from The Silent Majority's Justin Jackson, handcuff to the injured star RB Austin Ekeler, plus big games from RB Nick Chubb and fellow handcuff RB Alexander Mattison. With a slight lead and starting RBs Ekeler and Dalvin Cook returning to the lineup for the matchup's second week, league pundits had all but crowned The Silent Majority a 2-time champion — but massive 30-point games from St. Brown and fellow waiver acquisition Rashaad Penny came as The Silent Majority experienced a true “shitter” of a final week, to the tune of just 90 points. This ultimately flipped the script, and The Yang Gang brought home the hardware in a hard-fought battle, 241.98–229.92.",
       "standings": [
-        { "team": "The Silent Majority", "w": 11, "l": 2, "pf": 1607.36 },
-        { "team": "The Yang Gang", "w": 8, "l": 5, "pf": 1417.48 },
-        { "team": "~ Suck My Ditka", "w": 7, "l": 6, "pf": 1570.82 },
-        { "team": "25 and Under", "w": 7, "l": 6, "pf": 1471.34 },
-        { "team": "NORTH KOREA GINGA NINJAS", "w": 7, "l": 6, "pf": 1369.02 },
-        { "team": "Team Fielding", "w": 6, "l": 7, "pf": 1504.62 },
-        { "team": "Big Dick MVP Aaron GODgers", "w": 6, "l": 7, "pf": 1435.28 },
-        { "team": "Netflix and Hill (Pain.)", "w": 6, "l": 7, "pf": 1318.08 },
-        { "team": "Hide and Zeke (PanFam)", "w": 4, "l": 9, "pf": 1344.50 },
-        { "team": "OJ's Dream Team", "w": 3, "l": 10, "pf": 1373.02 }
+        {"team": "The Silent Majority", "ownerName": "Matt Lifshitz", "sleeperUserId": "735745286965698560", "canonicalTeam": "The Silent Majority", "w": 11, "l": 2, "t": 0, "pf": 1607.36, "pa": 1282.78},
+        {"team": "The Yang Gang", "ownerName": "Lucas Teuber", "sleeperUserId": "729773276074733568", "canonicalTeam": "Yang Gang", "w": 8, "l": 5, "t": 0, "pf": 1417.48, "pa": 1335.84},
+        {"team": " ~ Suck My Ditka", "ownerName": "Danny Pedretti", "sleeperUserId": "735929732616605696", "canonicalTeam": "~ Suck My Ditka", "w": 7, "l": 6, "t": 0, "pf": 1570.82, "pa": 1635.02},
+        {"team": "25 And Under", "ownerName": "Jerry Markatos", "sleeperUserId": "654451977673043968", "canonicalTeam": "25 and Under", "w": 7, "l": 6, "t": 0, "pf": 1471.34, "pa": 1465.74},
+        {"team": "NORTH KOREA GINGA NINJA'S", "ownerName": "Connor Gross", "sleeperUserId": "735660262266363904", "canonicalTeam": "NORTH KOREA GINGA NINJAS", "w": 7, "l": 6, "t": 0, "pf": 1369.02, "pa": 1448.9},
+        {"team": "Team Fielding", "ownerName": "Andrew Fielding", "sleeperUserId": "591056123839160320", "canonicalTeam": "Team Fielding", "w": 6, "l": 7, "t": 0, "pf": 1504.62, "pa": 1424.48},
+        {"team": "Big D*ck MVP Aaron GODgers", "ownerName": "Brian Pedretti", "sleeperUserId": "735840432759668736", "canonicalTeam": "Big Dick MVP Aaron GODgers", "w": 6, "l": 7, "t": 0, "pf": 1435.28, "pa": 1412.16},
+        {"team": "Netflix and Hill", "ownerName": "Guha Sundaram", "sleeperUserId": "735732965774053376", "canonicalTeam": "Pain.", "w": 6, "l": 7, "t": 0, "pf": 1318.08, "pa": 1410.5},
+        {"team": "Hide and Zeke", "ownerName": "Jonathan Pan", "sleeperUserId": "735732776434794496", "canonicalTeam": "PanFam", "w": 4, "l": 9, "t": 0, "pf": 1344.5, "pa": 1517.94},
+        {"team": "OJ’s  Dream Team", "ownerName": "Sean Gilhooly", "sleeperUserId": "735645198125809664", "canonicalTeam": "OJ's Dream Team", "w": 3, "l": 10, "t": 0, "pf": 1373.02, "pa": 1478.16}
       ],
       "awards": [
         { "award": "Game of the Year", "winner": "Suck My Ditka (128.44) vs Team Fielding (136.06)", "detail": "Week 5: Hollywood Brown OT Miracle" },
@@ -339,7 +341,7 @@
       "platform": "Sleeper",
       "verified": true,
       "sleeperLeagueId": "1180697169888038912",
-      "notableEvents": "Guha goes from DFL and a marathon run to champion in the quickest turnaround in league history; Guha posts the best ever start in league history (7-0) after being rated DFL at 3.9 average; Pan makes his first ever playoff appearance; Andrew posts the longest losing streak to open a season (0-7); CMC gets traded for Malik Nabers and Breece Hall; highest scoring Super Bowl of all time",
+      "notableEvents": "Guha goes from DFL and a marathon run to champion in the quickest turnaround in league history; Guha posts the best ever start in league history (7-0) after being rated DFL at 3.9 average; Pan makes his first ever playoff appearance; Andrew posts the longest losing streak to open a season (0-6); CMC gets traded for Malik Nabers and Breece Hall; highest scoring Super Bowl of all time",
       "champion": "Pain.",
       "runnerUp": "Yang Gang",
       "third": "PanFam",
@@ -428,10 +430,11 @@
     },
     {
       "record": "Worst start to a season",
-      "value": "0-7",
+      "value": "0-6",
       "holder": "Team Fielding",
       "when": "2025",
-      "verified": true
+      "verified": true,
+      "note": "Corrected from 0-7: Sleeper confirms Team Fielding won Week 7, 109.94–94.34."
     },
     {
       "record": "Most points in a season",

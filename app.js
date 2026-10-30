@@ -22,6 +22,7 @@ const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 let DATA = null;      // league.json
 let SEASONS = {};     // year -> { standings:[...], source:'sleeper'|'espn' }
 let SNAPSHOT = null;
+let ESPN_HISTORY = null;
 let HEAD_TO_HEAD = [];
 let H2H_COVERAGE = [];
 let CURRENT = null;   // current-season league object from Sleeper
@@ -78,7 +79,10 @@ async function getJSON(url) {
   renderFooter();
 
   // Things that do
-  try { SNAPSHOT = await getJSON('data/sleeper-history.json'); } catch (e) { /* live API still available */ }
+  await Promise.all([
+    getJSON('data/sleeper-history.json').then(d => { SNAPSHOT = d; }).catch(() => {}),
+    getJSON('data/espn-history.json').then(d => { ESPN_HISTORY = d; }).catch(() => {})
+  ]);
   await loadSleeper();
   buildEspnSeasons();
   renderSeasonsNav();
@@ -172,10 +176,11 @@ function buildEspnSeasons() {
     SEASONS[s.year] = {
       source: 'espn',
       standings: s.standings.map(r => ({
-        ownerName: ownerForTeamLabel(r.team),
+        ownerName: r.ownerName || ownerForTeamLabel(r.team),
         team: r.team,
-        canonicalTeam: canonicalTeamFor(r.team),
-        w: r.w, l: r.l, t: 0, pf: r.pf || 0, pa: 0
+        canonicalTeam: r.canonicalTeam || canonicalTeamFor(r.team),
+        sleeperUserId: r.sleeperUserId || null,
+        w: r.w, l: r.l, t: r.t || 0, pf: r.pf || 0, pa: r.pa || 0
       }))
     };
   });
@@ -366,9 +371,9 @@ function allTimeTotals() {
     s.standings.forEach(r => {
       if (!active.has(normLabel(r.canonicalTeam))) return;
       const key = r.canonicalTeam;
-      tot[key] = tot[key] || { team: key, w: 0, l: 0, t: 0, pf: 0, seasons: 0 };
+      tot[key] = tot[key] || { team: key, w: 0, l: 0, t: 0, pf: 0, pa: 0, seasons: 0 };
       tot[key].w += r.w; tot[key].l += r.l; tot[key].t += r.t || 0;
-      tot[key].pf += r.pf; tot[key].seasons++;
+      tot[key].pf += r.pf; tot[key].pa += r.pa || 0; tot[key].seasons++;
     });
   });
   return Object.values(tot).sort((a, b) => pct(b.w, b.l, b.t) - pct(a.w, a.l, a.t) || b.pf - a.pf);
@@ -390,7 +395,7 @@ function renderAllTime() {
     <thead><tr>
       <th></th><th>Franchise</th>
       <th class="num">W</th><th class="num">L</th><th class="num">T</th><th class="num">Pct</th>
-      <th class="num">Seasons</th><th class="num">Total PF</th><th class="num">Titles</th>
+      <th class="num">Seasons</th><th class="num">Total PF</th><th class="num">Total PA</th><th class="num">Titles</th>
     </tr></thead>
     <tbody>${rows.map((r, i) => `
       <tr>
@@ -402,6 +407,7 @@ function renderAllTime() {
         <td class="num">${pct(r.w, r.l, r.t).toFixed(3).replace(/^0/, '')}</td>
         <td class="num">${r.seasons}</td>
         <td class="num">${fmt(r.pf)}</td>
+        <td class="num">${fmt(r.pa)}</td>
         <td class="num">${titles[r.team] ? '🏆'.repeat(titles[r.team]) : '—'}</td>
       </tr>`).join('')}
     </tbody></table></div>`;
@@ -518,7 +524,7 @@ function renderSeason(year) {
     const showPA = live.standings.some(r => r.pa > 0);
     html += `<h3 class="sub">${s.inProgress ? 'Current' : 'Final'} Standings ${live.source === 'sleeper'
       ? '<span class="pill">Verified via Sleeper</span>'
-      : '<span class="pill gray">ESPN era — as recorded</span>'}</h3>`;
+      : '<span class="pill gray">Verified via ESPN</span>'}</h3>`;
     html += `<div class="tbl-wrap"><table>
       <thead><tr><th></th><th>Team</th><th class="num">Record</th><th class="num">PF</th>${showPA ? '<th class="num">PA</th>' : ''}</tr></thead>
       <tbody>${live.standings.map((r, i) => `
@@ -678,6 +684,21 @@ async function loadHeadToHead() {
   HEAD_TO_HEAD = [];
   H2H_COVERAGE = [];
   const tasks = [];
+  (ESPN_HISTORY?.seasons || []).forEach(season => {
+    const teams = Object.fromEntries(season.teams.map(t => [t.teamId, t]));
+    let excluded = 0;
+    season.games.forEach(g => {
+      const a = teams[g.homeTeamId]?.sleeperUserId;
+      const b = teams[g.awayTeamId]?.sleeperUserId;
+      // Oliver's 2020 games are excluded from BOTH sides of H2H history.
+      // A reused franchise/team ID must never transfer his games to Guha.
+      if (!OWNER_BY_SLEEPER[a] || !OWNER_BY_SLEEPER[b]) { excluded++; return; }
+      HEAD_TO_HEAD.push({ year: season.year, week: g.week, a, b, ap: g.hp, bp: g.ap });
+    });
+    const loaded = new Set(season.games.map(g => g.week)).size;
+    H2H_COVERAGE.push({ year: season.year, weeks: season.regularWeeks, loaded, saved: 0,
+      missing: season.regularWeeks - loaded, excluded });
+  });
   Object.entries(SEASONS).forEach(([year, season]) => {
     if (season.source !== 'sleeper') return;
     const saved = SNAPSHOT?.seasons.find(s => s.league.league_id === season.league.league_id);
@@ -714,12 +735,20 @@ function headToHeadRecord(owner, opponent) {
   });
   return record;
 }
+function headToHeadTotal(owner) {
+  return DATA.owners.filter(o => o.sleeperUserId !== owner).reduce((total, o) => {
+    const r = headToHeadRecord(owner, o.sleeperUserId);
+    for (const k of ['w', 'l', 't', 'pf', 'pa']) total[k] += r[k];
+    return total;
+  }, { w: 0, l: 0, t: 0, pf: 0, pa: 0 });
+}
 const recordLabel = r => `${r.w}–${r.l}–${r.t}`;
 
 function renderHeadToHead() {
   const owners = DATA.owners;
   const coverage = H2H_COVERAGE.sort((a, b) => a.year - b.year);
-  $('#h2hCoverage').textContent = `Verified coverage: ${coverage.map(c => `${c.year} (${c.loaded}/${c.weeks} completed weeks)`).join(' · ') || 'unavailable'}. 2020–2021 ESPN weekly results are not available; those seasons are excluded. No records are inferred from season totals.` +
+  $('#h2hCoverage').textContent = `Verified coverage: ${coverage.map(c => `${c.year} (${c.loaded}/${c.weeks} completed weeks)`).join(' · ') || 'unavailable'}. ESPN 2020–2021 and Sleeper 2022 onward. All ${HEAD_TO_HEAD.length} included games are regular-season matchups. Oliver McDonough’s 2020 games are excluded for both opponents; Guha’s history starts in 2021. Overall standings still count other owners’ games against Oliver.` +
+    (!ESPN_HISTORY ? ' ESPN matchup history could not be loaded; 2020–2021 are missing from this table.' : '') +
     (coverage.some(c => c.missing) ? ' Some matchup weeks could not be loaded; the records below are incomplete.' : '') +
     (coverage.some(c => c.saved) ? ` Includes saved results from ${new Date(SNAPSHOT.updatedAt).toLocaleDateString()}.` : '');
   if (!HEAD_TO_HEAD.length) {
@@ -729,12 +758,12 @@ function renderHeadToHead() {
   $('#h2hMatrix').className = '';
   $('#h2hMatrix').innerHTML = `<div class="tbl-wrap h2h-scroll" tabindex="0" role="region" aria-label="Head-to-head records, scroll horizontally to see every owner"><table class="h2h-table">
     <caption>Regular-season head-to-head · row owner's W–L–T</caption>
-    <thead><tr><th scope="col">Owner</th>${owners.map(o => `<th scope="col">${esc(o.name)}</th>`).join('')}</tr></thead>
+    <thead><tr><th scope="col">Owner</th>${owners.map(o => `<th scope="col">${esc(o.name)}</th>`).join('')}<th scope="col">Total vs listed owners</th></tr></thead>
     <tbody>${owners.map(o => `<tr><th scope="row">${esc(o.name)}</th>${owners.map(other => {
       if (o === other) return '<td class="num h2h-self" aria-label="Same owner">—</td>';
       const r = headToHeadRecord(o.sleeperUserId, other.sleeperUserId);
       return `<td class="num ${r.w > r.l ? 'h2h-winning' : ''}" title="${esc(o.name)} vs ${esc(other.name)}">${recordLabel(r)}</td>`;
-    }).join('')}</tr>`).join('')}</tbody></table></div>`;
+    }).join('')}<td class="num">${recordLabel(headToHeadTotal(o.sleeperUserId))}</td></tr>`).join('')}</tbody></table></div>`;
   $('#h2hOwner').innerHTML = owners.map(o => `<option value="${esc(o.sleeperUserId)}">${esc(o.name)}</option>`).join('');
   $('#h2hOwner').onchange = renderHeadToHeadDetail;
   renderHeadToHeadDetail();
@@ -742,7 +771,7 @@ function renderHeadToHead() {
 
 function renderHeadToHeadDetail() {
   const owner = $('#h2hOwner').value;
-  $('#h2hDetail').innerHTML = tallyTable(DATA.owners.filter(o => o.sleeperUserId !== owner),
+  $('#h2hDetail').innerHTML = `<p class="tiny">Total against the nine listed owners: <b>${recordLabel(headToHeadTotal(owner))}</b>. Excludes all games against Oliver.</p>` + tallyTable(DATA.owners.filter(o => o.sleeperUserId !== owner),
     ['Opponent', 'W–L–T', 'Win %', 'Points For', 'Points Against'], o => {
       const r = headToHeadRecord(owner, o.sleeperUserId);
       return [`<span class="tname">${esc(o.name)}</span><span class="oname">${esc(o.team)}</span>`, recordLabel(r),
