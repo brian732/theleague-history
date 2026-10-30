@@ -17,7 +17,7 @@
    ============================================================ */
 
 const API = 'https://api.sleeper.app/v1';
-const CONFIG_URL = 'data/league.json?v=20261030-history';
+const CONFIG_URL = 'data/league.json?v=20261030-photos';
 const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 
 let DATA = null;      // league.json
@@ -40,13 +40,13 @@ const fmt = n => Number(n).toFixed(2);
 async function getJSON(url) {
   // Expire live data after five minutes; ignore the old unbounded cache.
   try {
-    const cached = JSON.parse(sessionStorage.getItem('v2:' + url));
+    const cached = url === CONFIG_URL ? null : JSON.parse(sessionStorage.getItem('v2:' + url));
     if (cached && Date.now() - cached.at < 5 * 60 * 1000) return cached.data;
   } catch (e) { /* storage unavailable or stale format */ }
-  const r = await fetch(url, { cache: 'no-cache', signal: AbortSignal.timeout(12000) });
+  const r = await fetch(url, { cache: url === CONFIG_URL ? 'no-store' : 'no-cache', signal: AbortSignal.timeout(12000) });
   if (!r.ok) throw new Error(url + ' -> ' + r.status);
   const j = await r.json();
-  try { sessionStorage.setItem('v2:' + url, JSON.stringify({ at: Date.now(), data: j })); } catch (e) { /* quota; fine */ }
+  try { if (url !== CONFIG_URL) sessionStorage.setItem('v2:' + url, JSON.stringify({ at: Date.now(), data: j })); } catch (e) { /* quota; fine */ }
   return j;
 }
 
@@ -325,7 +325,7 @@ function renderTrophies() {
   }).join('');
 
   // championship + playoff appearance tallies, computed from the season records
-  const champ = {}, playoff = {};
+  const champ = Object.fromEntries(DATA.owners.map(o => [o.team, { w: 0, a: 0 }])), playoff = {};
   const bump = (o, k, f) => { o[k] = o[k] || { w: 0, a: 0 }; o[k][f]++; };
 
   seasons.forEach(s => {
@@ -340,7 +340,7 @@ function renderTrophies() {
   $('#champTable').innerHTML = tallyTable(
     Object.entries(champ).sort((a, b) => b[1].w - a[1].w || b[1].a - a[1].a),
     ['Franchise', 'Titles', 'Appearances'],
-    ([t, v]) => [teamCell(t), v.w ? '🏆'.repeat(v.w) + ` ${v.w}` : '—', v.a]
+    ([t, v]) => [teamCell(t), v.w ? '🏆'.repeat(v.w) + ` ${v.w}` : '0', v.a]
   );
 
   const allTeams = DATA.owners.map(o => o.team);

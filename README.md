@@ -129,7 +129,10 @@ whole reason it's plain files and not a hosted app.
 The All-Time page has one set of filters for standings, the matrix, the
 season-by-season grid, and the rivalry comparison at the bottom. Choose all
 seasons, one season, or a year range, and regular season, playoffs, or combined
-records. Click a standings heading to sort either direction, or choose a ranking
+records. The championship appearance table includes all ten owners, including zeros.
+Rivalry game history marks winning scores green and losing scores red, with
+explicit Win/Loss labels; ties stay neutral.
+Click a standings heading to sort either direction, or choose a ranking
 from the menu. Titles and playoff berths always refer to the selected years.
 
 Playoff records count each championship-bracket series once, including the
@@ -141,15 +144,20 @@ rebuild that archive. If a playoff request fails, the site discloses saved or
 incomplete results.
 
 **My view** saves a favorite team, landing section, compact/detailed tables,
-theme, accent, team color, and profile photo on the current device. Personal
-photos are cropped and resized locally; they are not uploaded. Your favorite
+theme, accent, and team color on the current device. Profile photos belong to
+the shared league content; My view links to the shared photo editor. Your favorite
 team is highlighted and preselected in the rivalry controls. Explicit section
 links still take priority over your landing preference.
 
-**Commissioner** edits owner display names, bios, shared photo URLs and colors,
+**Commissioner** edits owner display names, bios, shared photo uploads/URLs and colors,
 season recaps, and awards. It autosaves a local draft. Preview changes on the
 current device, discard them, download an updated `league.json`, or publish the
-previewed draft to the existing GitHub repository. Historical owner identifiers,
+previewed draft to the existing GitHub repository. PNG/JPEG/WebP uploads are cropped to 240 × 240, compressed, and embedded in the
+shared content as image data (at most 100 KB per photo). Preview and publish to
+share them with every device. Local photo overrides are no longer used; older
+locally saved photos can be moved to the shared draft with the migration button
+in My view. Resetting personal preferences does not remove shared photos.
+Historical owner identifiers,
 canonical team names, scores, standings, and championship results are not editable
 through this panel.
 

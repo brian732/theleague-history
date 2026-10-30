@@ -403,3 +403,16 @@ summary{cursor:pointer;color:var(--gold);font-size:.9rem;padding:.7rem 0;font-we
 .term-person h3{margin:0;font-size:1.1rem}
 .term-person p{margin:.2rem 0 0;color:var(--ink-2);font-size:.85rem}
 @media(max-width:650px){.commissioner-term{gap:1rem}.term-years{min-width:130px;font-size:1.9rem}.term-person{min-width:200px}}
+
+/* Rivalry outcomes use labels as well as color, including playoff tiebreaks. */
+#comparisonHistory td.result-win{color:var(--green);background:color-mix(in srgb,var(--green) 10%,var(--card));font-weight:700}
+#comparisonHistory td.result-loss{color:var(--red);background:color-mix(in srgb,var(--red) 10%,var(--card));font-weight:700}
+#comparisonHistory td.result-tie{color:var(--ink-2)}
+.result-label{display:block;font-size:.68rem;line-height:1.5;font-weight:600}
+.shared-photo-settings{grid-column:1/-1;border-top:1px solid var(--line);padding-top:1rem}
+.shared-photo-settings h3{font-size:1rem;margin:0 0 .8rem}
+#sharedPhotoSummary{display:flex;align-items:center;gap:.8rem;font-size:.85rem}
+.shared-photo-editor{display:grid;gap:1rem}
+.shared-photo-editor>.quiet-btn{justify-self:start}
+#editPhotoPreview{display:flex;align-items:center;gap:1rem}
+#editPhotoPreview p{margin:0;max-width:50ch}

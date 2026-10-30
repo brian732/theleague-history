@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261030-history">
+<link rel="stylesheet" href="styles.css?v=20261030-photos">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 </head>
 <body>
@@ -154,7 +154,7 @@
 
   <section id="tab-settings" class="tab">
     <h2>Make it your league</h2>
-    <p class="lede">Your team. Your colors. Your starting point. These preferences stay on this device.</p>
+    <p class="lede">Your team. Your colors. Your starting point. These preferences stay on this device; profile photos are shared with the league.</p>
     <form id="preferencesForm" class="settings-form">
       <label>My team<select aria-label="My team" id="favoriteOwner"><option value="">Choose your team</option></select></label>
       <label>Open the site to<select aria-label="Open the site to" id="homeSection"><option value="now">This season</option><option value="alltime">All-time records</option><option value="owners">Owners</option></select></label>
@@ -162,8 +162,8 @@
       <label>Theme<select aria-label="Theme" id="preferredTheme"><option value="system">Follow device</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
       <label>Accent<select aria-label="Accent" id="accentChoice"><option value="gold">League gold</option><option value="blue">Touchdown blue</option><option value="green">Field green</option><option value="red">Rivalry red</option><option value="purple">Royal purple</option></select></label>
       <label>My team color<input aria-label="My team color" id="personalTeamColor" type="color" value="#e3b23c"></label>
-      <label>My profile photo<input aria-label="My profile photo" id="personalPhoto" type="file" accept="image/png,image/jpeg,image/webp"><span class="tiny">Choose a PNG, JPEG, or WebP photo. It stays on this device.</span></label>
-      <div class="form-actions"><button type="submit" class="primary-btn">Save my view</button><button type="button" id="clearPersonalPhoto" class="quiet-btn">Remove my photo</button><button type="button" id="resetPreferences" class="quiet-btn">Reset my view</button></div>
+      <div class="shared-photo-settings"><h3>League profile photo</h3><div id="sharedPhotoSummary"></div><p class="tiny">Upload and publish a photo at the Commissioner’s desk so everyone sees the same picture.</p><div class="form-actions"><button type="button" id="editSharedPhoto" class="quiet-btn">Change league profile photo</button><button type="button" id="migrateLocalPhoto" class="quiet-btn" hidden>Use my previously saved photo</button></div></div>
+      <div class="form-actions"><button type="submit" class="primary-btn">Save my view</button><button type="button" id="resetPreferences" class="quiet-btn">Reset my view</button></div>
       <p id="preferencesStatus" role="status"></p>
     </form>
   </section>
@@ -176,7 +176,8 @@
         <label>Owner<select aria-label="Owner" id="editOwner"></select></label>
         <label>Display team name<input aria-label="Display team name" id="editTeamName" maxlength="100"></label>
         <label>Bio<textarea aria-label="Bio" id="editBio" rows="5" maxlength="6000"></textarea></label>
-        <label>Photo URL<input aria-label="Photo URL" id="editPhoto" type="url" placeholder="https://…"><span class="tiny">Use a public HTTPS image link.</span></label>
+        <div class="shared-photo-editor"><div id="editPhotoPreview"></div><label>Upload league profile photo<input aria-label="Upload league profile photo" id="editPhotoUpload" type="file" accept="image/png,image/jpeg,image/webp"><span class="tiny">PNG, JPEG, or WebP, up to 10 MB. Photos are resized for the shared site.</span></label><button type="button" id="removeSharedPhoto" class="quiet-btn">Remove league photo</button></div>
+        <label>Photo URL<input aria-label="Photo URL" id="editPhoto" type="url" placeholder="https://…"><span class="tiny">Or use a public HTTPS image link. Uploaded photos are stored with the shared league content.</span></label>
         <label>Team color<input aria-label="Team color" id="editTeamColor" type="color" value="#e3b23c"></label>
       </fieldset>
       <fieldset><legend>Season story</legend>
@@ -201,9 +202,9 @@
   <p class="tiny">This is a living document. Personalize the site in My view. Add league stories at the Commissioner’s desk. Standings and records update themselves from Sleeper.</p>
 </footer>
 
-<script src="explorer.js?v=20261030-history"></script>
-<script src="preferences.js?v=20261030-history"></script>
-<script src="editor.js?v=20261030-history"></script>
-<script src="app.js?v=20261030-history"></script>
+<script src="explorer.js?v=20261030-photos"></script>
+<script src="preferences.js?v=20261030-photos"></script>
+<script src="editor.js?v=20261030-photos"></script>
+<script src="app.js?v=20261030-photos"></script>
 </body>
 </html>
