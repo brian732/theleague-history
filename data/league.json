@@ -5,8 +5,13 @@
     "name": "The League",
     "established": 2020,
     "tagline": "A fantasy football league owned, managed, and operated by a group of 10 high school buddies.",
-    "address": "15 Huntington Drive, Annandale NJ, 08801",
+    "address": "234 E 4th St, East Village, New York, NY",
     "commissioner": "Brian Pedretti",
+    "commissionerHistory": [
+      { "name": "Andrew Fielding", "startYear": 2020, "endYear": 2022 },
+      { "name": "Jerry Markatos", "startYear": 2023, "endYear": 2023 },
+      { "name": "Brian Pedretti", "startYear": 2024, "endYear": 2026 }
+    ],
     "commissionerNote": "Defeated Sean in the 2026 election",
     "platform": "Sleeper Fantasy Football",
     "sleeperLeagueId": "1312965631825428480",

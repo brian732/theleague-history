@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261030-custom">
+<link rel="stylesheet" href="styles.css?v=20261030-history">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 </head>
 <body>
@@ -36,11 +36,12 @@
     <button data-tab="trophies">Trophy Case</button>
     <button data-tab="alltime">All-Time</button>
     <button data-tab="owners">Owners</button>
+    <button data-tab="commissioner-history">Commissioner History</button>
     <button data-tab="seasons">Seasons</button>
     <button data-tab="records">Record Book</button>
     <button data-tab="rules">Rulebook</button>
     <button data-tab="settings">My view</button>
-    <button data-tab="commissioner">Commissioner</button>
+    <button data-tab="commissioner">Commissioner’s desk</button>
   </nav>
 </header>
 
@@ -124,6 +125,12 @@
     <div id="formerList" class="former"></div>
   </section>
 
+  <section id="tab-commissioner-history" class="tab">
+    <h2>Commissioner History</h2>
+    <p class="lede">The people who have led The League since 2020.</p>
+    <ol id="commissionerHistory" class="commissioner-history"></ol>
+  </section>
+
   <!-- SEASONS -->
   <section id="tab-seasons" class="tab">
     <h2>Season Archive</h2>
@@ -194,9 +201,9 @@
   <p class="tiny">This is a living document. Personalize the site in My view. Add league stories at the Commissioner’s desk. Standings and records update themselves from Sleeper.</p>
 </footer>
 
-<script src="explorer.js?v=20261030-custom"></script>
-<script src="preferences.js?v=20261030-custom"></script>
-<script src="editor.js?v=20261030-custom"></script>
-<script src="app.js?v=20261030-custom"></script>
+<script src="explorer.js?v=20261030-history"></script>
+<script src="preferences.js?v=20261030-history"></script>
+<script src="editor.js?v=20261030-history"></script>
+<script src="app.js?v=20261030-history"></script>
 </body>
 </html>

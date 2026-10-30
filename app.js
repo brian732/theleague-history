@@ -17,6 +17,7 @@
    ============================================================ */
 
 const API = 'https://api.sleeper.app/v1';
+const CONFIG_URL = 'data/league.json?v=20261030-history';
 const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 
 let DATA = null;      // league.json
@@ -57,7 +58,7 @@ async function getJSON(url) {
   initTabs();
 
   try {
-    DATA = await getJSON('data/league.json');
+    DATA = await getJSON(CONFIG_URL);
   } catch (e) {
     $('#nowStandings').innerHTML =
       `<p class="loading">Could not load <code>data/league.json</code>. ${esc(e.message)}</p>`;
@@ -79,6 +80,7 @@ async function getJSON(url) {
   renderRecords();
   renderRules();
   renderFooter();
+  renderCommissionerHistory();
 
   // Things that do
   await Promise.all([
@@ -791,4 +793,15 @@ function renderHeadToHeadDetail() {
       return [`<span class="tname">${esc(o.name)}</span><span class="oname">${esc(o.team)}</span>`, recordLabel(r),
         r.w + r.l + r.t ? pct(r.w, r.l, r.t).toFixed(3) : '—', fmt(r.pf), fmt(r.pa)];
     });
+}
+
+/* Written terms are kept in league.json, separate from the editing desk. */
+function renderCommissionerHistory() {
+  $('#commissionerHistory').innerHTML = (DATA.league.commissionerHistory || []).map(term => {
+    const owner = DATA.owners.find(o => o.name === term.name);
+    const years = term.startYear === term.endYear ? term.startYear : `${term.startYear}–${term.endYear}`;
+    const seasons = term.endYear - term.startYear + 1;
+    const current = term.name === DATA.league.commissioner;
+    return `<li class="commissioner-term ${current ? 'current' : ''}"><div class="term-years">${esc(years)}<span>${seasons} season${seasons === 1 ? '' : 's'}</span></div><div class="term-person">${owner && typeof ownerAvatar === 'function' ? ownerAvatar(owner, true) : ''}<div><h3>${esc(term.name)}</h3>${owner ? `<p>${esc(owner.displayTeam || owner.team)}</p>` : ''}</div></div>${current ? '<span class="pill">Current commissioner</span>' : ''}</li>`;
+  }).join('');
 }

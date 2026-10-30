@@ -44,7 +44,7 @@ function initCustomization() {
     if(favorite){next.colors[favorite]=safeColor($('#personalTeamColor').value);if(PENDING_PHOTO!==undefined){if(PENDING_PHOTO)next.photos[favorite]=PENDING_PHOTO;else delete next.photos[favorite];}}
     else if(PENDING_PHOTO){$('#preferencesStatus').textContent='Choose your team before adding a photo.';return;}
     try{localStorage.setItem('tl-view',JSON.stringify(next));localStorage.setItem('tl-theme',next.theme==='system'?'':next.theme);}catch(e){$('#preferencesStatus').textContent='This browser could not save your view. Try a smaller photo or allow site storage.';return;}
-    PREFERENCES=next;PENDING_PHOTO=undefined;applyAppearance();renderOwnersShell();renderOwnerRecords();renderLive();refreshExplorer();renderPersonalHome();
+    PREFERENCES=next;PENDING_PHOTO=undefined;applyAppearance();renderOwnersShell();renderOwnerRecords();renderLive();refreshExplorer();renderPersonalHome();renderCommissionerHistory();
     if(favorite){$('#compareA').value=favorite;$('#compareB').value=DATA.owners.find(o=>o.sleeperUserId!==favorite).sleeperUserId;$('#h2hOwner').value=favorite;renderHeadToHeadDetail();renderComparison();}
     $('#preferencesStatus').textContent='Your view is saved on this device.';
   };
@@ -53,7 +53,7 @@ function initCustomization() {
     try{PENDING_PHOTO=await resizeProfilePhoto(file);$('#preferencesStatus').textContent='Photo ready. Save your view to keep it.';}catch(e){$('#preferencesStatus').textContent='That photo could not be read. Try another image.';}
   };
   $('#clearPersonalPhoto').onclick=()=>{PENDING_PHOTO='';$('#personalPhoto').value='';$('#preferencesStatus').textContent='Photo removal is ready. Save your view to keep it.';};
-  $('#resetPreferences').onclick=()=>{try{localStorage.removeItem('tl-view');localStorage.removeItem('tl-theme');}catch(e){}PREFERENCES={favorite:'',home:'now',density:'detailed',theme:'system',accent:'gold',colors:{},photos:{}};PENDING_PHOTO=undefined;syncPreferenceFields();applyAppearance();renderOwnersShell();renderOwnerRecords();renderLive();refreshExplorer();renderPersonalHome();$('#preferencesStatus').textContent='Your personal view has been reset.';};
+  $('#resetPreferences').onclick=()=>{try{localStorage.removeItem('tl-view');localStorage.removeItem('tl-theme');}catch(e){}PREFERENCES={favorite:'',home:'now',density:'detailed',theme:'system',accent:'gold',colors:{},photos:{}};PENDING_PHOTO=undefined;syncPreferenceFields();applyAppearance();renderOwnersShell();renderOwnerRecords();renderLive();refreshExplorer();renderPersonalHome();renderCommissionerHistory();$('#preferencesStatus').textContent='Your personal view has been reset.';};
   const media=matchMedia('(prefers-color-scheme: light)');media.addEventListener?.('change',()=>{if(PREFERENCES.theme==='system')applyAppearance();});
   document.addEventListener('error',e=>{if(e.target instanceof HTMLImageElement && e.target.closest('.owner-avatar')){e.target.replaceWith(document.createTextNode('🏈'));}},true);
   initEditor();
