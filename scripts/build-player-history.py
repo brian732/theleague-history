@@ -70,7 +70,7 @@ def espn_key(pid,info=None):
 
 
 ledger=collections.defaultdict(dict)
-coverage=[];counts=collections.Counter();source_audit=[]
+coverage=[];counts=collections.Counter();source_audit=[];trade_ledger=collections.defaultdict(dict)
 
 
 def observe(key,owner,year,source,week=None,event=None):
@@ -80,6 +80,14 @@ def observe(key,owner,year,source,week=None,event=None):
     if week:slot['weeks'].add(int(week))
     if event:slot['events'].add(tuple(sorted(event.items())))
     return slot
+
+
+def record_trade(key,identifier,from_owner,to_owner,year,source,timestamp=None,period=None):
+    if from_owner not in owners or to_owner not in owners or from_owner==to_owner:return
+    trade={'id':identifier,'fromOwnerId':from_owner,'toOwnerId':to_owner,'year':year,'source':source}
+    if timestamp:trade.update(timestamp=timestamp,date=day(timestamp))
+    if period:trade['period']=int(period)
+    trade_ledger[key][identifier]=trade
 
 
 league_id=config['league']['sleeperLeagueId'];seen=set();leagues=[]
@@ -114,7 +122,7 @@ for league in sorted(leagues,key=lambda s:s['season']):
         for pick in picks:
             sid=pick['player_id'];owner=roster_owner.get(pick.get('roster_id'))
             assert owner,(year,'draft owner')
-            observe(sleeper_id.get(sid,'sleeper:'+sid),owner,year,'Sleeper',event={'kind':'Drafted'})
+            observe(sleeper_id.get(sid,'sleeper:'+sid),owner,year,'Sleeper',event={'kind':'Drafted',**({'date':day(draft['start_time']),'timestamp':draft['start_time']}if draft.get('start_time') else{})})
             draft_count+=1
     tx_seen=set();complete=failed=0
     for rows in transactions:
@@ -126,10 +134,15 @@ for league in sorted(leagues,key=lambda s:s['season']):
             for action in ['adds','drops']:
                 for sid,rid in(tx.get(action)or{}).items():
                     owner=roster_owner.get(rid);assert owner,(year,'transaction owner')
-                    event={'kind':('Traded in'if action=='adds'else'Traded out')if tx['type']=='trade'else('Added'if action=='adds'else'Dropped')}
-                    if tx.get('status_updated'):event['date']=day(tx['status_updated'])
-                    else:event['period']=int(tx.get('leg')or 0)
-                    observe(sleeper_id.get(sid,'sleeper:'+sid),owner,year,'Sleeper',event=event)
+                    key=sleeper_id.get(sid,'sleeper:'+sid)
+                    traded=tx['type']=='trade' and sid in(tx.get('adds')or{}) and sid in(tx.get('drops')or{}) and tx['adds'][sid]!=tx['drops'][sid]
+                    trade_id=f"sleeper:{year}:{tx['transaction_id']}:{key}"
+                    event={'kind':('Traded in'if action=='adds'else'Traded out')if traded else('Added'if action=='adds'else'Dropped'),'id':f"sleeper:{tx['transaction_id']}:{sid}:{action}",'period':int(tx.get('leg')or 0)}
+                    if tx.get('status_updated'):event.update(date=day(tx['status_updated']),timestamp=tx['status_updated'])
+                    if traded:
+                        event['tradeId']=trade_id
+                        record_trade(key,trade_id,roster_owner[tx['drops'][sid]],roster_owner[tx['adds'][sid]],year,'Sleeper',tx.get('status_updated'),tx.get('leg'))
+                    observe(key,owner,year,'Sleeper',event=event)
     coverage.append({'year':year,'source':'Sleeper','leagueId':league['league_id'],'rosterWeeks':list(range(1,last_week+1)),'transactionPeriods':list(range(0,19)),'completedTransactions':complete,'draftPicks':draft_count,'current':live})
     counts['failedSleeperTransactionsExcluded']+=failed
     print(f'Sleeper {year}: {last_week} weekly rosters, {draft_count} draft picks, {complete} completed transactions ({failed} failed/pending excluded)',flush=True)
@@ -154,7 +167,7 @@ for year,owner_map in sorted(espn_owner.items()):
         if not pick.get('playerId') or pick['playerId']==-1:
             counts['unfilledEspnDraftPicksSkipped']+=1
             continue
-        observe(espn_key(pick['playerId']),owner_map[pick['teamId']],year,'ESPN',event={'kind':'Drafted'})
+        observe(espn_key(pick['playerId']),owner_map[pick['teamId']],year,'ESPN',event={'kind':'Drafted',**({'date':day(draft['settings']['draftSettings']['date']),'timestamp':draft['settings']['draftSettings']['date']}if draft.get('settings',{}).get('draftSettings',{}).get('date')else{})})
     complete=failed=0;seen=set();types=collections.Counter()
     for period,raw in enumerate(tx_responses,1):
         assert raw['scoringPeriodId']==period
@@ -175,11 +188,17 @@ for year,owner_map in sorted(espn_owner.items()):
                 pid=item.get('playerId');a=item.get('fromTeamId');b=item.get('toTeamId')
                 if not pid or pid==-1:continue
                 key=espn_key(pid)
+                trade_id=f"espn:{year}:{tx['id']}:{key}"
+                traded=item.get('type')=='TRADE' and a in owner_map and b in owner_map and a!=b
+                if traded:record_trade(key,trade_id,owner_map[a],owner_map[b],year,'ESPN',tx.get('processDate'),period)
                 for tid,kind in [(a,'Traded out'if a and b and a!=b else'Dropped'),(b,'Traded in'if a and b and a!=b else'Added')]:
                     if tid not in owner_map:continue
                     # Lineup-only transactions prove membership but are not acquisitions.
-                    event={'kind':kind,'period':period}if a!=b else None
-                    if tx['type']=='DRAFT':event={'kind':'Drafted'}
+                    event={'kind':kind,'period':period,'id':f"espn:{year}:{tx['id']}:{pid}:{tid}:{kind}"}if a!=b else None
+                    if event and tx.get('processDate'):event.update(timestamp=tx['processDate'],date=day(tx['processDate']))
+                    if event and traded:event['tradeId']=trade_id
+                    # The draft endpoint already supplies the single draft event.
+                    if tx['type']=='DRAFT':event=None
                     observe(key,owner_map[tid],year,'ESPN',event=event)
     coverage.append({'year':year,'source':'ESPN','leagueId':'92157291','rosterWeeks':list(range(1,final_week+1)),'transactionPeriods':list(range(1,last_period+1)),'completedTransactions':complete,'draftPicks':sum(p.get('playerId') not in (None,0,-1)for p in draft['draftDetail']['picks'])})
     counts['failedEspnTransactionsExcluded']+=failed
@@ -202,12 +221,13 @@ for key,rows in ledger.items():
     normalized=[]
     for slot in rows.values():
         normalized.append({**slot,'weeks':sorted(slot['weeks']),'events':sorted([dict(e)for e in slot['events']],key=lambda e:(e.get('date',''),e.get('period',0),e['kind']))})
-    players.append({**metadata[key],'teamCount':len(owner_ids),'history':sorted(normalized,key=lambda r:(-r['year'],owners[r['ownerId']]['name']))})
+    trades=sorted(trade_ledger[key].values(),key=lambda t:(t['year'],t.get('timestamp',0),t.get('period',0),t['id']))
+    players.append({**metadata[key],'teamCount':len(owner_ids),'tradeCount':len(trades),'trades':trades,'history':sorted(normalized,key=lambda r:(-r['year'],owners[r['ownerId']]['name']))})
 players.sort(key=lambda p:(-p['teamCount'],p['name'].casefold()))
 assert all(p['teamCount']==len({h['ownerId']for h in p['history']})and p['teamCount']>2 for p in players)
 assert all(h['ownerId']in owners for p in players for h in p['history'])
 assert len({p['id']for p in players})==len(players)
-output={'updatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'leagueName':config['league']['name'],'counting':'Distinct current-owner teams across all included seasons. Team-name changes count once.','minimumTeams':3,'owners':list(owners.values()),'coverage':sorted(coverage,key=lambda s:s['year']),'limitations':['ESPN returns weekly rosters and available completed moves, but some archived trade records have no player details. Trade-only stays entirely between weekly snapshots can be missing.'],'exclusions':[{'year':2020,'reason':'Oliver McDonough’s roster is excluded. Guha’s ownership begins in 2021.'}],'players':players}
+output={'updatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'leagueName':config['league']['name'],'counting':'Distinct current-owner teams across all included seasons. Team-name changes count once.','minimumTeams':3,'tradeCounting':'One completed player transfer per transaction; receiving and sending records count once. ESPN counts are verified minimums because archived trade item details are incomplete.','owners':list(owners.values()),'coverage':sorted(coverage,key=lambda s:s['year']),'limitations':['ESPN returns weekly rosters and available completed moves, but some archived trade records have no player details. Trade-only stays entirely between weekly snapshots can be missing.'],'exclusions':[{'year':2020,'reason':'Oliver McDonough’s roster is excluded. Guha’s ownership begins in 2021.'}],'players':players}
 (ROOT/'data/player-history.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
 (WORK/'audit.json').write_text(json.dumps({'counts':dict(counts),'espn':source_audit,'allObservedPlayers':len(ledger),'qualifiedPlayers':len(players),'qualifiedWithoutMetadata':len(unresolved),'top':[{k:p[k]for k in['name','position','teamCount']}for p in players[:20]]},indent=2)+'\n')
 print(f'Saved {len(players)} players with 3+ distinct teams ({len(ledger)} players observed). Cross-platform matches use ESPN athlete IDs, never names.',flush=True)

@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261114-rosters">
+<link rel="stylesheet" href="styles.css?v=20261114-trades">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 </head>
 <body>
@@ -147,13 +147,16 @@
   </section>
 
   <section id="tab-players" class="tab" aria-labelledby="playerHistoryTitle">
-    <h2 id="playerHistoryTitle">Players rostered by the most teams</h2>
-    <p class="lede">Players who have been on three or more league teams. Select a player to see which teams and when.</p>
+    <h2 id="playerHistoryTitle">Player Roster History</h2>
+    <p class="lede">Sort players by teams rostered or recorded trades. Select a player to follow their history from oldest to newest. Only players with three or more league teams are included.</p>
     <p id="playerHistoryStatus" class="tiny" role="status">Roster history loads when you open this page.</p>
     <form id="playerHistoryFilters" class="player-history-filters" role="search" aria-label="Find rostered players">
       <label>Search players<input id="playerHistorySearch" type="search" placeholder="Player name" autocomplete="off"></label>
+      <label>Sort by<select id="playerHistorySort" aria-label="Sort by"><option value="teams">Most teams rostered</option><option value="trades">Most times traded</option></select></label>
+      <label>History view<select id="playerHistoryView" aria-label="History view"><option value="timeline">Chronological</option><option value="teams">By team</option></select></label>
       <label>Position<select id="playerHistoryPosition"><option value="all">All positions</option><option value="QB">QB</option><option value="RB">RB</option><option value="WR">WR</option><option value="TE">TE</option><option value="K">K</option><option value="DEF">D/ST</option></select></label>
     </form>
+    <p class="tiny">Trade counts use completed player transfers, counted once per trade. ESPN’s old trade details are incomplete, so these are recorded minimums.</p>
     <p id="playerHistoryResults" class="tiny" aria-live="polite"></p>
     <div id="playerHistoryList" class="player-history-list"></div>
     <button id="playerHistoryMore" type="button" class="quiet-btn" hidden>Show more players</button>
@@ -217,10 +220,11 @@
   <p class="tiny">This is a living document. Personalize the site in My view. Add league stories at the Commissioner’s desk. Standings and records update themselves from Sleeper.</p>
 </footer>
 
-<script src="explorer.js?v=20261114-rosters"></script>
-<script src="preferences.js?v=20261114-rosters"></script>
-<script src="editor.js?v=20261114-rosters"></script>
-<script src="player-history.js?v=20261114-rosters"></script>
-<script src="app.js?v=20261114-rosters"></script>
+<script src="explorer.js?v=20261114-trades"></script>
+<script src="preferences.js?v=20261114-trades"></script>
+<script src="editor.js?v=20261114-trades"></script>
+<script src="player-history-model.js?v=20261114-trades"></script>
+<script src="player-history.js?v=20261114-trades"></script>
+<script src="app.js?v=20261114-trades"></script>
 </body>
 </html>

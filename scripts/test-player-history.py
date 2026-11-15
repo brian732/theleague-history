@@ -10,6 +10,8 @@ assert all(3<=p['teamCount']<=10 for p in players)
 assert {c['year']for c in data['coverage']}==set(range(2020,2027))
 assert [(c['year'],c['source'])for c in data['coverage'][:2]]==[(2020,'ESPN'),(2021,'ESPN')]
 for p in players:
+    assert p['tradeCount']==len(p['trades'])==len({t['id']for t in p['trades']})
+    assert all(t['fromOwnerId']in owners and t['toOwnerId']in owners and t['fromOwnerId']!=t['toOwnerId']for t in p['trades'])
     assert p['teamCount']==len({h['ownerId']for h in p['history']})
     assert len({(h['ownerId'],h['year'])for h in p['history']})==len(p['history'])
     for h in p['history']:
@@ -31,6 +33,7 @@ def canonical_sid(sid):
     return'espn:'+str(p['espn_id'])if p.get('espn_id')and str(p['espn_id'])!='0'else'sleeper:'+sid
 codes={1:'ATL',2:'BUF',3:'CHI',4:'CIN',5:'CLE',6:'DAL',7:'DEN',8:'DET',9:'GB',10:'TEN',11:'IND',12:'KC',13:'LV',14:'LAR',15:'MIA',16:'MIN',17:'NE',18:'NO',19:'NYG',20:'NYJ',21:'PHI',22:'ARI',23:'PIT',24:'LAC',25:'SF',26:'SEA',27:'TB',28:'WAS',29:'CAR',30:'JAX',33:'BAL',34:'HOU'}
 def canonical_espn(pid):return'def:'+codes[abs(pid)-16000]if pid<0 else'espn:'+str(pid)
+expected_trades=collections.defaultdict(dict)
 expected=collections.defaultdict(set);weeks=collections.defaultdict(set);failed_pairs=set();weekly_pairs=set()
 def add(key,owner,year,week=None):
     if owner not in owners:return
@@ -53,6 +56,10 @@ for c in data['coverage']:
                 add(canonical_sid(pick['player_id']),owner,year)
         for period in c['transactionPeriods']:
             for t in cached(base+'/transactions/'+str(period)):
+                if t.get('status')=='complete'and t['type']=='trade':
+                    for sid in set(t.get('adds')or{})&set(t.get('drops')or{}):
+                        before=mapping[t['drops'][sid]];after=mapping[t['adds'][sid]];key=canonical_sid(sid)
+                        if before!=after:expected_trades[key][f"sleeper:{year}:{t['transaction_id']}:{key}"]=(before,after)
                 for action in ['adds','drops']:
                     for sid,rid in(t.get(action)or{}).items():
                         key=canonical_sid(sid);owner=mapping[rid]
@@ -71,6 +78,9 @@ for c in data['coverage']:
                 for item in t.get('items')or[]:
                     pid=item.get('playerId')
                     if pid in(None,0,-1)or item.get('type')not in{'DRAFT','ADD','DROP','TRADE'}:continue
+                    a=mapping.get(item.get('fromTeamId'));b=mapping.get(item.get('toTeamId'))
+                    if valid and item.get('type')=='TRADE'and a in owners and b in owners and a!=b:
+                        key=canonical_espn(pid);expected_trades[key][f"espn:{year}:{t['id']}:{key}"]=(a,b)
                     for team in[item.get('fromTeamId'),item.get('toTeamId')]:
                         owner=mapping.get(team)
                         if owner not in owners:continue
@@ -81,6 +91,7 @@ qualified={key:os for key,os in expected.items()if len(os)>2}
 assert set(by_id)==set(qualified),'Qualifying-player set differs from raw API evidence'
 for key,owner_ids in qualified.items():
     actual=by_id[key]
+    assert {t['id']:(t['fromOwnerId'],t['toOwnerId'])for t in actual['trades']}==expected_trades[key],(actual['name'],'completed trade count/movement differs from source')
     assert {h['ownerId']for h in actual['history']}==owner_ids,(actual['name'],'owner mismatch')
     for h in actual['history']:assert set(h['weeks'])==weeks[(key,h['ownerId'],h['year'])],(actual['name'],'weekly evidence mismatch')
 failed_only={(k,o)for k,o in failed_pairs if o not in expected.get(k,set())}
@@ -89,3 +100,5 @@ nonweekly={(k,o)for k,os in qualified.items()for o in os if(k,o)not in weekly_pa
 assert nonweekly,'The archive should include short/draft-only stays beyond weekly snapshots'
 assert any({h['source']for h in p['history']}=={'ESPN','Sleeper'}for p in players),'No cross-platform identity merges'
 print(f'Sources reconciled: every qualifying player, distinct owner, and observed week; {len(failed_only)} unsuccessful-only player/team pairs excluded; {len(nonweekly)} draft/current/transaction-only pairs retained')
+
+print(f'Completed trades reconciled: {sum(p["tradeCount"]for p in players)} unique player transfers, without double-counting send/receive rows or counting automatic drops as trades')

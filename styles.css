@@ -450,3 +450,13 @@ summary{cursor:pointer;color:var(--gold);font-size:.9rem;padding:.7rem 0;font-we
 .player-history-method{margin:2rem 0;color:var(--ink-2);font-size:.8rem;max-width:85ch}
 .player-history-method>summary{color:var(--gold);cursor:pointer;font-weight:600}.player-history-method li{margin:.3rem 0}
 @media(max-width:650px){.player-history-record>summary{grid-template-columns:24px 1fr auto 16px;gap:.6rem;padding:.85rem .75rem}.player-history-name{font-size:.85rem}.player-history-count b{font-size:1.2rem}.player-history-detail{padding:0 .65rem .65rem}.player-history-detail th[scope="row"]{min-width:135px}.player-history-detail td{min-width:205px}.player-history-filters label:last-child{flex:0 0 120px}}
+.player-history-count>span{display:block;text-align:right;font-size:.65rem;color:var(--ink-3);font-weight:400}
+.player-timeline-note{margin:.9rem 0}
+.player-timeline{list-style:none;padding:0;margin:0}
+.player-timeline>li{display:grid;grid-template-columns:190px 1fr;gap:1.2rem;padding:1rem 0;border-top:1px solid var(--line-soft);font-size:.8rem;line-height:1.6}
+.player-timeline-when{color:var(--ink-2);font-variant-numeric:tabular-nums}
+.player-timeline-when>.pill{display:table;margin-top:.35rem}
+.player-timeline-team{margin-top:.25rem;color:var(--ink)}
+.player-trade-label{color:var(--gold)}
+.player-history-filters label:first-child{flex-basis:240px}
+@media(max-width:650px){.player-timeline>li{grid-template-columns:1fr;gap:.45rem}.player-timeline-when{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}.player-timeline-when>.pill{display:inline-block;margin:0}.player-history-filters label:not(:first-child){flex:1 1 140px}.player-history-count{font-size:.65rem}.player-history-count>span{font-size:.6rem}}
