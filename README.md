@@ -284,3 +284,13 @@ There is a **fully-played 2021 Sleeper league** in your account
 
 The 2020–2021 ESPN seasons are now independently verified from ESPN league 92157291,
 including weekly scores and final ranks. The 2021 Sleeper league remains excluded.
+
+### Player roster history
+
+The **Roster History** tab (`#players`) ranks players by distinct current-owner league teams, highest first. Only entries rostered by at least three teams are included. Team-name changes and return stints do not increase the count. Clicking a player lists each owner/team, seasons, observed roster weeks, and available draft/transaction details. Search and position filters include D/ST units.
+
+The separate `data/player-history.json` snapshot covers ESPN **2020–2021** (league 92157291) and Sleeper **2022–2026**. It combines weekly full-roster snapshots, drafts, current/final rosters, and completed player moves. Failed and pending transactions, trade proposals/declines/vetoes, and empty draft placeholders cannot add a team. ESPN athlete IDs join the platforms; names are never used for identity matching. NFL defenses use stable franchise abbreviations. Oliver's 2020 ownership is excluded; Guha starts in 2021.
+
+Coverage limits: week ranges mean observed weekly rosters, not guaranteed uninterrupted stays. Sleeper dates use transaction completion times in US Eastern. ESPN provides scoring periods for available completed moves, but some old trade records omit player details; trade-only stays wholly between weekly snapshots may be absent. The page displays these limits and its own snapshot date. It does not claim to refresh this archive live.
+
+Rebuild from the repository root with `python3 scripts/build-player-history.py`. Cached raw responses stay outside the public checkout in `../player-history-work/`. Current-season sources refresh on each rebuild; the large NFL player dictionary refreshes at most daily. Run `python3 scripts/test-player-history.py --audit-sources` after rebuilding to independently reconcile every qualifying player, distinct owner and roster week against those source files. Without `--audit-sources`, the test checks the public archive's structure, threshold, ordering and ownership rules.

@@ -17,7 +17,7 @@
    ============================================================ */
 
 const API = 'https://api.sleeper.app/v1';
-const CONFIG_URL = 'data/league.json?v=20261030-photos';
+const CONFIG_URL = 'data/league.json?v=20261114-rosters';
 const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 
 let DATA = null;      // league.json
@@ -641,6 +641,7 @@ function initTabs() {
     $$('.tab').forEach(t => t.classList.toggle('active', t.id === 'tab-' + name));
     if (location.hash.slice(1) !== name) history.replaceState(null, '', '#' + name);
     window.scrollTo({ top: 0, behavior: 'instant' });
+    if(name==='players' && typeof window.loadPlayerHistory==='function') window.loadPlayerHistory();
   };
   $('#tabs').addEventListener('click', e => {
     const b = e.target.closest('button[data-tab]');
