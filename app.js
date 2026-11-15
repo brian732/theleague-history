@@ -17,7 +17,7 @@
    ============================================================ */
 
 const API = 'https://api.sleeper.app/v1';
-const CONFIG_URL = 'data/league.json?v=20261114-trades';
+const CONFIG_URL = 'data/league.json?v=20261114-deals';
 const ESPN_YEARS = [2020, 2021];   // pre-Sleeper, sourced from league.json
 
 let DATA = null;      // league.json

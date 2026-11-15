@@ -2,7 +2,7 @@
 const PlayerHistoryModel = (() => {
   function sorted(players,sort='teams'){
     const metric=sort==='trades'?'tradeCount':'teamCount';
-    return players.filter(p=>p.teamCount>2).slice().sort((a,b)=>(b[metric]||0)-(a[metric]||0)||b.teamCount-a.teamCount||a.name.localeCompare(b.name));
+    return players.filter(p=>p.teamCount>2&&(sort!=='trades'||(p.tradeCount||0)>0)).slice().sort((a,b)=>(b[metric]||0)-(a[metric]||0)||b.teamCount-a.teamCount||a.name.localeCompare(b.name));
   }
   // Snapshots have week precision, not a transaction timestamp. Place each run
   // at its first observed week, capped at the archive date for the live week.
@@ -38,5 +38,8 @@ const PlayerHistoryModel = (() => {
     for(const trade of player.trades||[])rows.push({...trade,kind:'Traded',sortAt:trade.timestamp||(trade.date?Date.parse(trade.date+'T12:00:00Z'):weekOrder(trade.year,trade.period||1,asOf))});
     return rows.sort((a,b)=>a.year-b.year||a.sortAt-b.sortAt||Number(a.kind==='Current roster')-Number(b.kind==='Current roster')||a.id.localeCompare(b.id));
   }
-  return {sorted,timeline};
+  function tradeTimeline(player,deals,asOfValue){
+    return (player.trades||[]).filter(t=>deals[t.dealId]?.status==='completed').slice().sort((a,b)=>a.year-b.year||(a.timestamp||weekOrder(a.year,a.period||1,Date.parse(asOfValue)))-(b.timestamp||weekOrder(b.year,b.period||1,Date.parse(asOfValue)))||a.id.localeCompare(b.id));
+  }
+  return {sorted,timeline,tradeTimeline};
 })();

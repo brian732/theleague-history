@@ -460,3 +460,19 @@ summary{cursor:pointer;color:var(--gold);font-size:.9rem;padding:.7rem 0;font-we
 .player-trade-label{color:var(--gold)}
 .player-history-filters label:first-child{flex-basis:240px}
 @media(max-width:650px){.player-timeline>li{grid-template-columns:1fr;gap:.45rem}.player-timeline-when{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}.player-timeline-when>.pill{display:inline-block;margin:0}.player-history-filters label:not(:first-child){flex:1 1 140px}.player-history-count{font-size:.65rem}.player-history-count>span{font-size:.6rem}}
+.player-history-filters label[hidden]{display:none}
+.player-trade-card{border:1px solid var(--line);border-radius:10px;padding:1.1rem;margin:1rem 0;background:var(--bg-2)}
+.player-trade-card>header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.player-trade-card h4{margin:0;font-size:.85rem;color:var(--ink-2)}
+.player-trade-path{font-size:.9rem;margin:.8rem 0 .15rem;line-height:1.6}
+.player-trade-path>b{color:var(--gold)}
+.player-deal-sides{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin-top:1rem}
+.player-deal-side{padding:1rem;background:var(--card);border:1px solid var(--line-soft);border-radius:8px;min-width:0}
+.player-deal-side h5{margin:0;font-size:.85rem}.player-deal-side>p.oname{margin:.2rem 0 .8rem}
+.player-deal-received{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-3);margin:.7rem 0 .4rem}
+.player-deal-side ul{list-style:none;padding:0;margin:0;max-height:none;overflow:visible}
+.player-deal-side li{padding:.55rem 0;border-top:1px solid var(--line-soft);font-size:.8rem}
+.player-deal-side li>b{font-weight:500;color:var(--ink)}
+.player-deal-side li>span{display:block;font-size:.66rem;color:var(--ink-3);margin-top:.15rem;line-height:1.6}
+.player-deal-side li.player-deal-selected>b{color:var(--gold);font-weight:700}
+@media(max-width:650px){.player-trade-card{padding:.8rem}.player-deal-sides{grid-template-columns:1fr}.player-trade-path{font-size:.8rem}}

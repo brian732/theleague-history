@@ -5,6 +5,11 @@ ROOT=Path(__file__).resolve().parents[1];WORK=ROOT.parent/'player-history-work'
 data=json.loads((ROOT/'data/player-history.json').read_text())
 players=data['players'];by_id={p['id']:p for p in players};owners={o['id']for o in data['owners']}
 assert len(by_id)==len(players)and len(owners)==10
+assert all(d['status']=='completed' for d in data['deals'].values())
+for p in players:
+    for t in p['trades']:
+        deal=data['deals'][t['dealId']]
+        assert any(a['type']=='player' and a['playerId']==p['id'] and a['fromOwnerId']==t['fromOwnerId'] and a['toOwnerId']==t['toOwnerId']for a in deal['transfers'])
 assert [p['teamCount']for p in players]==sorted((p['teamCount']for p in players),reverse=True)
 assert all(3<=p['teamCount']<=10 for p in players)
 assert {c['year']for c in data['coverage']}==set(range(2020,2027))
@@ -33,7 +38,7 @@ def canonical_sid(sid):
     return'espn:'+str(p['espn_id'])if p.get('espn_id')and str(p['espn_id'])!='0'else'sleeper:'+sid
 codes={1:'ATL',2:'BUF',3:'CHI',4:'CIN',5:'CLE',6:'DAL',7:'DEN',8:'DET',9:'GB',10:'TEN',11:'IND',12:'KC',13:'LV',14:'LAR',15:'MIA',16:'MIN',17:'NE',18:'NO',19:'NYG',20:'NYJ',21:'PHI',22:'ARI',23:'PIT',24:'LAC',25:'SF',26:'SEA',27:'TB',28:'WAS',29:'CAR',30:'JAX',33:'BAL',34:'HOU'}
 def canonical_espn(pid):return'def:'+codes[abs(pid)-16000]if pid<0 else'espn:'+str(pid)
-expected_trades=collections.defaultdict(dict)
+expected_trades=collections.defaultdict(dict);expected_deals={}
 expected=collections.defaultdict(set);weeks=collections.defaultdict(set);failed_pairs=set();weekly_pairs=set()
 def add(key,owner,year,week=None):
     if owner not in owners:return
@@ -57,6 +62,17 @@ for c in data['coverage']:
         for period in c['transactionPeriods']:
             for t in cached(base+'/transactions/'+str(period)):
                 if t.get('status')=='complete'and t['type']=='trade':
+                    assets=[]
+                    for sid in set(t.get('adds')or{})&set(t.get('drops')or{}):
+                        a=mapping[t['drops'][sid]];b=mapping[t['adds'][sid]]
+                        if a!=b:assets.append(('player',canonical_sid(sid),a,b))
+                    for pick in t.get('draft_picks')or[]:
+                        a=mapping[pick['previous_owner_id']];b=mapping[pick['owner_id']]
+                        if a!=b:assets.append(('pick',str(pick['season']),pick['round'],mapping[pick['roster_id']],a,b))
+                    for budget in t.get('waiver_budget')or[]:
+                        a=mapping[budget['sender']];b=mapping[budget['receiver']]
+                        if a!=b and budget['amount']:assets.append(('faab',budget['amount'],a,b))
+                    expected_deals[f"sleeper:{year}:{t['transaction_id']}"]=collections.Counter(assets)
                     for sid in set(t.get('adds')or{})&set(t.get('drops')or{}):
                         before=mapping[t['drops'][sid]];after=mapping[t['adds'][sid]];key=canonical_sid(sid)
                         if before!=after:expected_trades[key][f"sleeper:{year}:{t['transaction_id']}:{key}"]=(before,after)
@@ -80,7 +96,7 @@ for c in data['coverage']:
                     if pid in(None,0,-1)or item.get('type')not in{'DRAFT','ADD','DROP','TRADE'}:continue
                     a=mapping.get(item.get('fromTeamId'));b=mapping.get(item.get('toTeamId'))
                     if valid and item.get('type')=='TRADE'and a in owners and b in owners and a!=b:
-                        key=canonical_espn(pid);expected_trades[key][f"espn:{year}:{t['id']}:{key}"]=(a,b)
+                        key=canonical_espn(pid);deal_id=f"espn:{year}:{t['id']}";expected_deals.setdefault(deal_id,collections.Counter())[('player',key,a,b)]+=1;expected_trades[key][f"espn:{year}:{t['id']}:{key}"]=(a,b)
                     for team in[item.get('fromTeamId'),item.get('toTeamId')]:
                         owner=mapping.get(team)
                         if owner not in owners:continue
@@ -102,3 +118,19 @@ assert any({h['source']for h in p['history']}=={'ESPN','Sleeper'}for p in player
 print(f'Sources reconciled: every qualifying player, distinct owner, and observed week; {len(failed_only)} unsuccessful-only player/team pairs excluded; {len(nonweekly)} draft/current/transaction-only pairs retained')
 
 print(f'Completed trades reconciled: {sum(p["tradeCount"]for p in players)} unique player transfers, without double-counting send/receive rows or counting automatic drops as trades')
+
+def signature(a):
+    if a['type']=='player':return ('player',a['playerId'],a['fromOwnerId'],a['toOwnerId'])
+    if a['type']=='pick':return ('pick',a['season'],a['round'],a['originalOwnerId'],a['fromOwnerId'],a['toOwnerId'])
+    return ('faab',a['amount'],a['fromOwnerId'],a['toOwnerId'])
+assert set(data['deals'])==set(expected_deals),'Completed trade package set differs from source'
+for identifier,expected_assets in expected_deals.items():
+    actual=data['deals'][identifier]
+    assert collections.Counter(signature(a)for a in actual['transfers'])==expected_assets,(identifier,'deal assets or ownership differs from source')
+    for asset in actual['transfers']:
+        assert asset['fromOwnerId']in owners and asset['toOwnerId']in owners
+        if asset['type']=='player':assert asset.get('name')and asset.get('position')
+assert any(a['type']=='pick'for d in data['deals'].values()for a in d['transfers'])
+assert any(a['type']=='faab'for d in data['deals'].values()for a in d['transfers'])
+assert any(len({id for a in d['transfers']for id in[a['fromOwnerId'],a['toOwnerId']]})>2 for d in data['deals'].values())
+print(f'Full deals reconciled: {len(expected_deals)} completed packages; all players, picks, original pick owners, FAAB, and multi-team directions match the source')

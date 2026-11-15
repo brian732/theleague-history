@@ -70,7 +70,7 @@ def espn_key(pid,info=None):
 
 
 ledger=collections.defaultdict(dict)
-coverage=[];counts=collections.Counter();source_audit=[];trade_ledger=collections.defaultdict(dict)
+coverage=[];counts=collections.Counter();source_audit=[];trade_ledger=collections.defaultdict(dict);deals={}
 
 
 def observe(key,owner,year,source,week=None,event=None):
@@ -84,10 +84,40 @@ def observe(key,owner,year,source,week=None,event=None):
 
 def record_trade(key,identifier,from_owner,to_owner,year,source,timestamp=None,period=None):
     if from_owner not in owners or to_owner not in owners or from_owner==to_owner:return
-    trade={'id':identifier,'fromOwnerId':from_owner,'toOwnerId':to_owner,'year':year,'source':source}
+    trade={'id':identifier,'dealId':identifier[:-(len(key)+1)],'fromOwnerId':from_owner,'toOwnerId':to_owner,'year':year,'source':source}
     if timestamp:trade.update(timestamp=timestamp,date=day(timestamp))
     if period:trade['period']=int(period)
     trade_ledger[key][identifier]=trade
+
+
+def record_sleeper_deal(tx,roster_owner,year):
+    identifier=f"sleeper:{year}:{tx['transaction_id']}"
+    transfers=[]
+    for sid in sorted(set(tx.get('adds')or{})&set(tx.get('drops')or{})):
+        a=roster_owner[tx['drops'][sid]];b=roster_owner[tx['adds'][sid]]
+        if a!=b:transfers.append({'type':'player','playerId':sleeper_id.get(sid,'sleeper:'+sid),'fromOwnerId':a,'toOwnerId':b})
+    for pick in tx.get('draft_picks')or[]:
+        a=roster_owner[pick['previous_owner_id']];b=roster_owner[pick['owner_id']]
+        if a!=b:transfers.append({'type':'pick','season':str(pick['season']),'round':pick['round'],'originalOwnerId':roster_owner[pick['roster_id']],'fromOwnerId':a,'toOwnerId':b})
+    for budget in tx.get('waiver_budget')or[]:
+        a=roster_owner[budget['sender']];b=roster_owner[budget['receiver']]
+        if a!=b and budget['amount']:transfers.append({'type':'faab','amount':budget['amount'],'fromOwnerId':a,'toOwnerId':b})
+    deal={'id':identifier,'year':year,'source':'Sleeper','status':'completed','transfers':transfers,'period':int(tx.get('leg')or 0)}
+    if tx.get('status_updated'):deal.update(timestamp=tx['status_updated'],date=day(tx['status_updated']))
+    deals[identifier]=deal
+
+
+def record_espn_deal(tx,owner_map,year):
+    identifier=f"espn:{year}:{tx['id']}"
+    transfers=[]
+    for item in tx.get('items')or[]:
+        if item.get('type')!='TRADE' or item.get('playerId')in(None,0,-1):continue
+        a=owner_map.get(item.get('fromTeamId'));b=owner_map.get(item.get('toTeamId'))
+        if a in owners and b in owners and a!=b:transfers.append({'type':'player','playerId':espn_key(item['playerId']),'fromOwnerId':a,'toOwnerId':b})
+    if not transfers:return
+    deal={'id':identifier,'year':year,'source':'ESPN','status':'completed','transfers':transfers,'period':tx['scoringPeriodId']}
+    if tx.get('processDate'):deal.update(timestamp=tx['processDate'],date=day(tx['processDate']))
+    deals[identifier]=deal
 
 
 league_id=config['league']['sleeperLeagueId'];seen=set();leagues=[]
@@ -131,6 +161,7 @@ for league in sorted(leagues,key=lambda s:s['season']):
             tx_seen.add(tx['transaction_id'])
             if tx.get('status')!='complete':failed+=1;continue
             complete+=1
+            if tx['type']=='trade':record_sleeper_deal(tx,roster_owner,year)
             for action in ['adds','drops']:
                 for sid,rid in(tx.get(action)or{}).items():
                     owner=roster_owner.get(rid);assert owner,(year,'transaction owner')
@@ -182,6 +213,7 @@ for year,owner_map in sorted(espn_owner.items()):
                 counts['espnNonAcquisitionRecordsExcluded']+=1
                 continue
             if tx['type']=='TRADE_ACCEPT' and tx.get('executionType')!='PROCESS':continue
+            if tx['type']=='TRADE_ACCEPT':record_espn_deal(tx,owner_map,year)
             items=[i for i in tx.get('items')or[] if i.get('type')in {'DRAFT','ADD','DROP','TRADE'} and i.get('playerId') not in (None,0,-1)]
             if items and tx['type']!='DRAFT':complete+=1
             for item in items:
@@ -206,12 +238,19 @@ for year,owner_map in sorted(espn_owner.items()):
     print(f'ESPN {year}: {final_week} distinct-week roster requests, {len(draft["draftDetail"]["picks"])} draft picks, {complete} executed transactions ({failed} others excluded)',flush=True)
 
 # Only unresolved ESPN IDs need individual lookups, and only when they can qualify.
-unresolved=[key for key,rows in ledger.items()if len({o for o,y in rows})>=3 and key not in metadata]
+required={key for key,rows in ledger.items()if len({o for o,y in rows})>=3}
+required.update(a['playerId']for deal in deals.values()for a in deal['transfers']if a['type']=='player')
+unresolved=sorted(required-metadata.keys())
 for key in unresolved:
     if key.startswith('espn:'):
         athlete=fetch('https://sports.core.api.espn.com/v2/sports/football/leagues/nfl/athletes/'+key.split(':')[1])
         metadata[key]={'id':key,'name':athlete.get('displayName')or athlete['fullName'],'position':athlete.get('position',{}).get('abbreviation','—')}
     else:raise AssertionError(('Player metadata missing',key))
+
+for deal in deals.values():
+    for asset in deal['transfers']:
+        assert asset['fromOwnerId']in owners and asset['toOwnerId']in owners and asset['fromOwnerId']!=asset['toOwnerId']
+        if asset['type']=='player':asset.update(name=metadata[asset['playerId']]['name'],position=metadata[asset['playerId']]['position'])
 
 players=[]
 for key,rows in ledger.items():
@@ -227,7 +266,8 @@ players.sort(key=lambda p:(-p['teamCount'],p['name'].casefold()))
 assert all(p['teamCount']==len({h['ownerId']for h in p['history']})and p['teamCount']>2 for p in players)
 assert all(h['ownerId']in owners for p in players for h in p['history'])
 assert len({p['id']for p in players})==len(players)
-output={'updatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'leagueName':config['league']['name'],'counting':'Distinct current-owner teams across all included seasons. Team-name changes count once.','minimumTeams':3,'tradeCounting':'One completed player transfer per transaction; receiving and sending records count once. ESPN counts are verified minimums because archived trade item details are incomplete.','owners':list(owners.values()),'coverage':sorted(coverage,key=lambda s:s['year']),'limitations':['ESPN returns weekly rosters and available completed moves, but some archived trade records have no player details. Trade-only stays entirely between weekly snapshots can be missing.'],'exclusions':[{'year':2020,'reason':'Oliver McDonough’s roster is excluded. Guha’s ownership begins in 2021.'}],'players':players}
+assert all(t['dealId']in deals and deals[t['dealId']]['status']=='completed'for p in players for t in p['trades'])
+output={'updatedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'leagueName':config['league']['name'],'counting':'Distinct current-owner teams across all included seasons. Team-name changes count once.','minimumTeams':3,'tradeCounting':'One completed player transfer per transaction; receiving and sending records count once. ESPN counts are verified minimums because archived trade item details are incomplete.','owners':list(owners.values()),'coverage':sorted(coverage,key=lambda s:s['year']),'limitations':['ESPN returns weekly rosters and available completed moves, but some archived trade records have no player details. Trade-only stays entirely between weekly snapshots can be missing.'],'exclusions':[{'year':2020,'reason':'Oliver McDonough’s roster is excluded. Guha’s ownership begins in 2021.'}],'players':players,'deals':deals}
 (ROOT/'data/player-history.json').write_text(json.dumps(output,separators=(',',':'),ensure_ascii=False)+'\n')
 (WORK/'audit.json').write_text(json.dumps({'counts':dict(counts),'espn':source_audit,'allObservedPlayers':len(ledger),'qualifiedPlayers':len(players),'qualifiedWithoutMetadata':len(unresolved),'top':[{k:p[k]for k in['name','position','teamCount']}for p in players[:20]]},indent=2)+'\n')
 print(f'Saved {len(players)} players with 3+ distinct teams ({len(ledger)} players observed). Cross-platform matches use ESPN athlete IDs, never names.',flush=True)
