@@ -642,6 +642,7 @@ function initTabs() {
     if (location.hash.slice(1) !== name) history.replaceState(null, '', '#' + name);
     window.scrollTo({ top: 0, behavior: 'instant' });
     if(name==='players' && typeof window.loadPlayerHistory==='function') window.loadPlayerHistory();
+    if(name==='trade-leaderboard' && typeof window.loadTradeLeaderboard==='function') window.loadTradeLeaderboard();
   };
   $('#tabs').addEventListener('click', e => {
     const b = e.target.closest('button[data-tab]');

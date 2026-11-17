@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261114-deals">
+<link rel="stylesheet" href="styles.css?v=20261117-leaderboard">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏆</text></svg>">
 </head>
 <body>
@@ -40,6 +40,7 @@
     <button data-tab="seasons">Seasons</button>
     <button data-tab="records">Record Book</button>
     <button data-tab="players">Roster History</button>
+    <button data-tab="trade-leaderboard">TRADE LEADERBOARD</button>
     <button data-tab="rules">Rulebook</button>
     <button data-tab="settings">My view</button>
     <button data-tab="commissioner">Commissioner’s desk</button>
@@ -163,6 +164,16 @@
     <details class="player-history-method"><summary>Sources and counting</summary><div id="playerHistoryCoverage"></div></details>
   </section>
 
+  <section id="tab-trade-leaderboard" class="tab" aria-labelledby="tradeLeaderboardTitle">
+    <h2 id="tradeLeaderboardTitle">TRADE LEADERBOARD</h2>
+    <p class="lede">Who’s always making a deal? Every owner, ranked by completed trades. Select an owner to see their deals and everything each side received.</p>
+    <p id="tradeLeaderboardStatus" class="tiny" role="status">Trade history loads when you open this page.</p>
+    <div class="player-history-filters"><label>Season<select id="tradeLeaderboardSeason"><option value="all">All-time</option></select></label></div>
+    <p class="tiny">One completed deal counts once per participating owner, including player, pick-only and FAAB deals. Waivers, free-agent moves and rejected trades do not count. Older ESPN records are incomplete, so totals are recorded minimums.</p>
+    <p id="tradeLeaderboardResults" class="tiny" aria-live="polite"></p>
+    <div id="tradeLeaderboardList" class="player-history-list"></div>
+  </section>
+
   <!-- RULES -->
   <section id="tab-rules" class="tab">
     <h2>Rules &amp; Regulations</h2>
@@ -220,11 +231,11 @@
   <p class="tiny">This is a living document. Personalize the site in My view. Add league stories at the Commissioner’s desk. Standings and records update themselves from Sleeper.</p>
 </footer>
 
-<script src="explorer.js?v=20261114-deals"></script>
-<script src="preferences.js?v=20261114-deals"></script>
-<script src="editor.js?v=20261114-deals"></script>
-<script src="player-history-model.js?v=20261114-deals"></script>
-<script src="player-history.js?v=20261114-deals"></script>
-<script src="app.js?v=20261114-deals"></script>
+<script src="explorer.js?v=20261117-leaderboard"></script>
+<script src="preferences.js?v=20261117-leaderboard"></script>
+<script src="editor.js?v=20261117-leaderboard"></script>
+<script src="player-history-model.js?v=20261117-leaderboard"></script>
+<script src="player-history.js?v=20261117-leaderboard"></script>
+<script src="app.js?v=20261117-leaderboard"></script>
 </body>
 </html>

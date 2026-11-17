@@ -18,3 +18,25 @@ console.log('Sort and timeline checks passed: 3+ threshold, both rankings, all c
 assert.equal(model.sorted([{name:'Not traded',teamCount:10,tradeCount:0}], 'trades').length,0);
 assert.equal(model.tradeTimeline({trades:[{id:'t1',dealId:'d1',year:2026,period:1},{id:'t2',dealId:'d2',year:2026,period:2},{id:'t3',dealId:'missing',year:2026,period:3}]},{d1:{status:'completed'},d2:{status:'pending'}},data.updatedAt).length,1);
 console.log('Trade-only checks passed: no zero-trade players; no pending/missing/non-trade timeline records');
+
+// Owner totals count transactions, including pick-only deals, rather than player assets.
+const owners=['a','b','c','d'].map(id=>({id,name:id}));
+const asset=(fromOwnerId,toOwnerId,type='player')=>({fromOwnerId,toOwnerId,type});
+const fixture={
+ one:{id:'one',year:2026,status:'completed',transfers:[asset('a','b'),asset('a','b'),asset('b','a')]},
+ duplicate:{id:'one',year:2026,status:'completed',transfers:[asset('a','b')]},
+ multi:{id:'multi',year:2026,status:'completed',transfers:[asset('a','b','pick'),asset('b','c','faab'),asset('c','a')]},
+ pickOnly:{id:'pick',year:2025,status:'completed',transfers:[asset('b','c','pick')]},
+ pending:{id:'pending',year:2026,status:'pending',transfers:[asset('a','d')]},
+ self:{id:'self',year:2026,status:'completed',transfers:[asset('d','d')]}
+};
+const ranking=Array.from(model.ownerLeaderboard(owners,fixture),o=>[o.id,o.tradeCount,o.rank]);
+assert.deepEqual(ranking,[['b',3,1],['a',2,2],['c',2,2],['d',0,4]]);
+assert.deepEqual(Array.from(model.ownerLeaderboard(owners,fixture,'2025'),o=>[o.id,o.tradeCount]),[['b',1],['c',1],['a',0],['d',0]]);
+const real=model.ownerLeaderboard(data.owners,data.deals);
+for(const row of real){
+ const expected=Object.values(data.deals).filter(d=>d.status==='completed'&&d.transfers.some(a=>a.fromOwnerId!==a.toOwnerId&&(a.fromOwnerId===row.id||a.toOwnerId===row.id))).length;
+ assert.equal(row.tradeCount,expected,row.name);
+}
+console.log('Owner leaderboard passed: one count per deal, deduplication, picks/FAAB, three-way deals, ties, zero totals, season filtering and archive reconciliation');
+console.log(real.map(o=>`${o.name}: ${o.tradeCount}`).join('\n'));

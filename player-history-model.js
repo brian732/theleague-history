@@ -41,5 +41,18 @@ const PlayerHistoryModel = (() => {
   function tradeTimeline(player,deals,asOfValue){
     return (player.trades||[]).filter(t=>deals[t.dealId]?.status==='completed').slice().sort((a,b)=>a.year-b.year||(a.timestamp||weekOrder(a.year,a.period||1,Date.parse(asOfValue)))-(b.timestamp||weekOrder(b.year,b.period||1,Date.parse(asOfValue)))||a.id.localeCompare(b.id));
   }
-  return {sorted,timeline,tradeTimeline};
+  function ownerLeaderboard(owners,deals,year='all'){
+    const rows=owners.map(o=>({...o,deals:[]})),byId=new Map(rows.map(o=>[o.id,o])),seen=new Set();
+    for(const deal of Object.values(deals||{})){
+      if(deal.status!=='completed'||seen.has(deal.id)||(year!=='all'&&String(deal.year)!==String(year)))continue;
+      seen.add(deal.id);
+      const participants=new Set((deal.transfers||[]).filter(a=>a.fromOwnerId&&a.toOwnerId&&a.fromOwnerId!==a.toOwnerId&&['player','pick','faab'].includes(a.type)).flatMap(a=>[a.fromOwnerId,a.toOwnerId]));
+      for(const id of participants)if(byId.has(id))byId.get(id).deals.push(deal);
+    }
+    for(const row of rows){row.deals.sort((a,b)=>b.year-a.year||(b.timestamp||0)-(a.timestamp||0)||(b.period||0)-(a.period||0)||a.id.localeCompare(b.id));row.tradeCount=row.deals.length;}
+    rows.sort((a,b)=>b.tradeCount-a.tradeCount||a.name.localeCompare(b.name));
+    let rank=0;rows.forEach((row,i)=>{if(!i||row.tradeCount!==rows[i-1].tradeCount)rank=i+1;row.rank=rank;});
+    return rows;
+  }
+  return {sorted,timeline,tradeTimeline,ownerLeaderboard};
 })();

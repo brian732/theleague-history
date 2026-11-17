@@ -90,7 +90,7 @@
     find('playerHistoryStatus').textContent='Loading roster history…';
     loading=(async()=>{
       try{
-        const response=await fetch('data/player-history.json?v=20261114-deals',{cache:'no-cache',signal:AbortSignal.timeout(15000)});if(!response.ok)throw new Error('Roster history could not be loaded.');
+        const response=await fetch('data/player-history.json?v=20261117-leaderboard',{cache:'no-cache',signal:AbortSignal.timeout(15000)});if(!response.ok)throw new Error('Roster history could not be loaded.');
         const data=await response.json();if(!Array.isArray(data.players)||!Array.isArray(data.coverage))throw new Error('Roster history is unavailable.');archive=data;
         const updated=new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',year:'numeric',timeZone:'America/New_York'}).format(new Date(data.updatedAt));
         find('playerHistoryStatus').textContent=`${data.coverage[0].year}–${data.coverage.at(-1).year} · ESPN + Sleeper · Roster history snapshot: ${updated}`;
@@ -100,6 +100,36 @@
       finally{loading=null;}
     })();return loading;
   };
+  function leaderboardResults(){
+    if(!archive)return;
+    const rows=PlayerHistoryModel.ownerLeaderboard(archive.owners,archive.deals,find('tradeLeaderboardSeason').value);
+    const dealCount=new Set(rows.flatMap(o=>o.deals.map(d=>d.id))).size;
+    find('tradeLeaderboardResults').textContent=`${rows.length} owners · ${dealCount} recorded completed deals · most to least · select an owner for details${dealCount?'':'. No completed deal details are available for this season; this does not mean no trades occurred.'}`;
+    const list=find('tradeLeaderboardList');
+    list.innerHTML=rows.map((row,i)=>{
+      const o=owner(row.id);
+      return `<details class="player-history-record" data-owner-index="${i}"><summary><span class="player-history-rank">${row.rank}</span><span class="player-history-name">${escape(o.name)}<span>${escape(o.team)}</span></span><span class="player-history-count"><b>${row.tradeCount}</b> ${row.tradeCount===1?'trade':'trades'}</span><span class="player-history-chevron" aria-hidden="true">+</span></summary><div class="player-history-body"></div></details>`;
+    }).join('');
+    list.querySelectorAll('details').forEach((detail,i)=>detail.addEventListener('toggle',()=>{
+      if(!detail.open||detail.dataset.loaded)return;
+      detail.dataset.loaded='true';
+      detail.querySelector('.player-history-body').innerHTML=`<div class="player-history-detail"><p class="tiny">Completed deals · newest first</p>${rows[i].deals.map(deal=>{
+        const participants=[...new Set(deal.transfers.flatMap(a=>[a.fromOwnerId,a.toOwnerId]))];
+        const when=deal.date?date(deal.date):`${deal.year} · ${deal.source==='ESPN'?'ESPN period':'Week'} ${deal.period||'unknown'}`;
+        return `<article class="player-trade-card"><header><h4>${escape(when)}</h4><span class="pill gray">${escape(deal.source)}</span></header><p class="player-trade-path">${participants.map(id=>escape(owner(id).name)).join(' ↔ ')}</p>${dealSidesMarkup(deal,{id:null})}</article>`;
+      }).join('')||'<p>No completed trades recorded for this season. Older ESPN records may be unavailable.</p>'}</div>`;
+    }));
+  }
+  window.loadTradeLeaderboard=async()=>{
+    find('tradeLeaderboardStatus').textContent='Loading trade history…';
+    await window.loadPlayerHistory();
+    if(!archive){find('tradeLeaderboardStatus').textContent='Trade history could not be loaded. Reload the page to try again.';return;}
+    const select=find('tradeLeaderboardSeason');
+    if(select.options.length===1)select.insertAdjacentHTML('beforeend',archive.coverage.slice().reverse().map(s=>`<option value="${s.year}">${s.year}</option>`).join(''));
+    find('tradeLeaderboardStatus').textContent=find('playerHistoryStatus').textContent.replace('Roster history snapshot:','Trade history snapshot:');
+    leaderboardResults();
+  };
+  find('tradeLeaderboardSeason').addEventListener('change',leaderboardResults);
   find('playerHistoryFilters').addEventListener('submit',e=>e.preventDefault());
   find('playerHistorySearch').addEventListener('input',()=>{limit=50;results();});
   find('playerHistoryPosition').addEventListener('change',()=>{limit=50;results();});
